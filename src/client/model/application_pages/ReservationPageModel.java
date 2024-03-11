@@ -65,6 +65,20 @@ public class ReservationPageModel {
         this.fullName = client.getRemote().getFullName(client.getUsername());
         totalBookings = String.valueOf(client.getRemote().getUserTotalBookings(client.getUsername()));
         vehicles = client.getRemote().getUserVehicles(client.getUsername());
+
+        ArrayList<String> carsArrayList = new ArrayList();
+        ArrayList<String> motorArrayList = new ArrayList();
+        for (String vehicle : vehicles.keySet()) {
+            if (vehicles.get(vehicle).get(0).equalsIgnoreCase("car")) {
+                carsArrayList.add(vehicles.get(vehicle).get(1));
+            }
+            else {
+                motorArrayList.add(vehicles.get(vehicle).get(1));
+            }
+        }
+
+        cars = carsArrayList.toArray(new String[0]);
+        motorcycles = motorArrayList.toArray(new String[0]);
     }
 
 
@@ -197,8 +211,7 @@ public class ReservationPageModel {
      * @return The current date.
      */
     public String getDate() {
-        //TODO: RMI Implementation
-        return "09/10/23";
+        return client.getDate();
     }
 
     /**
