@@ -2,6 +2,7 @@ package client.model.application_pages;
 
 import client.model.Client;
 
+import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -58,8 +59,12 @@ public class ReservationPageModel {
      * Constructs a ReservationPageModel with a specified client.
      * @param client The specified client.
      */
-    public ReservationPageModel(Client client) {
+    public ReservationPageModel(Client client) throws RemoteException {
         //TODO: RMI Implementation
+
+        this.fullName = client.getRemote().getFullName(client.getUsername());
+        totalBookings = String.valueOf(client.getRemote().getUserTotalBookings(client.getUsername()));
+       // vehicles = client.getRemote().getUserVehicles(client.getUsername());
     }
 
 

@@ -11,13 +11,14 @@ import java.rmi.registry.Registry;
 
 
 public class Client {
+    ServerMessage remote;
+    String username;
 
     public Client() throws RemoteException, NotBoundException{
         Registry server = LocateRegistry.getRegistry(2000);
         this.remote = (ServerMessage) server.lookup("server");
 
     }
-    ServerMessage remote;
 
     public ServerMessage getRemote() {
         return remote;
@@ -33,5 +34,13 @@ public class Client {
         } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

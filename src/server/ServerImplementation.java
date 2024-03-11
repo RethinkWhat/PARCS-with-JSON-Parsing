@@ -8,12 +8,16 @@ import java.util.Map;
 
 public class ServerImplementation extends UnicastRemoteObject implements ServerMessage {
 
+    /**Temporary, while JSON not implemented */
+    UserParser userParser = new UserParser();
+    ReservationParser reservationParser = new ReservationParser();
+
     protected ServerImplementation() throws RemoteException {
     }
 
+
     @Override
     public boolean login(String username, String password) throws RemoteException {
-        UserParser userParser = new UserParser();
 
         Map<String, String> accounts = userParser.getUserLoginCredentials();
         String associatedPass = accounts.getOrDefault(username, "");
@@ -34,5 +38,19 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
     }
          */
         return authenticateLogin;
+    }
+
+    public String getFullName(String username) throws RemoteException {
+        return userParser.getUserFullName(username);
+    }
+
+    public int getUserTotalBookings(String username) throws RemoteException {
+        DateTime dateTime = new DateTime();
+        return reservationParser.countTotalBookingsPerDay(username, dateTime.getDateTime());
+    }
+
+
+    public void getUserVehicles(String username) {
+        //TODO: Get user vehicles
     }
 }

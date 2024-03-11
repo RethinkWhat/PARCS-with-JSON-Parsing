@@ -4,6 +4,8 @@ import client.model.application_pages.ReservationPageModel;
 import client.model.application_pages.TimerModel;
 import client.model.application_pages.UserProfileModel;
 
+import java.rmi.RemoteException;
+
 /**
  * Template for object ApplicationModel.
  * The application model contains the different data to be displayed in the client application domain.
@@ -33,9 +35,13 @@ public class ApplicationModel {
      */
     public ApplicationModel(Client client) {
         this.client = client;
-        reservationPageModel = new ReservationPageModel(this.client);
-        userProfileModel = new UserProfileModel(this.client);
-        timerModel = new TimerModel(this.client);
+        try {
+            reservationPageModel = new ReservationPageModel(this.client);
+            userProfileModel = new UserProfileModel(this.client);
+            timerModel = new TimerModel(this.client);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

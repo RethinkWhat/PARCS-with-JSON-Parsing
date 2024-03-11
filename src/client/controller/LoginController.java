@@ -76,6 +76,7 @@ public class LoginController {
             String username = view.getUsername();
             try {
                 model.getClient().getRemote().login(username, view.getPassword());
+                model.getClient().setUsername(username);
                 new ApplicationController(new ApplicationView(), new ApplicationModel(model.getClient()));
                 view.dispose();
             } catch (RemoteException ex) {
@@ -84,7 +85,6 @@ public class LoginController {
 
            /* if (model.validateAccount(username, model.encryptPassword(view.getPassword()))) {
                 //TODO: update
-                //model.getClient().setUsername(username);
 
                 new ApplicationController(new ApplicationView(), new ApplicationModel(model.getClient()));
                 view.dispose();
