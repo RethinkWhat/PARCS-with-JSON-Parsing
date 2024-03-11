@@ -92,6 +92,7 @@ public class RegisterController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            view.dispose();
             LoginView loginView = new LoginView();
             LoginModel loginModel = new LoginModel(model.getClient());
             LoginController controller = new LoginController(loginView,loginModel);
