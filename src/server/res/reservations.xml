@@ -1,10 +1,23 @@
 <reservations>
-     
+         
+    
     <parkingSpot identifier="C1">
+                
         <reservation day="03/10/24">
+                        
             <startTime>7:00</startTime>
+                        
             <endTime>8:00</endTime>
+                        
             <user>basti</user>
+                    
+        </reservation>
+            
+        <reservation day="03/11/24">
+            <startTime>6:00</startTime>
+            <endTime>8:00</endTime>
+            <user>yuen</user>
         </reservation>
     </parkingSpot>
+    
 </reservations>

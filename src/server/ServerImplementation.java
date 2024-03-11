@@ -60,6 +60,10 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
     }
 
     public boolean bookReservation(String identifier, String date, String startTime, String duration, String username) {
-        return !reservationParser.hasSchedulingConflicts(identifier, date, startTime, duration);
+        boolean check = !reservationParser.hasSchedulingConflicts(identifier, date, startTime, duration);
+        if (check) {
+            reservationParser.createReservationNode(identifier, date, startTime, duration, username);
+        }
+        return check;
     }
 }
