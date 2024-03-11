@@ -34,6 +34,9 @@ public class ApplicationController {
         // constants / variables
         view.getLblLocation().setText("Home");
         new ReservationPageController(view.getReservationPageView(), model.getReservationPageModel());
+        /**
+         * TODO: Implement ff code. Exceptions occur that's why they are commented out
+         */
        // new UserProfileController(view.getUserProfileView(), model.getUserProfileModel(), this.view);
        // TimerController controller = new TimerController(view.getTimerView(), model.getTimerModel());
        // controller.startTimer();
