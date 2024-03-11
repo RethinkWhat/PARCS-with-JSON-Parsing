@@ -4,6 +4,7 @@ import shared.ServerMessage;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.List;
 import java.util.Map;
 
 public class ServerImplementation extends UnicastRemoteObject implements ServerMessage {
@@ -40,17 +41,21 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
         return authenticateLogin;
     }
 
-    public String getFullName(String username) throws RemoteException {
+    public String getFullName(String username) {
         return userParser.getUserFullName(username);
     }
 
-    public int getUserTotalBookings(String username) throws RemoteException {
+    public int getUserTotalBookings(String username) {
         DateTime dateTime = new DateTime();
         return reservationParser.countTotalBookingsPerDay(username, dateTime.getDateTime());
     }
 
 
-    public void getUserVehicles(String username) {
-        //TODO: Get user vehicles
+    public Map<String, List<String>> getUserVehicles(String username) {
+        return userParser.getUserVehicles(username);
+    }
+
+    public List<String> spotTimeAvailable(String identifier, String duration, String date) {
+        return reservationParser.availableTime(identifier, duration, date);
     }
 }

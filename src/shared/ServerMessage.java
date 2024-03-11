@@ -14,14 +14,40 @@ public interface ServerMessage extends Remote {
      * @return
      * @throws RemoteException
      */
-    public boolean login(String username, String password) throws RemoteException;
+    boolean login(String username, String password) throws RemoteException;
 
 
-    public String getFullName(String username) throws RemoteException;
+    /**
+     * Method to get the full name of user, given their username
+     * @param username
+     * @return
+     * @throws RemoteException
+     */
+    String getFullName(String username) throws RemoteException;
 
-    public int getUserTotalBookings(String username) throws RemoteException;
 
-    public void getUserVehicles(String username);
+    /**
+     * Get the total booking count of a user
+     * @param username
+     * @return
+     * @throws RemoteException
+     */
+    int getUserTotalBookings(String username) throws RemoteException;
+
+    /**
+     * Get the vehicle list of a user
+     * @param username
+     */
+    Map<String, List<String>> getUserVehicles(String username) throws RemoteException;
+
+    /**
+     * Get the available time for a spot on a specific date
+     * @param identifier
+     * @param duration
+     * @param date
+     * @return
+     */
+    List<String> spotTimeAvailable(String identifier, String duration, String date) throws RemoteException;
 
 
 }
