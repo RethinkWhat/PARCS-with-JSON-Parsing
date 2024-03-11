@@ -18,7 +18,7 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
 
 
     @Override
-    public boolean login(String username, String password) throws RemoteException {
+    public boolean login(String username, String password) {
 
         Map<String, String> accounts = userParser.getUserLoginCredentials();
         String associatedPass = accounts.getOrDefault(username, "");
@@ -57,5 +57,9 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
 
     public List<String> spotTimeAvailable(String identifier, String duration, String date) {
         return reservationParser.availableTime(identifier, duration, date);
+    }
+
+    public boolean bookReservation(String identifier, String date, String startTime, String duration, String username) {
+        return !reservationParser.hasSchedulingConflicts(identifier, date, startTime, duration);
     }
 }

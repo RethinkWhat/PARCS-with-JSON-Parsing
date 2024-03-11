@@ -49,5 +49,7 @@ public interface ServerMessage extends Remote {
      */
     List<String> spotTimeAvailable(String identifier, String duration, String date) throws RemoteException;
 
+    boolean bookReservation(String identifier, String date, String startTime, String duration, String username) throws RemoteException;
+
 
 }

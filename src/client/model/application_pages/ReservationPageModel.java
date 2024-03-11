@@ -127,7 +127,11 @@ public class ReservationPageModel {
      * @return True if the booking is confirmed, false otherwise.
      */
     public boolean attemptBooking(String identifier, String date, String startTime, String duration) {
-        //TODO: RMI Implementation
+        try {
+            return client.getRemote().bookReservation(identifier, date, startTime, duration, client.getUsername());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 

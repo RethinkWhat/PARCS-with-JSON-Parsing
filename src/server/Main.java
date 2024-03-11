@@ -13,7 +13,6 @@ public class Main {
             ServerMessage server = new ServerImplementation();
             Registry reg = LocateRegistry.createRegistry(2000);
             reg.rebind("server", server);
-            System.out.println("bound");
         } catch (RemoteException e) {
             e.printStackTrace();
         }
