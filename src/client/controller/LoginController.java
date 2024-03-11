@@ -75,24 +75,17 @@ public class LoginController {
         public void actionPerformed(ActionEvent e)  {
             String username = view.getUsername();
             try {
-                model.getClient().getRemote().login(username, view.getPassword());
-                model.getClient().setUsername(username);
-                new ApplicationController(new ApplicationView(), new ApplicationModel(model.getClient()));
-                view.dispose();
+                boolean loginAttempt = model.getClient().getRemote().login(username, model.encryptPassword(view.getPassword()));
+                if (loginAttempt) {
+                    model.getClient().setUsername(username);
+                    new ApplicationController(new ApplicationView(), new ApplicationModel(model.getClient()));
+                    view.dispose();
+                } else {
+                    view.displayLoginErrorMessage("Account does not exist. Please try again.");
+                }
             } catch (RemoteException ex) {
                 throw new RuntimeException(ex);
             }
-
-           /* if (model.validateAccount(username, model.encryptPassword(view.getPassword()))) {
-                //TODO: update
-
-                new ApplicationController(new ApplicationView(), new ApplicationModel(model.getClient()));
-                view.dispose();
-            } else {
-                  view.displayLoginErrorMessage(model.getErrorMessage());
-            }
-
-            */
         }
     }
 
