@@ -51,36 +51,4 @@ public class Reservations {
         return TimeAndUserMap;
     }
 
-    /**
-     * Method to set the start and end of a reservation and who reserved the spot
-     * @param timeAndUserMap : HashMap<HashMap<Time, Time>, String>
-     */
-    public void setTimeAndUserMap(HashMap<TimeRange, String> timeAndUserMap) {
-        TimeAndUserMap = timeAndUserMap;
-    }
-
-    /**
-     * Method to add a reservation
-     * @param startTime : String
-     * @param endTime : String
-     * @param reserver : String
-     */
-    public void addReservation(String startTime, String endTime, String reserver) {
-        TimeAndUserMap.put(new TimeRange(startTime,endTime), reserver);
-    }
-
-    /**
-     * Method to add a reservation
-     * @param timeRange : TimeRange
-     * @param reserver : String
-     */
-    public void addReservation(TimeRange timeRange, String reserver) {
-        TimeAndUserMap.put(timeRange,reserver);
-    }
-
-    @Override
-    public String toString() {
-        return date + ": " + TimeAndUserMap;
-
-    }
 }
