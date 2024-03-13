@@ -52,6 +52,14 @@ public interface ServerMessage extends Remote {
     boolean bookReservation(String identifier, String date, String startTime, String duration, String username) throws RemoteException;
 
     /**
+
+     * A method to allow user logging out from the main menu
+     * @param userName
+     * @throws RemoteException
+     */
+    boolean logout(String username) throws RemoteException;
+     
+     /**
      * FROM client.model.application_pages.UserProfileModel
      * @param username
      * @throws RemoteException
@@ -59,4 +67,5 @@ public interface ServerMessage extends Remote {
     List<List<String>> viewHistory(String username) throws RemoteException;
 
 
+>>>>>>> src/shared/ServerMessage.java
 }

@@ -4,6 +4,7 @@ import client.controller.LoginController;
 import client.view.LoginView;
 import shared.ServerMessage;
 
+import javax.swing.*;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -46,5 +47,17 @@ public class Client {
 
     public String getDate() {
         return LiveDateTime.getDate();
+    }
+
+    /**
+     * Logs out the user from the server and starts the GUI.
+     */
+    public boolean logout(String username) {
+        try{
+            return this.remote.logout(username);
+        }catch (RemoteException re){
+            re.printStackTrace();
+            return false;
+        }
     }
 }

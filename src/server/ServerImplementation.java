@@ -13,6 +13,7 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
     /**Temporary, while JSON not implemented */
     UserParser userParser = new UserParser();
     ReservationParser reservationParser = new ReservationParser();
+    ArrayList<String> userLog = new ArrayList<String>();
 
     protected ServerImplementation() throws RemoteException {
     }
@@ -67,6 +68,14 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
         }
         return check;
     }
+
+    public boolean logout(String username){
+        try{
+            userLog.remove(username);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
 
     @Override
     public List<List<String>> viewHistory(String username) throws RemoteException {

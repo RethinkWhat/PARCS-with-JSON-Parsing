@@ -93,6 +93,7 @@ public class UserProfileController {
         view.setNavExitListener(e -> {
             parent.dispose();
             //TODO: RMI Implementation
+            model.getClient().logout(model.getClient().getUsername());
             //model.getClient().logout();
         });
 
