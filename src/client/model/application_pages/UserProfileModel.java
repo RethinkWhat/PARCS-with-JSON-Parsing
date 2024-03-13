@@ -2,6 +2,7 @@ package client.model.application_pages;
 
 import client.model.Client;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -180,7 +181,11 @@ public class UserProfileModel {
      * Retrieves and displays the booking history of the user.
      */
     public void viewHistory() {
-        //TODO: RMI Implementation
+        try {
+            this.bookings = client.getRemote().viewHistory(client.getUsername());
+        }catch (RemoteException re){
+            re.printStackTrace();
+        }
     }
 
     /**
