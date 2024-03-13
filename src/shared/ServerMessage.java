@@ -54,10 +54,17 @@ public interface ServerMessage extends Remote {
     /**
 
      * A method to allow user logging out from the main menu
-     * @param userName
+     * @param username
      * @throws RemoteException
      */
     boolean logout(String username) throws RemoteException;
+
+    /**
+     * A method that allows the user to create account, where it passes information to server
+     * @param firstName, lastName, username, phoneNumber, password
+     * @throws RemoteException
+     */
+    boolean createAccount(String firstName, String lastName, String username, String phoneNumber, String password) throws RemoteException;
      
      /**
      * FROM client.model.application_pages.UserProfileModel
@@ -66,6 +73,4 @@ public interface ServerMessage extends Remote {
      */
     List<List<String>> viewHistory(String username) throws RemoteException;
 
-
->>>>>>> src/shared/ServerMessage.java
 }

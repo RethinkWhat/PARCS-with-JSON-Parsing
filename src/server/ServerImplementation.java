@@ -102,4 +102,9 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
         }
         return userBookings;
     }
+
+    public boolean createAccount(String firstName, String lastName, String username, String phoneNumber, String password) {
+            userParser.createUser(username, "user", password, lastName, firstName, phoneNumber, null);
+            return true;
+    }
 }
