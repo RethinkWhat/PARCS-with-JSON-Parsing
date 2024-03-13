@@ -1,6 +1,8 @@
 package client.model;
 
 import java.nio.charset.StandardCharsets;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.security.MessageDigest;
 import java.util.Base64;
 
@@ -71,10 +73,16 @@ public class RegisterModel {
      * @return True if the account creation is successful. False otherwise.
      */
     public boolean createAccount(String firstName, String lastName,
-                                 String username, String phoneNumber, String password) {
-
+                                 String username, String phoneNumber, String password)  {
         //TODO: RMI Implementation
-        return false;
+        try{
+            this.getClient().getRemote().createAccount(firstName,lastName,username,phoneNumber,password);
+        }catch (RemoteException re){
+            re.printStackTrace();
+            return false;
+        }
+
+        return true;
     }
 
     public Client getClient() {
