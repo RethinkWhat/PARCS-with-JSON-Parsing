@@ -51,5 +51,10 @@ public interface ServerMessage extends Remote {
 
     boolean bookReservation(String identifier, String date, String startTime, String duration, String username) throws RemoteException;
 
-
+    /**
+     * A method to allow user logging out from the main menu
+     * @param userName
+     * @throws RemoteException
+     */
+    boolean logout(String username) throws RemoteException;
 }

@@ -4,6 +4,7 @@ import shared.ServerMessage;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
     /**Temporary, while JSON not implemented */
     UserParser userParser = new UserParser();
     ReservationParser reservationParser = new ReservationParser();
+    ArrayList<String> userLog = new ArrayList<String>();
 
     protected ServerImplementation() throws RemoteException {
     }
@@ -65,5 +67,14 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
             reservationParser.createReservationNode(identifier, date, startTime, duration, username);
         }
         return check;
+    }
+
+    public boolean logout(String username){
+        try{
+            userLog.remove(username);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 }

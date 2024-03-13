@@ -58,7 +58,9 @@ public class ApplicationController {
         view.setNavLogoutListener(e -> {
             view.dispose();
             //TODO: update
+            model.getClient().logout(model.getClient().getUsername());
         });
+
 
         // mouse listeners
 
