@@ -73,4 +73,8 @@ public interface ServerMessage extends Remote {
      */
     List<List<String>> viewHistory(String username) throws RemoteException;
 
+    List<String> getClosestReservation (String username) throws RemoteException;
+
+    String getDuration (List<String> userReservation) throws RemoteException;
+
 }
