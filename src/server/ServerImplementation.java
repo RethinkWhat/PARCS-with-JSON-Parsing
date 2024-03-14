@@ -69,13 +69,14 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
         return check;
     }
 
-    public boolean logout(String username){
-        try{
+    public boolean logout(String username) {
+        try {
             userLog.remove(username);
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
+    }
 
     @Override
     public List<List<String>> viewHistory(String username) throws RemoteException {

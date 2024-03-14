@@ -11,7 +11,7 @@ public class GsonReservationParser {
     GsonBuilder builder;
     Gson gson;
 
-    final File reservationsFile = new File("res/reservationList");
+    final File reservationsFile = new File("src/server/res/reservationList.json");
 
     /**
      * Default Constructor
@@ -34,9 +34,8 @@ public class GsonReservationParser {
      * @param username
      * @return
      */
-    public String createJsonReservationObj(String identifier, String date, String startTime, String duration, String username) {
-        String[] reservation = {identifier, date, startTime, duration, username};
-        return gson.toJson(reservation);
+    public void createJsonReservationObj(String identifier, String date, String startTime, String duration, String username) {
+        //TODO: Make method
     }
 
     /**
@@ -44,36 +43,28 @@ public class GsonReservationParser {
      * @param object
      */
     public void writeJsonObject(String object) {
-        try {
-            FileWriter writer = new FileWriter(reservationsFile);
-            writer.write(object);
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        //TODO: Make method
     }
 
     /**
      * Method to get all the reservations found in the JSON file
      * @return reservations array
      */
-    public String[] getAllReservations() {
-        String[] reservation = new String[0];
+    public ParkingSpot getAllReservations() {
+        ParkingSpot parkingSpot = new ParkingSpot();
         try {
             BufferedReader reader = new BufferedReader(new FileReader(reservationsFile));
 
-            reservation = gson.fromJson(reader, String[].class);
+            parkingSpot = gson.fromJson(reader, ParkingSpot.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return reservation;
+        return parkingSpot;
     }
 
     //TODO: Delete
     public static void main(String[] args) {
         GsonReservationParser parser = new GsonReservationParser();
-        String obj = parser.createJsonReservationObj("C1", "3/3/24", "9:00", "1", "rithik");
-        //parser.writeJsonObject(obj);
-        System.out.println(parser.getAllReservations()[0]);
+        System.out.println(parser.getAllReservations());
     }
 }
