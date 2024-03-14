@@ -269,5 +269,6 @@ public class UserProfileModel {
     public String getDuration() {
         return bookings.get(historyPageNo).get(4);
     }
+    
 
 }

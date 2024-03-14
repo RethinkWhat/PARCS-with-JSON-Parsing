@@ -77,4 +77,14 @@ public interface ServerMessage extends Remote {
 
     String getDuration (List<String> userReservation) throws RemoteException;
 
+     /**
+     *
+     */
+    void deleteAccount (String firstname) throws RemoteException;
+    /**
+     *
+     */
+
+    boolean editPassword(String newPassword) throws RemoteException;
+
 }
