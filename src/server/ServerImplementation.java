@@ -133,4 +133,14 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
             return null;
         }
     }
+
+     @Override
+    public void deleteAccount(String firstname) throws RemoteException {
+        userParser.deleteUser(firstname);
+    }
+    
+    @Override
+    public boolean editPassword(String newPassword) throws RemoteException {
+        return false;
+    }
 }
