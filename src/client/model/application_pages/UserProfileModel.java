@@ -180,7 +180,14 @@ public class UserProfileModel {
      */
     public boolean editPassword(String password) {
         //TODO: RMI Implementation
-        return false;
+        try{
+            this.getClient().getRemote().editPassword(password);
+            return true;
+        }catch (RemoteException e){
+            e.printStackTrace();
+            return false;
+        }
+
     }
 
     /**
