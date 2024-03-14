@@ -2,6 +2,7 @@ package server;
 
 import shared.ServerMessage;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -69,13 +70,14 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
         return check;
     }
 
-    public boolean logout(String username){
-        try{
+    public boolean logout(String username) {
+        try {
             userLog.remove(username);
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
+    }
 
     @Override
     public List<List<String>> viewHistory(String username) throws RemoteException {
@@ -106,5 +108,29 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
     public boolean createAccount(String firstName, String lastName, String username, String phoneNumber, String password) {
             userParser.createUser(username, "user", password, lastName, firstName, phoneNumber, null);
             return true;
+    }
+
+    public List<String> getClosestReservation (String username){
+        DateTime dateTime = new DateTime();
+        try {
+
+            List<String> userReservation = reservationParser.getClosestReservation(username, dateTime.getTime());
+
+            return userReservation;
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return null;
+        }
+    }
+
+    public String getDuration (List<String> userReservation){
+        try {
+            String duration = reservationParser.computeDuration(userReservation.get(1), userReservation.get(2));
+
+            return duration;
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return null;
+        }
     }
 }
