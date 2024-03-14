@@ -1,5 +1,6 @@
 package server;
 
+import server.model.ServerImplementation;
 import shared.ServerMessage;
 
 import java.rmi.RemoteException;

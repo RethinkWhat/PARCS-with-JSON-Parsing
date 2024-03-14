@@ -1,4 +1,4 @@
-package server;
+package server.model;
 
 
 import org.w3c.dom.Document;

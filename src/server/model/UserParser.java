@@ -1,4 +1,4 @@
-package server;
+package server.model;
 
 // w3c imports
 
