@@ -96,6 +96,10 @@ public class ParkingSpot {
 
     @Override
     public String toString() {
-        return identifier + ": " + reservationsList;
+        StringBuilder toReturn = new StringBuilder(identifier + ": ");
+        for (Reservations reservations : reservationsList) {
+             toReturn.append(reservations).append(" ");
+        }
+        return toReturn.toString();
     }
 }

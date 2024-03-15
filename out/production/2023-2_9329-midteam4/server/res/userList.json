@@ -1,0 +1,20 @@
+[
+  {
+    "username" : "rethinkwhat",
+    "type" : "user",
+    "password" : "password",
+    "lastName" : "Tank",
+    "firstName" : "Rithik",
+    "phoneNumber" : "09177900153",
+    "vehicles" : null
+  },
+  {
+    "username" : "rethinkwhat",
+    "type" : "user",
+    "password" : "password",
+    "lastName" : "Tank",
+    "firstName" : "Rithik",
+    "phoneNumber" : "09177900153",
+    "vehicles" : null
+  }
+]
