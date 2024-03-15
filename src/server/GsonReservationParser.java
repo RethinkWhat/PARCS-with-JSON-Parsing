@@ -158,6 +158,6 @@ public class GsonReservationParser {
     //TODO: Delete
     public static void main(String[] args) {
         GsonReservationParser parser = new GsonReservationParser();
-        parser.makeReservation("C69", "10/10/10", "5:00", "1", "rithik");
+        parser.makeReservation("C69", "10/10/10", "7:00", "1", "rithik");
     }
 }
