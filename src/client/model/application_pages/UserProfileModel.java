@@ -84,7 +84,7 @@ public class UserProfileModel {
         //TODO: RMI Implementation
          
         try{
-            this.remote.deleteAccount(username);
+            this.client.getRemote().deleteAccount(username);
         }catch (RemoteException re){
             re.printStackTrace();
         }

@@ -160,9 +160,6 @@ import java.util.Map;
             return true;
 
         }
- }
-
-    }
 
     public List<String> getClosestReservation (String username){
         DateTime dateTime = new DateTime();
