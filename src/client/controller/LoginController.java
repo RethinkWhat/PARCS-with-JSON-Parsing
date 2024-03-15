@@ -77,9 +77,13 @@ public class LoginController {
             try {
                 boolean loginAttempt = model.getClient().getRemote().login(username, model.encryptPassword(view.getPassword()));
                 if (loginAttempt) {
-                    model.getClient().setUsername(username);
-                    new ApplicationController(new ApplicationView(), new ApplicationModel(model.getClient()));
-                    view.dispose();
+                    if (!model.getClient().getRemote().isUserLoggedIn(username)) {
+                        model.getClient().setUsername(username);
+                        new ApplicationController(new ApplicationView(), new ApplicationModel(model.getClient()));
+                        view.dispose();
+                    } else {
+                        view.displayLoginErrorMessage("Account already logged in elsewhere.");
+                    }
                 } else {
                     view.displayLoginErrorMessage("Account does not exist. Please try again.");
                 }

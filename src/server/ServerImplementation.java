@@ -18,35 +18,30 @@ import java.util.Map;
     ReservationParser reservationParser = new ReservationParser();
     ArrayList<String> userLog = new ArrayList<String>();
 
+
+    /** JSON Parsers */
+    GsonUserParser gsonUserParser = new GsonUserParser();
+    GsonReservationParser gsonReservationParser = new GsonReservationParser();
+
     protected ServerImplementation() throws RemoteException {
     }
 
 
     @Override
     public boolean login(String username, String password) {
-
-        Map<String, String> accounts = userParser.getUserLoginCredentials();
-        String associatedPass = accounts.getOrDefault(username, "");
-        boolean authenticateLogin = password.equals(associatedPass);
-        System.out.println(authenticateLogin);
-
-        /*
-        if (authenticateLogin) {
-            if (server.getUserLog().contains(username)) {
-                writer.println("userExists");
-            }else {
-                server.accountLogin(username);
-                writer.println("true");
-            }
-        }
-        else
-            writer.println("false");
-    }
-         */
-        return authenticateLogin;
+        return gsonUserParser.validateLogin(username, password);
     }
 
-    public String getFullName(String username) {
+     @Override
+     public boolean isUserLoggedIn(String username) throws RemoteException {
+         if (!userLog.contains(username.toLowerCase())) {
+             userLog.add(username);
+             return false;
+         }
+         return true;
+     }
+
+     public String getFullName(String username) {
         return userParser.getUserFullName(username);
     }
 

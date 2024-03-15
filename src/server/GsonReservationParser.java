@@ -28,15 +28,15 @@ public class GsonReservationParser {
     public GsonReservationParser() {
         builder = new GsonBuilder();
         gson = builder.setPrettyPrinting().create();
-        parkingSpots = getAllReservations();
+        parkingSpots = new ArrayList<>();
+        Collections.addAll(parkingSpots, getAllReservations());
 
     }
 
     /**
      * Method to get all the reservations found in the JSON file
-     * @return reservations array
      */
-    public ArrayList<ParkingSpot> getAllReservations() {
+    private ParkingSpot[] getAllReservations() {
         ParkingSpot[] parkingSpots = new ParkingSpot[0];
         try {
             BufferedReader reader = new BufferedReader(new FileReader(reservationsFile));
@@ -47,9 +47,7 @@ public class GsonReservationParser {
             e.printStackTrace();
         }
 
-        ArrayList<ParkingSpot> toReturn = new ArrayList<>();
-        Collections.addAll(toReturn, parkingSpots);
-        return toReturn;
+        return parkingSpots;
     }
 
     private synchronized void updateFile() {
