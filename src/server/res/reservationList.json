@@ -1,0 +1,13 @@
+[
+  {
+    "identifier": "C1",
+    "reservationsList": [
+      {
+        "date": "08/14/23",
+        "timeAndUserMap": {
+            "9:00-10:00" : "rithik"
+        }
+      }
+    ]
+  }
+]
