@@ -96,5 +96,9 @@ public interface ServerMessage extends Remote {
     boolean editUserInformation(String username, String firstname, String lastName, String contactNo) throws  RemoteException;
 
 
+    List<String> getClosestReservation (String username) throws RemoteException;
+
+    String getDuration (List<String> userReservation) throws RemoteException;
+
 
 }

@@ -2,6 +2,7 @@ package client.model.application_pages;
 
 import client.model.Client;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,6 +69,36 @@ public class TimerModel {
      */
     public void getReservationInfo() {
         //TODO: RMI Implementation
+
+        try{
+            reservationInfo = this.getClient().getRemote().getClosestReservation(this.getClient().getUsername());
+            duration = Integer.parseInt(getClient().getRemote().getDuration(reservationInfo));
+
+            if (duration != -24) {
+                parkingSlot = reservationInfo.get(0);
+                timeIn = reservationInfo.get(1);
+                timeOut = reservationInfo.get(2);
+                date = reservationInfo.get(3);
+
+                if (parkingSlot.contains("C"))
+                    parkingType = "Car";
+                else
+                    parkingType = "Motorcycle";
+                if (date.equals(client.getDate())) {
+                    startTimer = true;
+                }
+            } else {
+                parkingSlot = "";
+                timeIn = "";
+                timeOut = "";
+                date = "";
+                parkingType = "";
+                duration = 0;
+            }
+
+        } catch(RemoteException e){
+            e.printStackTrace();
+        }
     }
 
     /**

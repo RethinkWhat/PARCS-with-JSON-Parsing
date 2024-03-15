@@ -2,6 +2,7 @@ package server;
 
 import shared.ServerMessage;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -78,6 +79,34 @@ import java.util.Map;
         } catch (Exception e) {
             return false;
         }
+
+    }
+
+    @Override
+    public List<List<String>> viewHistory(String username) throws RemoteException {
+        Map<String,Reservations> parkingSpotList = reservationParser.getUserReservations(username);
+
+        ArrayList userBookings = new ArrayList<>();
+        for (String key : parkingSpotList.keySet()) {
+            ArrayList<String> booking = new ArrayList<>();
+            if (key.contains("C"))
+                booking.add("Car");
+            else
+                booking.add("Motor");
+
+            booking.add(key);
+
+            Reservations value = parkingSpotList.get(key);
+            booking.add(value.getDate());
+
+            for (TimeRange timeRange : value.getTimeAndUserMap().keySet()) {
+                booking.add(timeRange.startTime());
+                booking.add(timeRange.endTime());
+            }
+            userBookings.add(booking);
+        }
+        return userBookings;
+
     }
 
         @Override
@@ -129,5 +158,34 @@ import java.util.Map;
                 password){
             userParser.createUser(username, "user", password, lastName, firstName, phoneNumber, null);
             return true;
+
         }
  }
+
+    }
+
+    public List<String> getClosestReservation (String username){
+        DateTime dateTime = new DateTime();
+        try {
+
+            List<String> userReservation = reservationParser.getClosestReservation(username, dateTime.getTime());
+
+            return userReservation;
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return null;
+        }
+    }
+
+    public String getDuration (List<String> userReservation){
+        try {
+            String duration = reservationParser.computeDuration(userReservation.get(1), userReservation.get(2));
+
+            return duration;
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return null;
+        }
+    }
+}
+
