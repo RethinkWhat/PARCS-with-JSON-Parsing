@@ -73,8 +73,32 @@ public interface ServerMessage extends Remote {
      */
     List<List<String>> viewHistory(String username) throws RemoteException;
 
+
+    /**
+     * This method allows the user to edit the user's vehicle information.
+     *
+     * @param username
+     * @param plateNumber
+     * @param newInfo
+     * @return
+     * @throws RemoteException
+     */
+    boolean editVehicleInfo(String username,String plateNumber, String newInfo) throws RemoteException;
+
+    /**
+     * This method edits the user's information with the first name, last name, and contact Number.
+     * @param firstname
+     * @param lastName
+     * @param contactNo
+     * @return
+     * @throws RemoteException
+     */
+    boolean editUserInformation(String username, String firstname, String lastName, String contactNo) throws  RemoteException;
+
+
     List<String> getClosestReservation (String username) throws RemoteException;
 
     String getDuration (List<String> userReservation) throws RemoteException;
+
 
 }
