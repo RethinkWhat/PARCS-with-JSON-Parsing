@@ -109,31 +109,6 @@ import java.util.Map;
 
     }
 
-        @Override
-        public List<List<String>> viewHistory (String username) {
-            Map<String, Reservations> parkingSpotList = reservationParser.getUserReservations(username);
-
-            ArrayList userBookings = new ArrayList<>();
-            for (String key : parkingSpotList.keySet()) {
-                ArrayList<String> booking = new ArrayList<>();
-                if (key.contains("C"))
-                    booking.add("Car");
-                else
-                    booking.add("Motor");
-
-                booking.add(key);
-
-                Reservations value = parkingSpotList.get(key);
-                booking.add(value.getDate());
-
-                for (TimeRange timeRange : value.getTimeAndUserMap().keySet()) {
-                    booking.add(timeRange.startTime());
-                    booking.add(timeRange.endTime());
-                }
-                userBookings.add(booking);
-            }
-            return userBookings;
-        }
      public boolean editUserInformation(String username,String firstname, String lastName, String contactNo){
         try {
             userParser.editUserInfo(username,"firstName", firstname);
