@@ -16,6 +16,14 @@ public interface ServerMessage extends Remote {
      */
     boolean login(String username, String password) throws RemoteException;
 
+    /**
+     * Method to validate if a user is already logged in
+     * @param username
+     * @return
+     * @throws RemoteException
+     */
+    boolean isUserLoggedIn(String username) throws RemoteException;
+
 
     /**
      * Method to get the full name of user, given their username
