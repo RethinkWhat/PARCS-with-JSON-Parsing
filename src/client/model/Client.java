@@ -25,17 +25,6 @@ public class Client {
         return remote;
     }
 
-    public static void main(String[] args) {
-        try {
-            Client client = new Client();
-            LoginModel model = new LoginModel(client);
-            LoginView view = new LoginView();
-            new LoginController(view, model);
-
-        } catch (RemoteException | NotBoundException e) {
-            e.printStackTrace();
-        }
-    }
 
     public String getUsername() {
         return username;
