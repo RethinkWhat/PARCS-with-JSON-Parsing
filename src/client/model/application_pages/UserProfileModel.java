@@ -154,7 +154,11 @@ public class UserProfileModel {
      * @return True if the edit was successful. False if otherwise.
      */
     public boolean editUserInformation(String firstName, String lastName, String contactNo) {
-        //TODO: RMI Implementation
+        try{
+            getClient().getRemote().editUserInformation(getClient().getUsername(), firstName,lastName,contactNo);
+        }catch (RemoteException re){
+            re.printStackTrace();
+        }
         return false;
     }
 
@@ -167,7 +171,11 @@ public class UserProfileModel {
      * @return True if the edit was successful. False if otherwise.
      */
     public boolean editVehicleInfo(String plateNumber, String newInfo) {
-        //TODO: RMI Implementation
+        try{
+            this.getClient().getRemote().editVehicleInfo(getClient().getUsername(),plateNumber,newInfo);
+        }catch (RemoteException re){
+            re.printStackTrace();
+        }
         return false;
     }
 

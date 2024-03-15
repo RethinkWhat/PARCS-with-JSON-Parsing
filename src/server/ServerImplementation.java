@@ -9,9 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class ServerImplementation extends UnicastRemoteObject implements ServerMessage {
+ public class ServerImplementation extends UnicastRemoteObject implements ServerMessage {
 
-    /**Temporary, while JSON not implemented */
+    /**
+     * Temporary, while JSON not implemented
+     */
     UserParser userParser = new UserParser();
     ReservationParser reservationParser = new ReservationParser();
     ArrayList<String> userLog = new ArrayList<String>();
@@ -77,6 +79,7 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
         } catch (Exception e) {
             return false;
         }
+
     }
 
     @Override
@@ -103,11 +106,62 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
             userBookings.add(booking);
         }
         return userBookings;
+
     }
 
-    public boolean createAccount(String firstName, String lastName, String username, String phoneNumber, String password) {
+        @Override
+        public List<List<String>> viewHistory (String username) {
+            Map<String, Reservations> parkingSpotList = reservationParser.getUserReservations(username);
+
+            ArrayList userBookings = new ArrayList<>();
+            for (String key : parkingSpotList.keySet()) {
+                ArrayList<String> booking = new ArrayList<>();
+                if (key.contains("C"))
+                    booking.add("Car");
+                else
+                    booking.add("Motor");
+
+                booking.add(key);
+
+                Reservations value = parkingSpotList.get(key);
+                booking.add(value.getDate());
+
+                for (TimeRange timeRange : value.getTimeAndUserMap().keySet()) {
+                    booking.add(timeRange.startTime());
+                    booking.add(timeRange.endTime());
+                }
+                userBookings.add(booking);
+            }
+            return userBookings;
+        }
+     public boolean editUserInformation(String username,String firstname, String lastName, String contactNo){
+        try {
+            userParser.editUserInfo(username,"firstName", firstname);
+            userParser.editUserInfo(username, "lastName", lastName);
+            userParser.editUserInfo(username, "contactNumber", contactNo);
+        }catch (Exception e) {
+           e.printStackTrace();
+        }
+         return false;
+     }
+     public boolean editVehicleInfo(String username,String plateNumber, String newInfo){
+        try{
+            userParser.editVehicle(username,plateNumber,newInfo);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+         return false;
+     }
+
+     public boolean createAccount (String firstName, String lastName, String username, String phoneNumber, String
+                password){
             userParser.createUser(username, "user", password, lastName, firstName, phoneNumber, null);
             return true;
+
+        }
+ }
+
     }
 
     public List<String> getClosestReservation (String username){
@@ -144,3 +198,4 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
         return false;
     }
 }
+
