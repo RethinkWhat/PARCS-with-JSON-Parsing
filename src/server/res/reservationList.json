@@ -1,19 +1,13 @@
 [
-    {
-    "parkingSpot" : "C1",
-        "reservationList" :
-            [
-                {
-                    "date" : "08/14/23",
-                    "TimeAndUserMap" : [
-                        {
-                            "TimeRange" : [
-                                {"startTime" :  "7:00", "endTime" :  "8:00"}
-                            ],
-                            "User" : "rithik"
-                        }
-                    ]
-                }
-            ]
-    }
+  {
+    "identifier": "C1",
+    "reservationsList": [
+      {
+        "date": "08/14/23",
+        "timeAndUserMap": {
+            "9:00-10:00" : "rithik"
+        }
+      }
+    ]
+  }
 ]

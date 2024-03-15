@@ -5,11 +5,17 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class GsonReservationParser {
 
     GsonBuilder builder;
     Gson gson;
+
+    ArrayList<ParkingSpot> parkingSpots;
 
     final File reservationsFile = new File("src/server/res/reservationList.json");
 
@@ -20,9 +26,41 @@ public class GsonReservationParser {
      *      2. Create gson object
      */
     public GsonReservationParser() {
-        GsonBuilder builder = new GsonBuilder();
-        builder.setPrettyPrinting();
-        gson = builder.create();
+        builder = new GsonBuilder();
+        gson = builder.setPrettyPrinting().create();
+        parkingSpots = getAllReservations();
+
+    }
+
+    /**
+     * Method to get all the reservations found in the JSON file
+     * @return reservations array
+     */
+    public ArrayList<ParkingSpot> getAllReservations() {
+        ParkingSpot[] parkingSpots = new ParkingSpot[0];
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(reservationsFile));
+
+            parkingSpots = gson.fromJson(reader, ParkingSpot[].class);
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        ArrayList<ParkingSpot> toReturn = new ArrayList<>();
+        Collections.addAll(toReturn, parkingSpots);
+        return toReturn;
+    }
+
+    private synchronized void updateFile() {
+        try {
+            String jsonString = gson.toJson(parkingSpots);
+            BufferedWriter writer = new BufferedWriter(new PrintWriter(reservationsFile));
+            writer.write(jsonString);
+            writer.close();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -34,37 +72,92 @@ public class GsonReservationParser {
      * @param username
      * @return
      */
-    public void createJsonReservationObj(String identifier, String date, String startTime, String duration, String username) {
-        //TODO: Make method
-    }
+    private void createJsonReservationObj(String identifier, String date, String startTime, String duration, String username) {
 
-    /**
-     * Method to write a JSON object to the reservations file
-     * @param object
-     */
-    public void writeJsonObject(String object) {
-        //TODO: Make method
-    }
+        boolean parkingBookingExists = false;
+        boolean bookingOnDateExists = false;
+        String endTime = computeEndTime(startTime, duration);
+        for (ParkingSpot parkingSpot : parkingSpots) {
+            if (parkingSpot.getIdentifier().equals(identifier)) {
+                parkingBookingExists = true;
 
-    /**
-     * Method to get all the reservations found in the JSON file
-     * @return reservations array
-     */
-    public ParkingSpot getAllReservations() {
-        ParkingSpot parkingSpot = new ParkingSpot();
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(reservationsFile));
-
-            parkingSpot = gson.fromJson(reader, ParkingSpot.class);
-        } catch (IOException e) {
-            e.printStackTrace();
+                for (Reservations reservationsList : parkingSpot.getReservationsList()) {
+                    if (reservationsList.getDate().equals(date)) {
+                        reservationsList.addToTimeAndUserMap(startTime,endTime, username);
+                        bookingOnDateExists = true;
+                        break;
+                    }
+                }
+                if (!bookingOnDateExists) {
+                    parkingSpot.addReservation(new Reservations(date, startTime, endTime, username));
+                }
+            }
         }
-        return parkingSpot;
+        if (!parkingBookingExists) {
+            ParkingSpot parkingSpot = new ParkingSpot(identifier);
+            parkingSpot.addReservation(new Reservations(date, startTime, endTime, username));
+            parkingSpots.add(parkingSpot);
+        }
     }
+
+    /**
+     * Method to handle making a reservation
+     * @param identifier
+     * @param date
+     * @param startTime
+     * @param duration
+     * @param username
+     * @return
+     */
+    public synchronized boolean makeReservation(String identifier, String date, String startTime, String duration, String username) {
+        try {
+            createJsonReservationObj(identifier, date, startTime, duration, username);
+            updateFile();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * Computes the end time based on the start time and duration provided.
+     *
+     * @param startTime The start time in HH:mm format.
+     * @param duration The duration in hours.
+     * @return The end time in HH:mm format.
+     */
+    public String computeEndTime(String startTime, String duration) {
+        String[] startTimeParts = startTime.split(":");
+        int endTime = Integer.parseInt(startTimeParts[0]) + Integer.parseInt(duration);
+        return endTime+":00";
+    }
+
+    /**
+     * Computes the duration between the start time and end time provided.
+     *
+     * @param startTime The start time in HH:mm format.
+     * @param endTime The end time in HH:mm format.
+     * @return The duration between the start and end time in hours.
+     */
+    public String computeDuration(String startTime, String endTime){
+        List<Integer> duration = new ArrayList<>();
+
+        String[] startTimeParts = startTime.split(":");
+        String[] endTimeParts = endTime.split(":");
+
+        int totalHours = Integer.parseInt(endTimeParts[0]) - Integer.parseInt(startTimeParts[0]);
+
+        duration.add(totalHours);
+        duration.add(00);
+
+        return String.valueOf(totalHours);
+    }
+
 
     //TODO: Delete
     public static void main(String[] args) {
         GsonReservationParser parser = new GsonReservationParser();
-        System.out.println(parser.getAllReservations());
+        parser.makeReservation("C69", "10/10/10", "5:00", "1", "rithik");
     }
 }
