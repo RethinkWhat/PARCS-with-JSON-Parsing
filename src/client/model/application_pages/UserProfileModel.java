@@ -82,6 +82,12 @@ public class UserProfileModel {
      */
     public void deleteAccount() {
         //TODO: RMI Implementation
+         
+        try{
+            this.remote.deleteAccount(username);
+        }catch (RemoteException re){
+            re.printStackTrace();
+        }
     }
 
 
@@ -182,7 +188,14 @@ public class UserProfileModel {
      */
     public boolean editPassword(String password) {
         //TODO: RMI Implementation
-        return false;
+        try{
+            this.getClient().getRemote().editPassword(password);
+            return true;
+        }catch (RemoteException e){
+            e.printStackTrace();
+            return false;
+        }
+
     }
 
     /**
@@ -264,5 +277,6 @@ public class UserProfileModel {
     public String getDuration() {
         return bookings.get(historyPageNo).get(4);
     }
+    
 
 }
