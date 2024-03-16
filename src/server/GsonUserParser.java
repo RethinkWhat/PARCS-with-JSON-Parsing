@@ -107,11 +107,12 @@ public class GsonUserParser {
         }
         return vehicleList;
         
-        /** Method to delete the user's account
-         * @param username
-         * 
-         */
     }
+
+    /** Method to delete the user's account
+    * @param username
+    * 
+    */
     public void deleteUser(String username) {
         getUsers();
         for (User user : userArrayList) {
@@ -121,10 +122,12 @@ public class GsonUserParser {
             }
         }
         updateUserList();
-        /**
-         * 
-         */
+    
     }
+    /** Method to change user's password 
+    * @param username
+    * @param newPassword
+    */
     public void changePassword(String username, String newPassword) {
         for (User user : userArrayList) {
             if (user.getUsername().equalsIgnoreCase(username)) {
@@ -134,6 +137,7 @@ public class GsonUserParser {
         }
         updateUserList();
     }
+
     public static void main(String[] args) {
         GsonUserParser parser = new GsonUserParser();
         User[] users = parser.getUsers();
