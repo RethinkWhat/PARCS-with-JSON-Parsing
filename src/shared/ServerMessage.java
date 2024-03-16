@@ -108,14 +108,14 @@ public interface ServerMessage extends Remote {
 
     String getDuration (List<String> userReservation) throws RemoteException;
 
-     /**
+    /** This method deletes the user's account
      *
      */
-    void deleteAccount (String firstname) throws RemoteException;
+    void deleteAccount (String username) throws RemoteException;
+
     /**
      *
      */
-
-    boolean editPassword(String newPassword) throws RemoteException;
+    boolean editPassword(String username, String newPassword) throws RemoteException;
 
 }
