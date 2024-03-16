@@ -107,14 +107,15 @@ public class GsonUserParser {
         }
         return vehicleList;
         
-        /**
+        /** Method to delete the user's account
+         * @param username
          * 
          */
     }
     public void deleteUser(String username) {
         getUsers();
         for (User user : userArrayList) {
-            if (user.getUsername().equals(username)) {
+            if (user.getUsername().equalsIgnoreCase(username)) {
                 userArrayList.remove(user);
                 break;
             }
