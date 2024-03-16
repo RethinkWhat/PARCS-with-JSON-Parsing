@@ -45,17 +45,15 @@ public class User {
      */
     List<Vehicle> vehicles;
 
-    /**
-     * Constructs a vehicle with initial values.
-     */
-    public User() {
-        username = "";
-        type = "";
-        password = "";
-        lastName = "";
-        firstName = "";
-        phoneNumber = "";
-        vehicles = null;
+
+    public User(String username, String type, String password, String lastName, String firstName, String phoneNumber, ArrayList<Vehicle> vehicles) {
+        this.username = username;
+        this.type = type;
+        this.password = password;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.phoneNumber = phoneNumber;
+        this.vehicles = vehicles;
     }
 
     /**
@@ -68,6 +66,7 @@ public class User {
      * @param firstName The specified first name.
      * @param phoneNumber The specified phone number.
      */
+    /*
     public User(String username, String type, String password, String lastName, String firstName, String phoneNumber) {
         this.username = username;
         this.type = type;
@@ -78,6 +77,9 @@ public class User {
         this.vehicles = new ArrayList<>();
     }
 
+     */
+
+/*
     public User(ArrayList<String> userInfo) {
         this.username = userInfo.get(0);
         this.type = userInfo.get(1);
@@ -90,6 +92,8 @@ public class User {
             vehicles.add(new Vehicle(userInfo.get(x).split(",")));
         }
     }
+
+ */
 
     /**
      * Retrieves the current username of the user.

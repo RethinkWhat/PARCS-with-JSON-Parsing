@@ -6,6 +6,18 @@
     "lastName" : "Tank",
     "firstName" : "Rithik",
     "phoneNumber" : "09177900153",
-    "vehicles" : null
+    "vehicles" : [
+        {
+          "type" :  "Car",
+          "model" :  "Civic",
+          "plateNumber" :  "A123"
+        },
+      {
+        "type" :  "Car",
+        "model" :  "Civic",
+        "plateNumber" :  "30943"
+      }
+    ]
+
   }
 ]
