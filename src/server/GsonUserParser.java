@@ -39,9 +39,10 @@ public class GsonUserParser {
         }
     }
 
+
     /**
      * Method to get a list of all the users
-     *
+     * @return
      */
     private User[] getUsers() {
         try {
@@ -53,6 +54,12 @@ public class GsonUserParser {
         return userList;
     }
 
+    /**
+     * Method to validate whether a user with a passed in username and password exist
+     * @param username
+     * @param password
+     * @return
+     */
     public boolean validateLogin(String username, String password) {
         for (User user : userArrayList) {
             if (user.getUsername().equalsIgnoreCase(username)) {
@@ -64,6 +71,11 @@ public class GsonUserParser {
         return false;
     }
 
+    /**
+     * Method to get the full name of a user
+     * @param username
+     * @return
+     */
     public String getUserFullName(String username) {
         for (User user : userArrayList) {
             if (user.getUsername().equals(username)) {
@@ -73,6 +85,11 @@ public class GsonUserParser {
         return "";
     }
 
+    /**
+     * Method to get a list of all the vehicles of a user
+     * @param username
+     * @return
+     */
     public Map<String, List<String>> getUserVehicles(String username) {
         Map<String, List<String>> vehicleList = new HashMap<>();
         for (User user : userArrayList) {
