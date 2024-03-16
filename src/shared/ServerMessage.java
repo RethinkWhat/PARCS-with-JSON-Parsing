@@ -120,6 +120,6 @@ public interface ServerMessage extends Remote {
      * @return
      * @throws RemoteException
      */
-    boolean editPassword(String username, String newPassword) throws RemoteException;
+    boolean editPassword(String password, String newPassword) throws RemoteException;
 
 }
