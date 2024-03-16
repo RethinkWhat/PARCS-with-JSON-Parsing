@@ -74,7 +74,7 @@ public class UserParser {
                     userInfo.add(String.valueOf(currNode.getTextContent()));
                 }
             }
-            userList.add(new User(userInfo));
+        //    userList.add(new User(userInfo));
         }
         return userList;
     }

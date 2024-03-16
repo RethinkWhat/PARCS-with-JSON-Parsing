@@ -3,10 +3,10 @@ package server;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import shared.User;
+import shared.Vehicle;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
 
 public class GsonUserParser {
 
@@ -64,12 +64,43 @@ public class GsonUserParser {
         return false;
     }
 
+    public String getUserFullName(String username) {
+        for (User user : userArrayList) {
+            if (user.getUsername().equals(username)) {
+                return user.getFirstName() + " " + user.getLastName();
+            }
+        }
+        return "";
+    }
+
+    public Map<String, List<String>> getUserVehicles(String username) {
+        Map<String, List<String>> vehicleList = new HashMap<>();
+        for (User user : userArrayList) {
+            if (user.getUsername().equals(username)) {
+                if (user.getVehicles() != null) {
+                    for (Vehicle vehicle : user.getVehicles()) {
+                        ArrayList vehicleInfo = new ArrayList();
+                        vehicleInfo.add(vehicle.getType());
+                        vehicleInfo.add(vehicle.getModel());
+                        vehicleList.put(vehicle.getPlateNumber(), vehicleInfo);
+                    }
+                    break;
+                }
+            }
+        }
+        return vehicleList;
+    }
+
+
 
 
     public static void main(String[] args) {
         GsonUserParser parser = new GsonUserParser();
         User[] users = parser.getUsers();
-        System.out.print(users[0]);
+        Map<String, List<String>> userVehicles = parser.getUserVehicles("yuen");
+        for (String key : userVehicles.keySet()) {
+            System.out.println(key + ": " + userVehicles.get(key));
+        }
     }
 
 

@@ -67,7 +67,7 @@ import java.util.Map;
       * @return
       */
      public String getFullName(String username) {
-        return userParser.getUserFullName(username);
+        return gsonUserParser.getUserFullName(username);
     }
 
      /**
@@ -86,7 +86,7 @@ import java.util.Map;
       * @return
       */
     public Map<String, List<String>> getUserVehicles(String username) {
-        return userParser.getUserVehicles(username);
+        return gsonUserParser.getUserVehicles(username);
     }
 
      /**

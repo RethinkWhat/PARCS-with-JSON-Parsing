@@ -20,15 +20,6 @@ public class Vehicle {
     private String plateNumber;
 
     /**
-     * Constructs a vehicle with initial values.
-     */
-    public Vehicle() {
-        type = "";
-        model = "";
-        plateNumber = "";
-    }
-
-    /**
      * Constructs a vehicle with specified values.
      * @param type The specified vehicle type.
      * @param model The specified vehicle model.
@@ -43,11 +34,15 @@ public class Vehicle {
     /**
      * Constructs a new Vehicle object with the provided vehicle information.
      */
+    /*
     public Vehicle(String[] vehicleInfo) {
         this.type = vehicleInfo[0];
         this.model = vehicleInfo[1];
         this.plateNumber = vehicleInfo[2];
     }
+
+     */
+
 
     /**
      * Retrieves the current vehicle type.
