@@ -106,6 +106,9 @@ public class GsonUserParser {
             }
         }
         return vehicleList;
+        /**
+         * 
+         */
     }
     public void deleteUser(String username) {
         for (User user : userArrayList) {
@@ -115,6 +118,9 @@ public class GsonUserParser {
             }
         }
         updateUserList();
+        /**
+         * 
+         */
     }
     public void changePassword(String username, String newPassword) {
         for (User user : userArrayList) {
