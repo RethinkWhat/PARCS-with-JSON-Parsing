@@ -113,7 +113,7 @@ public class GsonUserParser {
     * @param username
     * 
     */
-    public void deleteUser(String username) {
+    public void deleteUser(String username) {  // might update
         getUsers();
         for (User user : userArrayList) {
             if (user.getUsername().equalsIgnoreCase(username)) {
