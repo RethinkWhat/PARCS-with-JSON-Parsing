@@ -134,7 +134,6 @@ public class GsonUserParser {
         }
         updateUserList();
     }
-
     public static void main(String[] args) {
         GsonUserParser parser = new GsonUserParser();
         User[] users = parser.getUsers();
