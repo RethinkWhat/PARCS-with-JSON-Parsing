@@ -107,14 +107,25 @@ public class GsonUserParser {
         }
         return vehicleList;
     }
-
-     public void deleteAccount(String username) {
-
+    public void deleteUser(String username) {
+        for (User user : userArrayList) {
+            if (user.getUsername().equals(username)) {
+                userArrayList.remove(user);
+                break;
+            }
+        }
+        updateUserList();
     }
-
     public void changePassword(String username, String newPassword) {
-
+        for (User user : userArrayList) {
+            if (user.getUsername().equalsIgnoreCase(username)) {
+                user.setPassword(newPassword);
+                break;
+            }
+        }
+        updateUserList();
     }
+
 
     public static void main(String[] args) {
         GsonUserParser parser = new GsonUserParser();
