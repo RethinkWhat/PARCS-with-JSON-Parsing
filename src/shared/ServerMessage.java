@@ -115,7 +115,7 @@ public interface ServerMessage extends Remote {
     void deleteAccount (String username) throws RemoteException;
 
    /** This method will edit the user's password
-     * @param username
+     * @param password
      * @param newPassword
      * @return
      * @throws RemoteException

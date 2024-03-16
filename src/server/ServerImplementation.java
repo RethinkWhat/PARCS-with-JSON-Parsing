@@ -208,7 +208,7 @@ import java.util.Map;
 
        @Override
     public void deleteAccount(String username) throws RemoteException {
-        gsonUserParser.deleteAccount(username);
+        gsonUserParser.deleteUser(username);
         //userParser.deleteUser(username);
     }
 
