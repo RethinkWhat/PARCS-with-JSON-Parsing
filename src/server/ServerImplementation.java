@@ -208,12 +208,14 @@ import java.util.Map;
 
        @Override
     public void deleteAccount(String username) throws RemoteException {
-        userParser.deleteUser(username);
+        gsonUserParser.deleteAccount(username);
+        //userParser.deleteUser(username);
     }
 
     @Override
     public boolean editPassword(String username, String newPassword) throws RemoteException {
-        userParser.changePassword(username, newPassword);
+        gsonUserParser.changePassword(username, newPassword);
+        //userParser.changePassword(username, newPassword);
         return true;
     }
 }

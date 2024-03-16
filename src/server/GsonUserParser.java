@@ -108,8 +108,13 @@ public class GsonUserParser {
         return vehicleList;
     }
 
+     public void deleteAccount(String username) {
 
+    }
 
+    public void changePassword(String username, String newPassword) {
+
+    }
 
     public static void main(String[] args) {
         GsonUserParser parser = new GsonUserParser();
