@@ -16,22 +16,42 @@ import java.util.Map;
      */
     UserParser userParser = new UserParser();
     ReservationParser reservationParser = new ReservationParser();
-    ArrayList<String> userLog = new ArrayList<String>();
+    ArrayList<String> userLog;
+    /**=======================================*/
 
 
     /** JSON Parsers */
-    GsonUserParser gsonUserParser = new GsonUserParser();
-    GsonReservationParser gsonReservationParser = new GsonReservationParser();
+    GsonUserParser gsonUserParser;
+    GsonReservationParser gsonReservationParser;
 
+     /**
+      * Default Constructor
+      * @throws RemoteException
+      */
     protected ServerImplementation() throws RemoteException {
+        userLog = new ArrayList<>();
+        gsonUserParser = new GsonUserParser();
+        gsonReservationParser = new GsonReservationParser();
+
     }
 
-
+     /**
+      * Method to validate a user login attempt
+      * @param username
+      * @param password
+      * @return
+      */
     @Override
     public boolean login(String username, String password) {
         return gsonUserParser.validateLogin(username, password);
     }
 
+     /**
+      * Method to check whether a user is already logged into the system
+      * @param username
+      * @return
+      * @throws RemoteException
+      */
      @Override
      public boolean isUserLoggedIn(String username) throws RemoteException {
          if (!userLog.contains(username.toLowerCase())) {
@@ -41,24 +61,54 @@ import java.util.Map;
          return true;
      }
 
+     /**
+      * Method to get the full name of a user
+      * @param username
+      * @return
+      */
      public String getFullName(String username) {
         return userParser.getUserFullName(username);
     }
 
+     /**
+      * Method to get all the bookings associated with a user
+      * @param username
+      * @return
+      */
     public int getUserTotalBookings(String username) {
         DateTime dateTime = new DateTime();
         return reservationParser.countTotalBookingsPerDay(username, dateTime.getDateTime());
     }
 
-
+     /**
+      * Method to get all the vehicles associated with a user
+      * @param username
+      * @return
+      */
     public Map<String, List<String>> getUserVehicles(String username) {
         return userParser.getUserVehicles(username);
     }
 
+     /**
+      * Method to get all the time in a date a specific car spot is available
+      * @param identifier
+      * @param duration
+      * @param date
+      * @return
+      */
     public List<String> spotTimeAvailable(String identifier, String duration, String date) {
         return reservationParser.availableTime(identifier, duration, date);
     }
 
+     /**
+      * Method to handle attempting a booking reservation
+      * @param identifier
+      * @param date
+      * @param startTime
+      * @param duration
+      * @param username
+      * @return
+      */
     public boolean bookReservation(String identifier, String date, String startTime, String duration, String username) {
         boolean check = !reservationParser.hasSchedulingConflicts(identifier, date, startTime, duration);
         if (check) {
@@ -66,6 +116,7 @@ import java.util.Map;
         }
         return check;
     }
+
 
     public boolean logout(String username) {
         try {
