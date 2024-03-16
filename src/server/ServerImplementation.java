@@ -177,9 +177,8 @@ import java.util.Map;
 
      public boolean createAccount (String firstName, String lastName, String username, String phoneNumber, String
                 password){
-            userParser.createUser(username, "user", password, lastName, firstName, phoneNumber, null);
+            gsonUserParser.createUser(firstName, lastName, username, phoneNumber, password);
             return true;
-
         }
 
     public List<String> getClosestReservation (String username){
