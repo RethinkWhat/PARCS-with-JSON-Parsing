@@ -97,7 +97,8 @@ import java.util.Map;
       * @return
       */
     public List<String> spotTimeAvailable(String identifier, String duration, String date) {
-        return reservationParser.availableTime(identifier, duration, date);
+        //return reservationParser.availableTime(identifier, duration, date);
+        return gsonReservationParser.spotTimeAvailable(identifier, Integer.valueOf(duration), date, "7:00", "5:00");
     }
 
      /**
@@ -207,6 +208,7 @@ import java.util.Map;
 
      @Override
     public void deleteAccount(String firstname) throws RemoteException {
+        //gsonUserParser.deleteUser(firstname);
         userParser.deleteUser(firstname);
     }
     
