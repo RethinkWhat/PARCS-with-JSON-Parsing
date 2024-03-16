@@ -111,6 +111,7 @@ public class GsonUserParser {
          */
     }
     public void deleteUser(String username) {
+        getUsers();
         for (User user : userArrayList) {
             if (user.getUsername().equals(username)) {
                 userArrayList.remove(user);
