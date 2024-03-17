@@ -97,7 +97,8 @@ import java.util.Map;
       * @return
       */
     public List<String> spotTimeAvailable(String identifier, String duration, String date) {
-        return reservationParser.availableTime(identifier, duration, date);
+        //return reservationParser.availableTime(identifier, duration, date);
+        return gsonReservationParser.spotTimeAvailable(identifier, Integer.valueOf(duration), date, "7:00", "5:00");
     }
 
      /**
@@ -177,9 +178,8 @@ import java.util.Map;
 
      public boolean createAccount (String firstName, String lastName, String username, String phoneNumber, String
                 password){
-            userParser.createUser(username, "user", password, lastName, firstName, phoneNumber, null);
+            gsonUserParser.createUser(firstName, lastName, username, phoneNumber, password);
             return true;
-
         }
 
     public List<String> getClosestReservation (String username){

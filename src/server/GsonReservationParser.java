@@ -5,10 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class GsonReservationParser {
 
@@ -119,6 +116,75 @@ public class GsonReservationParser {
     }
 
     /**
+     * Method to get the list of time a specific spot is available for reservation
+     * startTime, endTime follows the format 1:00
+     * 24hr format
+     * @param identifier
+     * @param duration
+     * @param date
+     * @return
+     */
+    public List<String> spotTimeAvailable(String identifier, int duration, String date, String startTime, String endTime) {
+        List<String> unavailableTimeRange = getUnavailableTimeRange(identifier,date);
+
+
+        List<String> availableTimeRange = new ArrayList<>();
+        int startTimeAsInt = Integer.parseInt(startTime.split(":")[0]);
+        int endTimeAsInt = Integer.parseInt(endTime.split(":")[0]);
+
+        for (int i=startTimeAsInt; i <endTimeAsInt; i++) {
+            availableTimeRange.add(i +":00");
+        }
+
+        ArrayList<String> toRemove = new ArrayList<>();
+        for (String time : availableTimeRange) {
+            for (int x =0; x <duration; x ++) {
+                int timeAsInt = Integer.valueOf(time.split(":")[0]);
+                String incremented = (timeAsInt+x) + ":00";
+                if (unavailableTimeRange.contains(incremented)
+                        || unavailableTimeRange.contains("0" + incremented)
+                        || (timeAsInt+x) > endTimeAsInt-1) {
+                    toRemove.add(timeAsInt + ":00");
+                }
+            }
+        }
+
+        for (String remove : toRemove) {
+            availableTimeRange.remove(remove);
+            availableTimeRange.remove("0" + remove);
+        }
+        return availableTimeRange;
+    }
+
+    private List<String> getUnavailableTimeRange(String identifier, String date) {
+        List<Reservations> booked = getSpotBookings(identifier);
+        List<String> unavailableTimeRange = new ArrayList<>();
+        for (Reservations reservation : booked) {
+            if (reservation.getDate().equals(date)) {
+                Map<TimeRange, String> bookings = reservation.getTimeAndUserMap();
+                for (TimeRange timeRange : bookings.keySet()) {
+                    List<String> timeRangeList = timeRange.getStartToEndTime();
+                    for (String time: timeRangeList) {
+                        unavailableTimeRange.add(time);
+                    }
+                }
+                break;
+            }
+        }
+        return unavailableTimeRange;
+    }
+
+
+    private List<Reservations> getSpotBookings(String identifier) {
+        for (ParkingSpot parkingSpot : parkingSpots) {
+            if (parkingSpot.getIdentifier().equals(identifier)) {
+                return parkingSpot.getReservationsList();
+            }
+        }
+        return null;
+    }
+
+    /**
      * Computes the end time based on the start time and duration provided.
      *
      * @param startTime The start time in HH:mm format.
@@ -156,6 +222,8 @@ public class GsonReservationParser {
     //TODO: Delete
     public static void main(String[] args) {
         GsonReservationParser parser = new GsonReservationParser();
-        parser.makeReservation("C69", "10/10/10", "7:00", "1", "rithik");
+        //parser.makeReservation("C69", "10/10/10", "7:00", "1", "rithik");
+        //String identifier, int duration, String date, String startTime, String endTime) {
+        System.out.println(parser.spotTimeAvailable("C1", 2, "03/15/24", "7:00", "16:00"));
     }
 }

@@ -109,33 +109,27 @@ public class GsonUserParser {
         
     }
 
-    /** Method to delete the user's account
-    * @param username
-    * 
-    */
-    public void deleteUser(String username) {  // might update
-        getUsers();
-        for (User user : userArrayList) {
-            if (user.getUsername().equalsIgnoreCase(username)) {
-                userArrayList.remove(user);
-                break;
-            }
-        }
-        updateUserList();
-    
-    }
-    /** Method to change user's password 
-    * @param username
-    * @param newPassword
-    */
-    public void changePassword(String username, String newPassword) {
-        for (User user : userArrayList) {
-            if (user.getUsername().equalsIgnoreCase(username)) {
-                user.setPassword(newPassword);
-                break;
-            }
-        }
-        updateUserList();
+
+    /**
+     * This method allows the program to insert values concerning new users to the Json file.
+     * To do this, ArrayList userArrayList is used to store arrays of current users stored in the
+     * server, and then parameters regarding new user would be combined into a variable called
+     * [User], before inserting it into an array and parse it into Json file
+     * @param firstName First name of the new user
+     * @param lastName last name of the new user
+     * @param username username of the new user
+     * @param phoneNumber phone number of the new user
+     * @param password encrypted password associated to the new user
+     * @return
+     */
+    public void createUser(String firstName, String lastName, String username, String phoneNumber, String
+            password){
+        //params for user: String username, String type, String password, String lastName, String firstName, String phoneNumber
+        User newPerson  = new User(username, "user",password,lastName, firstName,phoneNumber,null);
+        userArrayList.add(newPerson);
+
+        //userArrayList 入落 json
+        this.updateUserList();
     }
 
     public static void main(String[] args) {
