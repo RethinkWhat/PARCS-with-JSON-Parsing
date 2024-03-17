@@ -1,4 +1,4 @@
-package server;
+package server.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

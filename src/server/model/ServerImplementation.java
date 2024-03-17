@@ -1,8 +1,7 @@
-package server;
+package server.model;
 
 import shared.ServerMessage;
 
-import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -28,7 +27,7 @@ import java.util.Map;
       * Default Constructor
       * @throws RemoteException
       */
-    protected ServerImplementation() throws RemoteException {
+     public ServerImplementation() throws RemoteException {
         userLog = new ArrayList<>();
         gsonUserParser = new GsonUserParser();
         gsonReservationParser = new GsonReservationParser();
