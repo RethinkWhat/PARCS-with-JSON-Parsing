@@ -265,10 +265,33 @@ public class GsonReservationParser {
      * KEY: Parking identifier
      * VALUE: Reservations Object
      *
-     * @author Ginatekeep ni Jullaine
+     * @author Yung ginatekeep ni Jullainne Candy Lou
      */
     public Map<String, Reservations> getUserReservations(String username){
         Map<String, Reservations> userReservationList = new HashMap<>();
+        Reservations reservation = null;
+
+        for (ParkingSpot currParkingSpot : parkingSpots){
+            String identifier = currParkingSpot.getIdentifier();
+
+            for (Reservations currReservation : currParkingSpot.getReservationsList()){
+
+                reservation = new Reservations();
+
+                for (Map.Entry<TimeRange, String> entry : currReservation.getTimeAndUserMap().entrySet()){
+
+
+                    if (entry.getValue().equalsIgnoreCase(username)){
+                        TimeRange timeRange = entry.getKey();
+
+                        reservation.setDate(currReservation.getDate());
+                        reservation.getTimeAndUserMap().put(timeRange, entry.getValue());
+
+                    }
+                }
+            }
+            userReservationList.put(identifier, reservation);
+        }
 
 
         return userReservationList;
@@ -282,6 +305,6 @@ public class GsonReservationParser {
         //String identifier, int duration, String date, String startTime, String endTime) {
 //        System.out.println(parser.spotTimeAvailable("C1", 2, "03/15/24", "7:00", "16:00"));
 
-        System.out.println(parser.parkingSpots);
+        System.out.println(parser.getUserReservations("rithik"));
     }
 }
