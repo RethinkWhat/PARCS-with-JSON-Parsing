@@ -299,8 +299,10 @@ public class GsonReservationParser {
         //String identifier, int duration, String date, String startTime, String endTime) {
 //        System.out.println(parser.spotTimeAvailable("C1", 2, "03/15/24", "7:00", "16:00"));
 
+        /*
+        TESTER getUserReservations
         Map<String, Reservations> rithiks = parser.getUserReservations("rithik");
-
         System.out.println(rithiks);
+         */
     }
 }
