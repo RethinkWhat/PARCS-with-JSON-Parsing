@@ -294,7 +294,10 @@ public class GsonReservationParser {
             }
 
             //Adds the Parking Identifier with its corresponding Reservations object to the map
-            userReservationMap.put(identifier, reservation);
+            //If the created reservation object is empty, continue.
+            if (!reservation.getTimeAndUserMap().isEmpty()){
+                userReservationMap.put(identifier, reservation);
+            }
         }
         return userReservationMap;
     }
@@ -307,10 +310,6 @@ public class GsonReservationParser {
         //String identifier, int duration, String date, String startTime, String endTime) {
         //System.out.println(parser.spotTimeAvailable("C1", 2, "03/15/24", "7:00", "16:00"));
 
-        /*
-        TESTER getUserReservations
-        Map<String, Reservations> rithiks = parser.getUserReservations("rithik");
-        System.out.println(rithiks);
-         */
+        System.out.println(parser.getUserReservations("monem"));
     }
 }
