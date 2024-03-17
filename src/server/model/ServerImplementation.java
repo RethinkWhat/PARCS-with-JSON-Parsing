@@ -15,13 +15,17 @@ import java.util.Map;
  */
 public class ServerImplementation extends UnicastRemoteObject implements ServerMessage {
     /**
-     * TODO: Documentation
+     * Instance of the RMI registry.
      */
-    ReservationParser reservationParser = new ReservationParser();
+    private Registry reg;
     /**
      * TODO: Documentation
      */
-    ArrayList<String> userLog;
+    private ReservationParser reservationParser = new ReservationParser();
+    /**
+     * TODO: Documentation
+     */
+    private ArrayList<String> userLog;
     /**=======================================*/
 
 
@@ -41,7 +45,7 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
      */
     public ServerImplementation(int registryPort) throws RemoteException {
         try {
-            Registry reg = LocateRegistry.createRegistry(2000);
+            reg = LocateRegistry.createRegistry(2000);
             reg.rebind("server", this);
             System.out.println("Server running"); // omit
             userLog = new ArrayList<>();
@@ -277,6 +281,14 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
     @Override
     public List<List<String>> getAllMotorBookings() throws RemoteException {
         return gsonReservationParser.getAllMotorBookings();
+    }
+
+    /**
+     * Retrieves the current Registry.
+     * @return The current Registry.
+     */
+    public Registry getReg() {
+        return reg;
     }
 }
 
