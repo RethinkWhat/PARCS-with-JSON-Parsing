@@ -184,6 +184,24 @@ public class GsonReservationParser {
         return null;
     }
 
+    public int getUserTotalBookings(String username, String date) {
+        int count = 0;
+        for (ParkingSpot parkingSpot : parkingSpots) {
+            for (Reservations reservations : parkingSpot.getReservationsList()) {
+                if (reservations.getDate().equals(date)) {
+                    Map<TimeRange, String> timeUserMap = reservations.getTimeAndUserMap();
+                    for (TimeRange key : timeUserMap.keySet()) {
+                        if (timeUserMap.get(key).equals(username)) {
+                            count +=1;
+                        }
+                    }
+                }
+            }
+        }
+        return count;
+    }
+
+
     /**
      * Computes the end time based on the start time and duration provided.
      *
