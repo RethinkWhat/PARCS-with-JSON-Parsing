@@ -1,13 +1,16 @@
 package server.controller;
 
-import server.model.Server;
+import server.model.ServerImplementation;
 import server.view.AdminApplicationView;
 import server.view.DashboardView;
+import shared.ServerMessage;
 import utilities.Resources;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -20,7 +23,7 @@ public class AdminApplicationController {
     /**
      * The object of server.
      */
-    private Server server;
+    private ServerImplementation server;
     /**
      * The view
      */
@@ -33,7 +36,7 @@ public class AdminApplicationController {
     /**
      * The default port of the server.
      */
-    final int address = 2040;
+    final int address = 2000;
     /**
      * Instance variable of reservation parser.
      */
@@ -52,13 +55,10 @@ public class AdminApplicationController {
      */
     public AdminApplicationController(AdminApplicationView view){
         try {
-            this.server = new Server(address);
+            this.server = new ServerImplementation(address);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-
-        Thread thread = new Thread(server);
-        thread.start();
 
         this.view = view;
 
@@ -126,15 +126,25 @@ public class AdminApplicationController {
                 view.getServerStatusView().setOnline();
                 serverStatus = true;
 
-                // Create and start a new thread for the server
-                Thread thread = new Thread(server);
-                thread.start();
+                try {
+                    server.getReg().rebind("server", server);
+                    System.out.println("Server reopened");
+                } catch (RemoteException ex) {
+                    throw new RuntimeException(ex);
+                }
             } else {
                 view.getServerStatusView().setOffline();
                 serverStatus = false;
 
                 // Stop the server logic
-                server.stopAccepting();
+                try {
+                    server.getReg().unbind("server");
+                } catch (RemoteException ex) {
+                    throw new RuntimeException(ex);
+                } catch (NotBoundException ex) {
+                    throw new RuntimeException(ex);
+                }
+                System.out.println("Server closed.");
             }
         }
     }
@@ -148,8 +158,12 @@ public class AdminApplicationController {
         motorBookings.clear();
 
         // populate / repopulate lists
-        carBookings = server.getAllCarBookings();
-        motorBookings = server.getAllMotorBookings();
+        try {
+            carBookings = server.getAllCarBookings();
+            motorBookings = server.getAllMotorBookings();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
 
         view.getDashboardView().getPnlMainTop().getLblCarCount().setText(String.valueOf(carBookings.size()));
         view.getDashboardView().getPnlMainTop().getLblMotorCount().setText(String.valueOf(motorBookings.size()));
