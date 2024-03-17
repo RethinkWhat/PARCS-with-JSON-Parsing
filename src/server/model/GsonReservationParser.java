@@ -1,20 +1,30 @@
-package server;
+package server.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
 
 import java.io.*;
-import java.sql.Time;
 import java.util.*;
 
+/**
+ * Parses the information of all reservations.
+ */
 public class GsonReservationParser {
-
-    GsonBuilder builder;
-    Gson gson;
-
-    ArrayList<ParkingSpot> parkingSpots;
-
+    /**
+     * TODO: Documentation
+     */
+    private GsonBuilder builder;
+    /**
+     * Instance of GSON.
+     */
+    private Gson gson;
+    /**
+     * List of the parking spots, both motorcycle and car.
+     */
+    private ArrayList<ParkingSpot> parkingSpots;
+    /**
+     * File path of the JSON file.
+     */
     final File reservationsFile = new File("src/server/res/reservationList.json");
 
     /**
@@ -48,6 +58,9 @@ public class GsonReservationParser {
         return parkingSpots;
     }
 
+    /**
+     * TODO: Documentation
+     */
     private synchronized void updateFile() {
         try {
             String jsonString = gson.toJson(parkingSpots);
@@ -116,6 +129,14 @@ public class GsonReservationParser {
         }
     }
 
+    /**
+     * TODO: Documentation
+     * @param identifier
+     * @param date
+     * @param startTime
+     * @param duration
+     * @return
+     */
     public boolean hasSchedulingConflicts(String identifier, String date, String startTime, String duration) {
         TimeRange toCheck = new TimeRange(startTime,computeEndTime(startTime,duration));
         List<String> toCheckRange = toCheck.getStartToEndTime();
@@ -185,6 +206,12 @@ public class GsonReservationParser {
         return availableTimeRange;
     }
 
+    /**
+     * TODO: Documentation
+     * @param identifier
+     * @param date
+     * @return
+     */
     private List<String> getUnavailableTimeRange(String identifier, String date) {
         List<Reservations> booked = getSpotBookings(identifier);
         List<String> unavailableTimeRange = new ArrayList<>();
@@ -205,7 +232,11 @@ public class GsonReservationParser {
         return unavailableTimeRange;
     }
 
-
+    /**
+     * TODO: Documentation
+     * @param identifier
+     * @return
+     */
     private List<Reservations> getSpotBookings(String identifier) {
         for (ParkingSpot parkingSpot : parkingSpots) {
             if (parkingSpot.getIdentifier().equals(identifier)) {
@@ -215,6 +246,12 @@ public class GsonReservationParser {
         return null;
     }
 
+    /**
+     * TODO: Documentation
+     * @param username
+     * @param date
+     * @return
+     */
     public int getUserTotalBookings(String username, String date) {
         int count = 0;
         for (ParkingSpot parkingSpot : parkingSpots) {
@@ -307,6 +344,81 @@ public class GsonReservationParser {
             }
         }
         return userReservationMap;
+    }
+
+    public List<List<String>> getAllCarBookings() {
+        List<List<String>> carBookings = new ArrayList<>();
+
+        for (ParkingSpot parkingSpot : parkingSpots) {
+            for (Reservations reservations : parkingSpot.getReservationsList()) {
+                if (parkingSpot.getIdentifier().contains("C")) {
+                    String date = reservations.getDate();
+                    String identifier = parkingSpot.getIdentifier();
+                    String username = null;
+                    String timeIn = null;
+                    String timeOut = null;
+                    String duration = null;
+
+                    for (Map.Entry<TimeRange, String > entry : reservations.getTimeAndUserMap().entrySet()) {
+                        username = entry.getValue();
+                        timeIn = entry.getKey().startTime();
+                        timeOut = entry.getKey().endTime();
+                        duration = computeDuration(timeIn, timeOut);
+                    }
+
+                    List<String> currentReservation = new ArrayList<>();
+                    currentReservation.add(username);
+                    currentReservation.add(identifier);
+                    currentReservation.add(date);
+                    currentReservation.add(timeIn);
+                    currentReservation.add(timeOut);
+                    currentReservation.add(duration);
+
+                    carBookings.add(currentReservation);
+                }
+            }
+        }
+        return carBookings;
+    }
+
+    /**
+     * Retrieves all the current motorcycle booking reservations.
+     * FORMAT: [username, parking identifier, date, start time, end time, duration]
+     * @return
+     */
+    public List<List<String>> getAllMotorBookings() {
+        List<List<String>> motorBookings = new ArrayList<>();
+
+        for (ParkingSpot parkingSpot : parkingSpots) {
+            for (Reservations reservations : parkingSpot.getReservationsList()) {
+                if (parkingSpot.getIdentifier().contains("M")) {
+                    String date = reservations.getDate();
+                    String identifier = parkingSpot.getIdentifier();
+                    String username = null;
+                    String timeIn = null;
+                    String timeOut = null;
+                    String duration = null;
+
+                    for (Map.Entry<TimeRange, String > entry : reservations.getTimeAndUserMap().entrySet()) {
+                        username = entry.getValue();
+                        timeIn = entry.getKey().startTime();
+                        timeOut = entry.getKey().endTime();
+                        duration = computeDuration(timeIn, timeOut);
+                    }
+
+                    List<String> currentReservation = new ArrayList<>();
+                    currentReservation.add(username);
+                    currentReservation.add(identifier);
+                    currentReservation.add(date);
+                    currentReservation.add(timeIn);
+                    currentReservation.add(timeOut);
+                    currentReservation.add(duration);
+
+                    motorBookings.add(currentReservation);
+                }
+            }
+        }
+        return motorBookings;
     }
 
 

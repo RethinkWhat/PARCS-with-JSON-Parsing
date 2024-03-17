@@ -123,4 +123,17 @@ public interface ServerMessage extends Remote {
      */
     boolean editPassword(String password, String newPassword) throws RemoteException;
 
+    /**
+     * Retrieves all car bookings in a list of lists.
+     * @return List of lists of all car bookings.
+     * @throws RemoteException If error or exception occurs.
+     */
+    List<List<String>> getAllCarBookings() throws RemoteException;
+
+    /**
+     * Retrieves all motor bookings in a list of lists.
+     * @return List of lists of all car bookings.
+     * @throws RemoteException If error or exception occurs.
+     */
+    List<List<String>> getAllMotorBookings() throws RemoteException;
 }
