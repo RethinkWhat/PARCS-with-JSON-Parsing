@@ -111,9 +111,10 @@ import java.util.Map;
       * @return
       */
     public boolean bookReservation(String identifier, String date, String startTime, String duration, String username) {
-        boolean check = !reservationParser.hasSchedulingConflicts(identifier, date, startTime, duration);
+        boolean check = !gsonReservationParser.hasSchedulingConflicts(identifier, date, startTime, duration);
         if (check) {
-            reservationParser.createReservationNode(identifier, date, startTime, duration, username);
+            gsonReservationParser.makeReservation(identifier, date, startTime, duration, username);
+            //reservationParser.createReservationNode(identifier, date, startTime, duration, username);
         }
         return check;
     }
