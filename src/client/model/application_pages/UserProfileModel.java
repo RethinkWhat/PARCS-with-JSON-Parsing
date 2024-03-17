@@ -149,12 +149,12 @@ public class UserProfileModel {
      *
      * @param firstName The new first name.
      * @param lastName  The new last name.
-     * @param contactNo The new contact number.
+     * @param phoneNumber The new contact number.
      * @return True if the edit was successful. False if otherwise.
      */
-    public boolean editUserInformation(String firstName, String lastName, String contactNo) {
+    public boolean editUserInformation(String firstName, String lastName, String phoneNumber) {
         try{
-            getClient().getRemote().editUserInformation(getClient().getUsername(), firstName,lastName,contactNo);
+            getClient().getRemote().editUserInformation(getClient().getUsername(), firstName,lastName,phoneNumber);
         }catch (RemoteException re){
             re.printStackTrace();
         }
@@ -163,7 +163,6 @@ public class UserProfileModel {
 
     /**
      * Edits the user's vehicle information with a specified vehicle type, model, and plateNumber.
-     * @param username
      * @param plateNumber
      * @param newPlate
      * @param newModel

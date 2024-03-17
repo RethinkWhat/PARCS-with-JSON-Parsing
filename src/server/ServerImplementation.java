@@ -157,6 +157,16 @@ import java.util.Map;
 
     }
 
+     /**
+      * Edits the information of a vehicle associated with a user.
+      *
+      * @param username
+      * @param plateNumber
+      * @param newPlate
+      * @param newModel
+      * @param newType
+      * @return
+      */
      public boolean editVehicleInformation(String username,String plateNumber, String newPlate, String newModel, String newType) {
          try{
              gsonUserParser.editVehicleInformation(username,plateNumber,newPlate,newModel,newType);
@@ -168,11 +178,18 @@ import java.util.Map;
          return false;
      }
 
-     public boolean editUserInformation(String username,String firstname, String lastName, String contactNo){
+     /**
+      * Edits the information of a user.
+      *
+      * @param username
+      * @param firstname
+      * @param lastName
+      * @param phoneNumber
+      * @return
+      */
+     public boolean editUserInformation(String username,String firstname, String lastName, String phoneNumber ){
         try {
-            userParser.editUserInfo(username,"firstName", firstname);
-            userParser.editUserInfo(username, "lastName", lastName);
-            userParser.editUserInfo(username, "contactNumber", contactNo);
+            gsonUserParser.editUserInformation(username,firstname,lastName,phoneNumber);
         }catch (Exception e) {
            e.printStackTrace();
         }
