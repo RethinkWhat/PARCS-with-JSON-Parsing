@@ -82,9 +82,8 @@ public class UserProfileModel {
      */
     public void deleteAccount() {
         //TODO: RMI Implementation
-         
         try{
-            this.client.getRemote().deleteAccount(username);
+            this.client.getRemote().deleteAccount(client.getUsername());
         }catch (RemoteException re){
             re.printStackTrace();
         }
@@ -188,11 +187,11 @@ public class UserProfileModel {
      */
     public boolean editPassword(String password) {
         //TODO: RMI Implementation
-        try{
-            this.getClient().getRemote().editPassword(password);
+       try {
+            this.getClient().getRemote().editPassword(getPassword(),password);
             return true;
-        }catch (RemoteException e){
-            e.printStackTrace();
+        } catch (RemoteException re) {
+            re.printStackTrace();
             return false;
         }
 
