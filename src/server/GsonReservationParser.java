@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
 import java.io.*;
+import java.sql.Time;
 import java.util.*;
 
 public class GsonReservationParser {
@@ -113,6 +114,29 @@ public class GsonReservationParser {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public boolean hasSchedulingConflicts(String identifier, String date, String startTime, String duration) {
+        TimeRange toCheck = new TimeRange(startTime,computeEndTime(startTime,duration));
+        List<String> toCheckRange = toCheck.getStartToEndTime();
+        for (ParkingSpot parkingSpot : parkingSpots) {
+            if (parkingSpot.getIdentifier().equals(identifier)) {
+                for (Reservations reservations : parkingSpot.getReservationsList()){
+                    if (reservations.getDate().equals(date)) {
+                        Map<TimeRange, String> timeRangeStringMap = reservations.getTimeAndUserMap();
+                        for (TimeRange key : timeRangeStringMap.keySet()) {
+                            List<String> unavailable = key.getStartToEndTime();
+                            for (String bookingRange: toCheckRange) {
+                                if (unavailable.contains(bookingRange)) {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     /**
