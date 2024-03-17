@@ -249,13 +249,11 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
     @Override
     public void deleteAccount(String username) throws RemoteException {
         gsonUserParser.deleteUser(username);
-        //userParser.deleteUser(username);
     }
 
     @Override
     public boolean editPassword(String password, String newPassword) throws RemoteException {
         gsonUserParser.changePassword(password, newPassword);
-        //userParser.changePassword(password, newPassword);
         return true;
     }
 
