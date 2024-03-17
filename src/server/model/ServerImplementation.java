@@ -3,112 +3,131 @@ package server.model;
 import shared.ServerMessage;
 
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
- public class ServerImplementation extends UnicastRemoteObject implements ServerMessage {
-
+/**
+ * The ServerImplementation implements the different methods in the ServerMessage.
+ */
+public class ServerImplementation extends UnicastRemoteObject implements ServerMessage {
     /**
-     * Temporary, while JSON not implemented
+     * TODO: Documentation
      */
-    UserParser userParser = new UserParser();
     ReservationParser reservationParser = new ReservationParser();
+    /**
+     * TODO: Documentation
+     */
     ArrayList<String> userLog;
     /**=======================================*/
 
 
-    /** JSON Parsers */
-    GsonUserParser gsonUserParser;
-    GsonReservationParser gsonReservationParser;
+    /**
+     * JSON Parser for users.
+     */
+    private GsonUserParser gsonUserParser;
+    /**
+     * JSON Parser for the reservation of all user.
+     */
+    private GsonReservationParser gsonReservationParser;
 
-     /**
-      * Default Constructor
-      * @throws RemoteException
-      */
-     public ServerImplementation() throws RemoteException {
-        userLog = new ArrayList<>();
-        gsonUserParser = new GsonUserParser();
-        gsonReservationParser = new GsonReservationParser();
-
+    /**
+     * Constructs an object of ServerImplementation with a given registry port.
+     * @param registryPort The specified port.
+     * @throws RemoteException If error or exception occurs in instantiation.
+     */
+    public ServerImplementation(int registryPort) throws RemoteException {
+        try {
+            Registry reg = LocateRegistry.createRegistry(2000);
+            reg.rebind("server", this);
+            System.out.println("Server running"); // omit
+            userLog = new ArrayList<>();
+            gsonUserParser = new GsonUserParser();
+            gsonReservationParser = new GsonReservationParser();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            throw new RemoteException();
+        }
     }
 
-     /**
-      * Method to validate a user login attempt
-      * @param username
-      * @param password
-      * @return
-      */
+    /**
+     * Method to validate a user login attempt
+     * @param username
+     * @param password
+     * @return
+     */
     @Override
     public boolean login(String username, String password) {
         return gsonUserParser.validateLogin(username, password);
     }
 
-     /**
-      * Method to check whether a user is already logged into the system
-      * @param username
-      * @return
-      * @throws RemoteException
-      */
-     @Override
-     public boolean isUserLoggedIn(String username) throws RemoteException {
-         if (!userLog.contains(username.toLowerCase())) {
-             userLog.add(username);
-             return false;
-         }
-         return true;
-     }
+    /**
+     * Method to check whether a user is already logged into the system
+     * @param username
+     * @return
+     * @throws RemoteException
+     */
+    @Override
+    public boolean isUserLoggedIn(String username) throws RemoteException {
+        if (!userLog.contains(username.toLowerCase())) {
+            userLog.add(username);
+            return false;
+        }
+        return true;
+    }
 
-     /**
-      * Method to get the full name of a user
-      * @param username
-      * @return
-      */
-     public String getFullName(String username) {
+    /**
+     * Method to get the full name of a user
+     * @param username
+     * @return
+     */
+    public String getFullName(String username) {
         return gsonUserParser.getUserFullName(username);
     }
 
-     /**
-      * Method to get all the bookings associated with a user
-      * @param username
-      * @return
-      */
+    /**
+     * Method to get all the bookings associated with a user
+     * @param username
+     * @return
+     */
     public int getUserTotalBookings(String username) {
         DateTime dateTime = new DateTime();
         return gsonReservationParser.getUserTotalBookings(username, dateTime.getDateTime());
     }
 
-     /**
-      * Method to get all the vehicles associated with a user
-      * @param username
-      * @return
-      */
+    /**
+     * Method to get all the vehicles associated with a user
+     * @param username
+     * @return
+     */
     public Map<String, List<String>> getUserVehicles(String username) {
         return gsonUserParser.getUserVehicles(username);
     }
 
-     /**
-      * Method to get all the time in a date a specific car spot is available
-      * @param identifier
-      * @param duration
-      * @param date
-      * @return
-      */
+    /**
+     * Method to get all the time in a date a specific car spot is available
+     * @param identifier
+     * @param duration
+     * @param date
+     * @return
+     */
     public List<String> spotTimeAvailable(String identifier, String duration, String date) {
         //return reservationParser.availableTime(identifier, duration, date);
         return gsonReservationParser.spotTimeAvailable(identifier, Integer.valueOf(duration), date, "7:00", "15:00");
     }
 
-     /**
-      * Method to handle attempting a booking reservation
-      * @param identifier
-      * @param date
-      * @param startTime
-      * @param duration
-      * @param username
-      * @return
-      */
+    /**
+     * Method to handle attempting a booking reservation
+     * @param identifier
+     * @param date
+     * @param startTime
+     * @param duration
+     * @param username
+     * @return
+     */
     public boolean bookReservation(String identifier, String date, String startTime, String duration, String username) {
         boolean check = !gsonReservationParser.hasSchedulingConflicts(identifier, date, startTime, duration);
         if (check) {
@@ -156,50 +175,50 @@ import java.util.Map;
 
     }
 
-     /**
-      * Edits the information of a vehicle associated with a user.
-      *
-      * @param username
-      * @param plateNumber
-      * @param newPlate
-      * @param newModel
-      * @param newType
-      * @return
-      */
-     public boolean editVehicleInformation(String username,String plateNumber, String newPlate, String newModel, String newType) {
-         try{
-             gsonUserParser.editVehicleInformation(username,plateNumber,newPlate,newModel,newType);
+    /**
+     * Edits the information of a vehicle associated with a user.
+     *
+     * @param username
+     * @param plateNumber
+     * @param newPlate
+     * @param newModel
+     * @param newType
+     * @return
+     */
+    public boolean editVehicleInformation(String username,String plateNumber, String newPlate, String newModel, String newType) {
+        try{
+            gsonUserParser.editVehicleInformation(username,plateNumber,newPlate,newModel,newType);
 
-         }catch (Exception e){
-             e.printStackTrace();
+        }catch (Exception e){
+            e.printStackTrace();
 
-         }
-         return false;
-     }
+        }
+        return false;
+    }
 
-     /**
-      * Edits the information of a user.
-      *
-      * @param username
-      * @param firstname
-      * @param lastName
-      * @param phoneNumber
-      * @return
-      */
-     public boolean editUserInformation(String username,String firstname, String lastName, String phoneNumber ){
+    /**
+     * Edits the information of a user.
+     *
+     * @param username
+     * @param firstname
+     * @param lastName
+     * @param phoneNumber
+     * @return
+     */
+    public boolean editUserInformation(String username,String firstname, String lastName, String phoneNumber ){
         try {
             gsonUserParser.editUserInformation(username,firstname,lastName,phoneNumber);
         }catch (Exception e) {
-           e.printStackTrace();
+            e.printStackTrace();
         }
-         return false;
-     }
+        return false;
+    }
 
-     public boolean createAccount (String firstName, String lastName, String username, String phoneNumber, String
-                password){
-            gsonUserParser.createUser(firstName, lastName, username, phoneNumber, password);
-            return true;
-        }
+    public boolean createAccount (String firstName, String lastName, String username, String phoneNumber, String
+            password){
+        gsonUserParser.createUser(firstName, lastName, username, phoneNumber, password);
+        return true;
+    }
 
     public List<String> getClosestReservation (String username){
         DateTime dateTime = new DateTime();
@@ -225,7 +244,7 @@ import java.util.Map;
         }
     }
 
-       @Override
+    @Override
     public void deleteAccount(String username) throws RemoteException {
         gsonUserParser.deleteUser(username);
         //userParser.deleteUser(username);
@@ -236,6 +255,28 @@ import java.util.Map;
         gsonUserParser.changePassword(password, newPassword);
         //userParser.changePassword(password, newPassword);
         return true;
+    }
+
+    /**
+     * Retrieves all car bookings in a list of lists.
+     *
+     * @return List of lists of all car bookings.
+     * @throws RemoteException If error or exception occurs.
+     */
+    @Override
+    public List<List<String>> getAllCarBookings() throws RemoteException {
+        return gsonReservationParser.getAllCarBookings();
+    }
+
+    /**
+     * Retrieves all motor bookings in a list of lists.
+     *
+     * @return List of lists of all car bookings.
+     * @throws RemoteException If error or exception occurs.
+     */
+    @Override
+    public List<List<String>> getAllMotorBookings() throws RemoteException {
+        return gsonReservationParser.getAllMotorBookings();
     }
 }
 
