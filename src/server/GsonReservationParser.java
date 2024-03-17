@@ -160,22 +160,24 @@ public class GsonReservationParser {
             availableTimeRange.add(i +":00");
         }
 
-        ArrayList<String> toRemove = new ArrayList<>();
-        for (String time : availableTimeRange) {
-            for (int x =0; x <duration; x ++) {
-                int timeAsInt = Integer.valueOf(time.split(":")[0]);
-                String incremented = (timeAsInt+x) + ":00";
-                if (unavailableTimeRange.contains(incremented)
-                        || unavailableTimeRange.contains("0" + incremented)
-                        || (timeAsInt+x) > endTimeAsInt-1) {
-                    toRemove.add(timeAsInt + ":00");
+        if (!unavailableTimeRange.isEmpty()) {
+            ArrayList<String> toRemove = new ArrayList<>();
+            for (String time : availableTimeRange) {
+                for (int x = 0; x < duration; x++) {
+                    int timeAsInt = Integer.valueOf(time.split(":")[0]);
+                    String incremented = (timeAsInt + x) + ":00";
+                    if (unavailableTimeRange.contains(incremented)
+                            || unavailableTimeRange.contains("0" + incremented)
+                            || (timeAsInt + x) > endTimeAsInt - 1) {
+                        toRemove.add(timeAsInt + ":00");
+                    }
                 }
             }
-        }
 
-        for (String remove : toRemove) {
-            availableTimeRange.remove(remove);
-            availableTimeRange.remove("0" + remove);
+            for (String remove : toRemove) {
+                availableTimeRange.remove(remove);
+                availableTimeRange.remove("0" + remove);
+            }
         }
         return availableTimeRange;
     }
@@ -183,16 +185,18 @@ public class GsonReservationParser {
     private List<String> getUnavailableTimeRange(String identifier, String date) {
         List<Reservations> booked = getSpotBookings(identifier);
         List<String> unavailableTimeRange = new ArrayList<>();
-        for (Reservations reservation : booked) {
-            if (reservation.getDate().equals(date)) {
-                Map<TimeRange, String> bookings = reservation.getTimeAndUserMap();
-                for (TimeRange timeRange : bookings.keySet()) {
-                    List<String> timeRangeList = timeRange.getStartToEndTime();
-                    for (String time: timeRangeList) {
-                        unavailableTimeRange.add(time);
+        if (booked != null) {
+            for (Reservations reservation : booked) {
+                if (reservation.getDate().equals(date)) {
+                    Map<TimeRange, String> bookings = reservation.getTimeAndUserMap();
+                    for (TimeRange timeRange : bookings.keySet()) {
+                        List<String> timeRangeList = timeRange.getStartToEndTime();
+                        for (String time : timeRangeList) {
+                            unavailableTimeRange.add(time);
+                        }
                     }
+                    break;
                 }
-                break;
             }
         }
         return unavailableTimeRange;
