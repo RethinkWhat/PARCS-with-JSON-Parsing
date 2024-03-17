@@ -87,11 +87,11 @@ public interface ServerMessage extends Remote {
      *
      * @param username
      * @param plateNumber
-     * @param newInfo
+     * @param newPlate
      * @return
      * @throws RemoteException
      */
-    boolean editVehicleInfo(String username,String plateNumber, String newInfo) throws RemoteException;
+    boolean editVehicleInformation(String username,String plateNumber, String newPlate, String newModel, String newType) throws RemoteException;
 
     /**
      * This method edits the user's information with the first name, last name, and contact Number.

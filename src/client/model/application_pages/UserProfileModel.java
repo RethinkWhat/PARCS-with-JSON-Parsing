@@ -163,15 +163,16 @@ public class UserProfileModel {
 
     /**
      * Edits the user's vehicle information with a specified vehicle type, model, and plateNumber.
-     *
-     * @param plateNumber        The specified plateNumber.
-     * @param newInfo       The new vehicle information.
-     * @param plateNumber The specified plate number.
-     * @return True if the edit was successful. False if otherwise.
+     * @param username
+     * @param plateNumber
+     * @param newPlate
+     * @param newModel
+     * @param newType
+     * @return
      */
-    public boolean editVehicleInfo(String plateNumber, String newInfo) {
+    public boolean editVehicleInformation(String plateNumber, String newPlate, String newModel, String newType) {
         try{
-            this.getClient().getRemote().editVehicleInfo(getClient().getUsername(),plateNumber,newInfo);
+            this.getClient().getRemote().editVehicleInformation(getClient().getUsername(),plateNumber,newPlate,newModel,newType);
         }catch (RemoteException re){
             re.printStackTrace();
         }

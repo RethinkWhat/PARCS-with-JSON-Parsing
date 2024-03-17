@@ -333,10 +333,7 @@ public class UserProfileController {
             String newType = pnlsCars[carIndex].getTxtVehicleType().getText();
             String newPlate = pnlsCars[carIndex].getTxtPlateNumber().getText();
             String newModel = pnlsCars[carIndex].getTxtModel().getText();
-            model.editVehicleInfo(
-                    plateNumbers.get(carIndex),
-                    (newType + "," + newPlate + "," + newModel)
-            );
+            model.editVehicleInformation(plateNumbers.get(carIndex),newPlate,newModel,newType);
         }
     }
 

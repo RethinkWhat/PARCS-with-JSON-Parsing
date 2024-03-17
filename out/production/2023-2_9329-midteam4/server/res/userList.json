@@ -1,23 +1,22 @@
 [
   {
-    "username" : "yuen",
-    "type" : "user",
-    "password" : "6EHvXy+WtVbomkfDlyzp/Nq8JUB9ktExYharVe68dcY=",
-    "lastName" : "Tank",
-    "firstName" : "Rithik",
-    "phoneNumber" : "09177900153",
-    "vehicles" : [
-        {
-          "type" :  "Car",
-          "model" :  "Civic",
-          "plateNumber" :  "A123"
-        },
+    "username": "yuen",
+    "type": "user",
+    "password": "6EHvXy+WtVbomkfDlyzp/Nq8JUB9ktExYharVe68dcY\u003d",
+    "lastName": "Tank",
+    "firstName": "Rithik",
+    "phoneNumber": "09177900153",
+    "vehicles": [
       {
-        "type" :  "Car",
-        "model" :  "Civic",
-        "plateNumber" :  "30943"
+        "type": "SUV",
+        "model": "Accord",
+        "plateNumber": "B456"
+      },
+      {
+        "type": "Car",
+        "model": "Civic",
+        "plateNumber": "30943"
       }
     ]
-
   }
 ]

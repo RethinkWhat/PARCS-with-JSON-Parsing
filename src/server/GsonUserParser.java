@@ -160,6 +160,38 @@ public class GsonUserParser {
         updateUserList();
     }
 
+    /**
+     * This method allows the user to edit the details of a client's car,
+     * it searches by username and plate number.
+     *
+     * @param username
+     * @param plateNumber
+     * @param newPlate
+     * @param newModel
+     * @param newType
+     * @return
+     */
+    public boolean editVehicleInformation(String username, String plateNumber, String newPlate, String newModel, String newType) {
+        for (User user : userArrayList) {
+            if (user.getUsername().equalsIgnoreCase(username)) {
+                List<Vehicle> vehicles = user.getVehicles();
+                if (vehicles != null) {
+                    for (Vehicle vehicle : vehicles) {
+                        if (vehicle.getPlateNumber().equalsIgnoreCase(plateNumber)) {
+                            vehicle.setPlateNumber(newPlate);
+                            vehicle.setModel(newModel);
+                            vehicle.setType(newType);
+                            updateUserList();
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+
     public static void main(String[] args) {
         GsonUserParser parser = new GsonUserParser();
         User[] users = parser.getUsers();
