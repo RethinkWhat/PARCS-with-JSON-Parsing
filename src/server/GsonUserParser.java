@@ -106,6 +106,7 @@ public class GsonUserParser {
             }
         }
         return vehicleList;
+        
     }
 
 
@@ -129,6 +130,34 @@ public class GsonUserParser {
 
         //userArrayList 入落 json
         this.updateUserList();
+    }
+      /** Method to delete the user's account
+    * @param username
+    * 
+    */
+    public void deleteUser(String username) {  // might update
+        getUsers();
+        for (User user : userArrayList) {
+            if (user.getUsername().equalsIgnoreCase(username)) {
+                userArrayList.remove(user);
+                break;
+            }
+        }
+        updateUserList();
+    
+    }
+    /** Method to change user's password 
+    * @param username
+    * @param newPassword
+    */
+    public void changePassword(String username, String newPassword) {
+        for (User user : userArrayList) {
+            if (user.getUsername().equalsIgnoreCase(username)) {
+                user.setPassword(newPassword);
+                break;
+            }
+        }
+        updateUserList();
     }
 
     public static void main(String[] args) {
