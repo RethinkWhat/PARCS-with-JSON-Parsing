@@ -16,5 +16,9 @@ The application attempts to resolve this issue by introducing a **Parking Reserv
 * Tank, Rithik
 * Yuen, Ka Hang
 
+## Technology Stack
+- Java
+- JSON (For data storing and manipulation)
+
 ## License
 The project was created in partial fulfilment of the course Computer Programming 3, offered under **Saint Louis University**.
