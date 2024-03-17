@@ -268,27 +268,35 @@ public class GsonReservationParser {
      * @author Yung ginatekeep ni Jullainne Candy Lou
      */
     public Map<String, Reservations> getUserReservations(String username){
-        Map<String, Reservations> userReservationList = new HashMap<>();
+        Map<String, Reservations> userReservationMap = new HashMap<>();
 
         for (ParkingSpot currParkingSpot : parkingSpots){
             String identifier = currParkingSpot.getIdentifier();
+
+            //Creates a new Reservations object for each parking spot
             Reservations reservation = new Reservations();
 
+            //Loops through the reservations of the Parking Spot
             for (Reservations currReservation : currParkingSpot.getReservationsList()){
 
+                //Loops through the time and user map of the current reservation
                 for (Map.Entry<TimeRange, String> entry : currReservation.getTimeAndUserMap().entrySet()){
 
-
+                    //Checks if the username of a certain TimeRange is equals to the username being passed
                     if (entry.getValue().equalsIgnoreCase(username)){
+
+                        //Adds the time range (if valid) to the new Reservation object's time and user map
                         reservation.addToTimeAndUserMap(entry.getKey().startTime(), entry.getKey().endTime(), username);
                         reservation.setDate(currReservation.getDate());
 
                     }
                 }
             }
-            userReservationList.put(identifier, reservation);
+
+            //Adds the Parking Identifier with its corresponding Reservations object to the map
+            userReservationMap.put(identifier, reservation);
         }
-        return userReservationList;
+        return userReservationMap;
     }
 
 
@@ -297,7 +305,7 @@ public class GsonReservationParser {
         GsonReservationParser parser = new GsonReservationParser();
         //parser.makeReservation("C69", "10/10/10", "7:00", "1", "rithik");
         //String identifier, int duration, String date, String startTime, String endTime) {
-//        System.out.println(parser.spotTimeAvailable("C1", 2, "03/15/24", "7:00", "16:00"));
+        //System.out.println(parser.spotTimeAvailable("C1", 2, "03/15/24", "7:00", "16:00"));
 
         /*
         TESTER getUserReservations
