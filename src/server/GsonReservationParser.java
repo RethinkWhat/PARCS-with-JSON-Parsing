@@ -156,8 +156,11 @@ public class GsonReservationParser {
         int startTimeAsInt = Integer.parseInt(startTime.split(":")[0]);
         int endTimeAsInt = Integer.parseInt(endTime.split(":")[0]);
 
+        availableTimeRange.add("Available Time: ");
         for (int i=startTimeAsInt; i <endTimeAsInt; i++) {
-            availableTimeRange.add(i +":00");
+            if (!((i + duration) > endTimeAsInt)) {
+                availableTimeRange.add(i + ":00");
+            }
         }
 
         if (!unavailableTimeRange.isEmpty()) {
@@ -167,12 +170,12 @@ public class GsonReservationParser {
                     int timeAsInt = Integer.valueOf(time.split(":")[0]);
                     String incremented = (timeAsInt + x) + ":00";
                     if (unavailableTimeRange.contains(incremented)
-                            || unavailableTimeRange.contains("0" + incremented)
-                            || (timeAsInt + x) > endTimeAsInt - 1) {
+                            || unavailableTimeRange.contains("0" + incremented)) {
                         toRemove.add(timeAsInt + ":00");
                     }
                 }
             }
+
 
             for (String remove : toRemove) {
                 availableTimeRange.remove(remove);
