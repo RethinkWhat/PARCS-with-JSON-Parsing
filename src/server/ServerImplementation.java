@@ -213,9 +213,9 @@ import java.util.Map;
     }
 
     @Override
-    public boolean editPassword(String username, String newPassword) throws RemoteException {
-        gsonUserParser.changePassword(username, newPassword);
-        //userParser.changePassword(username, newPassword);
+    public boolean editPassword(String password, String newPassword) throws RemoteException {
+        gsonUserParser.changePassword(password, newPassword);
+        //userParser.changePassword(password, newPassword);
         return true;
     }
 }
