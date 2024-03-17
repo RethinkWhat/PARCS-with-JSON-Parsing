@@ -95,6 +95,7 @@ public interface ServerMessage extends Remote {
 
     /**
      * This method edits the user's information with the first name, last name, and contact Number.
+     *
      * @param firstname
      * @param lastName
      * @param contactNo

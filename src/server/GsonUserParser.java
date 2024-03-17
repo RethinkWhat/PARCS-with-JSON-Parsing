@@ -191,16 +191,44 @@ public class GsonUserParser {
         return false;
     }
 
+    /**
+     * This method edits the information of a user with the given username.
+     *
+     * @param username
+     * @param firstName
+     * @param lastName
+     * @param phoneNumber
+     * @return
+     */
+    public boolean editUserInformation (String username, String firstName, String lastName, String phoneNumber){
+        for (User user : userArrayList){
+            if (user.getUsername().equalsIgnoreCase(username)){
+                user.setFirstName(firstName);
+                user.setLastName(lastName);
+                user.setPhoneNumber(phoneNumber);
+                updateUserList();
+                return true;
+            }
+        }
+        return false;
+    }
 
     public static void main(String[] args) {
         GsonUserParser parser = new GsonUserParser();
-        User[] users = parser.getUsers();
-        Map<String, List<String>> userVehicles = parser.getUserVehicles("yuen");
-        for (String key : userVehicles.keySet()) {
-            System.out.println(key + ": " + userVehicles.get(key));
+        boolean editSuccess = parser.editUserInformation("yuen", "Yowen", "Khang", "0912345678");
+        if (editSuccess) {
+                System.out.println("success");
+        } else {
+                System.out.println("user not found");
         }
     }
 
-
-
+//    public static void main(String[] args) {
+//        GsonUserParser parser = new GsonUserParser();
+//        User[] users = parser.getUsers();
+//        Map<String, List<String>> userVehicles = parser.getUserVehicles("yuen");
+//        for (String key : userVehicles.keySet()) {
+//            System.out.println(key + ": " + userVehicles.get(key));
+//        }
+//    }
 }
