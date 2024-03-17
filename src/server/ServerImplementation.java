@@ -77,7 +77,7 @@ import java.util.Map;
       */
     public int getUserTotalBookings(String username) {
         DateTime dateTime = new DateTime();
-        return reservationParser.countTotalBookingsPerDay(username, dateTime.getDateTime());
+        return gsonReservationParser.getUserTotalBookings(username, dateTime.getDateTime());
     }
 
      /**
