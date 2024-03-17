@@ -119,7 +119,6 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
      * @return
      */
     public List<String> spotTimeAvailable(String identifier, String duration, String date) {
-        //return reservationParser.availableTime(identifier, duration, date);
         return gsonReservationParser.spotTimeAvailable(identifier, Integer.valueOf(duration), date, "7:00", "15:00");
     }
 
@@ -136,7 +135,6 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
         boolean check = !gsonReservationParser.hasSchedulingConflicts(identifier, date, startTime, duration);
         if (check) {
             gsonReservationParser.makeReservation(identifier, date, startTime, duration, username);
-            //reservationParser.createReservationNode(identifier, date, startTime, duration, username);
         }
         return check;
     }
@@ -154,7 +152,7 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
 
     @Override
     public List<List<String>> viewHistory(String username) throws RemoteException {
-        Map<String,Reservations> parkingSpotList = reservationParser.getUserReservations(username);
+        Map<String,Reservations> parkingSpotList = gsonReservationParser.getUserReservations(username);
 
         ArrayList userBookings = new ArrayList<>();
         for (String key : parkingSpotList.keySet()) {
@@ -239,7 +237,7 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
 
     public String getDuration (List<String> userReservation){
         try {
-            String duration = reservationParser.computeDuration(userReservation.get(1), userReservation.get(2));
+            String duration = gsonReservationParser.computeDuration(userReservation.get(1), userReservation.get(2));
 
             return duration;
         } catch (Exception exception) {
