@@ -421,6 +421,46 @@ public class GsonReservationParser {
         return motorBookings;
     }
 
+    public List<String> getClosestReservation(String username, String currentDate) {
+        Map<String, Reservations> userReservations = getUserReservations(username);
+
+        //parkingIdentifier, startTime, endTime, date
+        List<String> closestReservationInfo = new ArrayList<>();
+        closestReservationInfo.add("X");
+        closestReservationInfo.add("X");
+        closestReservationInfo.add("X");
+        closestReservationInfo.add("X");
+
+        int currSmallest = 99;
+
+        for(Map.Entry<String, Reservations> entry : userReservations.entrySet()){
+            String identifier = entry.getKey();
+            Reservations reservations = entry.getValue();
+
+            if(reservations.getDate().equalsIgnoreCase(currentDate)){
+                for(Map.Entry<TimeRange, String> entry1 : reservations.getTimeAndUserMap().entrySet()){
+                    TimeRange timeRange = entry1.getKey();
+                    String startTime = timeRange.startTime();
+                    String endTime = timeRange.endTime();
+
+                    int hour = Integer.parseInt(startTime.split(":")[0]);
+
+                    if (hour < currSmallest){
+                        currSmallest = hour;
+                        closestReservationInfo.set(0, identifier);
+                        closestReservationInfo.set(1, startTime);
+                        closestReservationInfo.set(2, endTime);
+                        closestReservationInfo.set(3, reservations.getDate());
+
+                    }
+                }
+            }
+
+        }
+
+        return closestReservationInfo;
+    }
+
 
     //TODO: Delete
     public static void main(String[] args) {
