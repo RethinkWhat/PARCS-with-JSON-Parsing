@@ -266,6 +266,7 @@ public class GsonReservationParser {
                 }
             }
         }
+        System.out.println(count);
         return count;
     }
 
