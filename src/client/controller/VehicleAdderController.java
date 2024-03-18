@@ -4,6 +4,7 @@ import client.model.ApplicationModel;
 import client.model.VehicleAdderModel;
 import client.view.ApplicationView;
 import client.view.VehicleAdderView;
+import utilities.Resources;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -25,7 +26,6 @@ public class VehicleAdderController {
      */
     private VehicleAdderModel model;
 
-
     /**
      * Constructs a VehicleAdderController with a specified view and model.
      * @param view The specified VehicleAdderView.
@@ -44,14 +44,24 @@ public class VehicleAdderController {
         view.setCancelListener(new CancelVehicleAdder());
 
         // mouse listeners
+        view.getBtnAddVehicle().addMouseListener(new Resources.CursorChanger(view.getBtnAddVehicle()));
+        view.getBtnCancel().addMouseListener(new Resources.CursorChanger(view.getBtnCancel()));
 
         // focus listeners
+        view.getTxtModel().addFocusListener(new Resources.TextFieldFocus(view.getTxtModel(),
+                "Vehicle Model (e.g., Honda Civic)"));
+        view.getTxtPlateNumber().addFocusListener(new Resources.TextFieldFocus(view.getTxtPlateNumber(),
+                "License Plate Number (e.g., NWA 991)"));
     }
 
     /**
-     * TODO: Documentation
+     * Adds the vehicle of the user to their respective account.
      */
     class AddVehicleListener implements ActionListener {
+        /**
+         * Adding the vehicle.
+         * @param e the event to be processed
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
 
@@ -63,7 +73,14 @@ public class VehicleAdderController {
         }
     }
 
+    /**
+     * Cancels the process of adding the vehicle by closing the frame.
+     */
     class CancelVehicleAdder implements ActionListener {
+        /**
+         * Closes the frame.
+         * @param e the event to be processed
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             new ApplicationController(new ApplicationView(), new ApplicationModel(model.getClient()));
