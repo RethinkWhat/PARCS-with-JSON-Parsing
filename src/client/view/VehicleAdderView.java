@@ -86,6 +86,7 @@ public class VehicleAdderView extends JFrame {
         btnCancel = res.createBtnRounded("Cancel",res.gray, res.eerieBlack,10);
         pnlButtons.add(btnCancel);
 
+        this.setIconImage(res.logoParcs.getImage());
         this.setContentPane(contentPane);
         this.pack();
         this.setLocationRelativeTo(null);

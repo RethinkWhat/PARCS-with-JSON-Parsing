@@ -89,6 +89,7 @@ public class RegisterView extends JFrame {
         contentArea.add(pnlCards, BorderLayout.CENTER);
         cardLayout.show(pnlCards, "login");
 
+        this.setIconImage(res.logoParcs.getImage());
         this.setContentPane(contentArea);
         this.pack();
         this.setLocationRelativeTo(null);
