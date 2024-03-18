@@ -197,6 +197,14 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
         return false;
     }
 
+    public boolean addVehicle(String username, String type, String model, String plateNumber){
+        try {
+            gsonUserParser.addVehicle(username, type, model, plateNumber);
+        }catch (Exception e){
+
+        }
+    }
+
     /**
      * Edits the information of a user.
      *
