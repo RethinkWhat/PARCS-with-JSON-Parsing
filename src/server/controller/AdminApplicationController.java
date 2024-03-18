@@ -128,7 +128,6 @@ public class AdminApplicationController {
 
                 try {
                     server.getReg().rebind("server", server);
-                    System.out.println("Server reopened");
                 } catch (RemoteException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -144,7 +143,6 @@ public class AdminApplicationController {
                 } catch (NotBoundException ex) {
                     throw new RuntimeException(ex);
                 }
-                System.out.println("Server closed.");
             }
         }
     }
@@ -170,8 +168,6 @@ public class AdminApplicationController {
         view.getDashboardView().getPnlMainTop().getLblTotalCount().
                 setText(String.valueOf(carBookings.size() + motorBookings.size()));
 
-        System.out.println(carBookings);
-        System.out.println(motorBookings);
     }
 
     /**

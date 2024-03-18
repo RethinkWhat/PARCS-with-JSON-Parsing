@@ -210,8 +210,12 @@ public class User {
     @Override
     public String toString() {
         String toReturn = username + "," + password + "," + lastName + "," + firstName + "," + phoneNumber;
-        for (Vehicle vehicle: vehicles) {
-            toReturn += "," + vehicle;
+        if (vehicles!= null) {
+            for (Vehicle vehicle: vehicles) {
+                toReturn += "," + vehicle;
+            }
+        }else {
+            toReturn += "," + null;
         }
         return toReturn;
     }
