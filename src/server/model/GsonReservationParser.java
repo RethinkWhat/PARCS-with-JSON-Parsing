@@ -309,7 +309,7 @@ public class GsonReservationParser {
      * KEY: Parking identifier
      * VALUE: Reservations Object
      *
-     * @author Yung ginatekeep ni Jullainne Candy Lou
+     * @author Ramon Emmiel Jasmin
      */
     public Map<String, Reservations> getUserReservations(String username){
         Map<String, Reservations> userReservationMap = new HashMap<>();
