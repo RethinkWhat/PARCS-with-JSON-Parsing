@@ -224,6 +224,9 @@ public class GsonUserParser {
      */
     public boolean plateNumberExist(String plateNumber){
         for (User user : userArrayList){
+            if (user.getVehicles() == null){
+                return false;
+            }
             for (Vehicle vehicle : user.getVehicles()){
                 if (vehicle.getPlateNumber().equalsIgnoreCase(plateNumber)){
                     return true;
@@ -258,20 +261,13 @@ public class GsonUserParser {
 
     public static void main(String[] args) {
         GsonUserParser parser = new GsonUserParser();
-        boolean editSuccess = parser.editUserInformation("yuen", "Yowen", "Khang", "0912345678");
-        if (editSuccess) {
-                System.out.println("success");
-        } else {
-                System.out.println("user not found");
-        }
-    }
-
-//    public static void main(String[] args) {
-//        GsonUserParser parser = new GsonUserParser();
-//        User[] users = parser.getUsers();
-//        Map<String, List<String>> userVehicles = parser.getUserVehicles("yuen");
-//        for (String key : userVehicles.keySet()) {
-//            System.out.println(key + ": " + userVehicles.get(key));
+//        boolean editSuccess = parser.editUserInformation("yuen", "Yowen", "Khang", "0912345678");
+//        if (editSuccess) {
+//                System.out.println("success");
+//        } else {
+//                System.out.println("user not found");
 //        }
-//    }
+
+//        parser.addVehicle("yuen", "Car", "Honda Civic", "MONEM 143");
+    }
 }
