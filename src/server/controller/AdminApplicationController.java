@@ -107,7 +107,7 @@ public class AdminApplicationController {
 
         // focus listeners
         view.getDashboardView().getPnlMainBottom().getTxtDate().addFocusListener(new Resources.TextFieldFocus(
-                view.getDashboardView().getPnlMainBottom().getTxtDate(), "Search Date (MM/DD/YY)"));
+                view.getDashboardView().getPnlMainBottom().getTxtDate(), "Search Date (MM/DD/YY or All)"));
         view.repaint();
         view.revalidate();
     }
