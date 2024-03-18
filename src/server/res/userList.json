@@ -18,5 +18,13 @@
         "plateNumber": "ALI 143"
       }
     ]
+  },
+  {
+    "username": "r",
+    "type": "user",
+    "password": "r",
+    "lastName": "r",
+    "firstName": "r",
+    "phoneNumber": "r"
   }
 ]

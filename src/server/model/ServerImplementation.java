@@ -47,7 +47,6 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
         try {
             reg = LocateRegistry.createRegistry(2000);
             reg.rebind("server", this);
-            System.out.println("Server running"); // omit
             userLog = new ArrayList<>();
             gsonUserParser = new GsonUserParser();
             gsonReservationParser = new GsonReservationParser();

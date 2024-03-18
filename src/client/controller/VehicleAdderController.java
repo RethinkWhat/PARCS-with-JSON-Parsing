@@ -66,6 +66,7 @@ public class VehicleAdderController {
     class CancelVehicleAdder implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            new ApplicationController(new ApplicationView(), new ApplicationModel(model.getClient()));
             view.dispose();
         }
     }

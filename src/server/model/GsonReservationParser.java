@@ -427,8 +427,6 @@ public class GsonReservationParser {
         GsonReservationParser parser = new GsonReservationParser();
         //parser.makeReservation("C69", "10/10/10", "7:00", "1", "rithik");
         //String identifier, int duration, String date, String startTime, String endTime) {
-        //System.out.println(parser.spotTimeAvailable("C1", 2, "03/15/24", "7:00", "16:00"));
 
-//        System.out.println(parser.getUserReservations("monem"));
     }
 }

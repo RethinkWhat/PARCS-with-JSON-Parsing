@@ -128,7 +128,6 @@ public class GsonUserParser {
         User newPerson  = new User(username, "user",password,lastName, firstName,phoneNumber,null);
         userArrayList.add(newPerson);
 
-        //userArrayList 入落 json
         this.updateUserList();
     }
       /** Method to delete the user's account
