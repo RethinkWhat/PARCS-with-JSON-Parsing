@@ -38,11 +38,17 @@ public class UserProfileController {
      * The array for Cars Panel holding the user's cars.
      */
     private UserProfileView.EditCars.CarsPanel[] pnlsCars;
-
+    /**
+     * Initial index of the user's car in navigation.
+     */
     private int carIndex =0;;
-
+    /**
+     * Max value of the page.
+     */
     private int max;
-
+    /**
+     * List of cars.
+     */
     private ArrayList<String> plateNumbers;
 
     /**
@@ -204,12 +210,11 @@ public class UserProfileController {
 
         // history page
         view.getPnlBookingsView().bookingPanel().getFilterPanel().getTxtDate().addFocusListener(new Resources.TextFieldFocus(
-                view.getPnlBookingsView().bookingPanel().getFilterPanel().getTxtDate(), "Search Date (MM/DD/YY)"));
+                view.getPnlBookingsView().bookingPanel().getFilterPanel().getTxtDate(), "Search Date (MM/DD/YY) or All"));
 
         view.revalidate();
         view.repaint();
     }
-
 
     /**
      * Populates the respective fields of the user.
@@ -230,7 +235,14 @@ public class UserProfileController {
         view.getPnlEditProfile().getTxtContact().setText(model.getContactNo());
     }
 
+    /**
+     * Opens the vehicle adder frame.
+     */
     class AddVehicleListener implements ActionListener {
+        /**
+         * Instantiates a new frame of VehicleAdder.
+         * @param e the event to be processed
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             VehicleAdderModel vehicleAdderModel = new VehicleAdderModel(model.getClient());
@@ -256,11 +268,11 @@ public class UserProfileController {
     }
 
     /**
-     * TODO: Documentation
+     * Reverts and discards the information of the user.
      */
     class ProfileCancelListener implements ActionListener {
         /**
-         * TODO: Documentation
+         * Cancels the user changes by reverting the text fields to its default text.
          *
          * @param e the event to be processed
          */
@@ -274,11 +286,11 @@ public class UserProfileController {
     }
 
     /**
-     * TODO: Documentation
+     * Edits the information of the user.
      */
     public class ProfileEditListener implements ActionListener {
         /**
-         * TODO: Documentation
+         * Processes the user changes.
          *
          * @param e the event to be processed
          */
@@ -364,7 +376,14 @@ public class UserProfileController {
         }
     }
 
+    /**
+     * Applies the filters and displays the data in the table with the given filters.
+     */
     class ApplyFiltersListener implements ActionListener {
+        /**
+         * Populates the tables with the given filters.
+         * @param e the event to be processed
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             view.getPnlBookingsView().bookingPanel().getTablePanel().getTableModel().setRowCount(0);
@@ -457,7 +476,14 @@ public class UserProfileController {
         }
     }
 
+    /**
+     * Navigates to the next vehicle.
+     */
     class NextListener implements ActionListener {
+        /**
+         * Switches the panel.
+         * @param e the event to be processed
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             view.getPnlEditCars().getCardLayout().next(view.getPnlEditCars().getPnlCards());
@@ -467,7 +493,14 @@ public class UserProfileController {
         }
     }
 
+    /**
+     * Navigates to the previous vehicle.
+     */
     class PreviousListener implements ActionListener {
+        /**
+         * Switches the panel.
+         * @param e the event to be processed
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             view.getPnlEditCars().getCardLayout().previous(view.getPnlEditCars().getPnlCards());

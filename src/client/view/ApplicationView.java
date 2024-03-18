@@ -97,6 +97,7 @@ public class ApplicationView extends JFrame {
         // Account Page
         pnlCards.add(userProfileView = new UserProfileView(), "account");
 
+        this.setIconImage(res.logoParcs.getImage());
         this.setContentPane(contentArea);
         this.setLocationRelativeTo(null);
         this.pack();

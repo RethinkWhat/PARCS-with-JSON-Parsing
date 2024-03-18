@@ -75,6 +75,7 @@ public class AdminApplicationView extends JFrame {
         // Dashboard Page
         pnlCards.add(dashboardView = new DashboardView(), "dashboard");
 
+        this.setIconImage(res.logoParcs.getImage());
         this.setContentPane(contentArea);
         this.setLocationRelativeTo(null);
         this.pack();
