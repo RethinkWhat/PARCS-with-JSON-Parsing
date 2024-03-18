@@ -202,6 +202,12 @@ public class GsonUserParser {
         return false;
     }
 
+    public boolean plateNumberExist(String plateNumber){
+
+
+        return false;
+    }
+
     /**
      * This method edits the information of a user with the given username.
      *
