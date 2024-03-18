@@ -8,6 +8,7 @@ import utilities.Resources;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 /**
  * The ReservationPageController processes the user requests for reserving a parking slot.
@@ -94,6 +95,16 @@ public class ReservationPageController {
         view.getParkingSlotButtonsView().setReserveSlotListener(new ReserveSlotListener());
         view.getParkingSlotButtonsView().setDateListener(new DateListener());
         view.getParkingSlotButtonsView().setDurationListener(new DurationListener());
+        view.getParkingSlotButtonsView().getCmbDuration().addActionListener(e -> {
+            if (!Objects.equals(view.getParkingSlotButtonsView().getCmbDuration().getSelectedItem(), "Duration:")) {
+                view.getParkingSlotButtonsView().getCmbTime().setEnabled(true);
+            }
+        });
+        view.getParkingSlotButtonsView().getCmbTime().addActionListener(e -> {
+            if (!Objects.equals(view.getParkingSlotButtonsView().getCmbTime().getSelectedItem(), "Select Time:")) {
+                view.getParkingSlotButtonsView().getBtnReserve().setEnabled(true);
+            }
+        });
         view.getMainTopPanel().setTxtSearchBarListener(new SearchListener());
 
         view.getMainTopPanel().setPnlAvailCar(String.valueOf(availableCarCount));
