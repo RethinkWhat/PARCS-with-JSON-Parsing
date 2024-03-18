@@ -746,6 +746,7 @@ public class ReservationPageView extends JPanel {
             btnReserve.setPreferredSize(new Dimension(140, 40));
             btnReserve.setFont(new Font("Arial", Font.BOLD, 16));
             pnlReserve.add(btnReserve, gbc);
+            btnReserve.setEnabled(false);
 
             pnlContainer.add(pnlReserve);
 
