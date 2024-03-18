@@ -3,10 +3,12 @@ package client.controller.application_pages;
 import client.model.application_pages.CarMotorButton;
 import client.model.application_pages.ReservationPageModel;
 import client.view.application_pages.ReservationPageView;
+import utilities.Resources;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 /**
  * The ReservationPageController processes the user requests for reserving a parking slot.
@@ -57,7 +59,9 @@ public class ReservationPageController {
 
         // constants/variables
         view.getLblDate().setText("");
-
+        view.getParkingSlotButtonsView().getBtnReserve().setEnabled(false);
+        view.getParkingSlotButtonsView().getCmbDuration().setEnabled(false);
+        view.getParkingSlotButtonsView().getCmbTime().setEnabled(false);
 
         carsNumber = view.getMainBottomPanel().getParkingSlotsPanel().getCarButtonsSize();
         motorNumber = view.getMainBottomPanel().getParkingSlotsPanel().getMotorButtonsSize();
@@ -82,28 +86,41 @@ public class ReservationPageController {
                 isTaken = false;
                 availableMotorCount++;
             }
-
             view.getMainBottomPanel().getParkingSlotsPanel().setCarMotorButtonsIcon(false, x, isTaken);
         }
 
-
-
-
-
+        // action listeners
         view.getMainBottomPanel().getParkingSlotsPanel().setCarButtonsListener(new CarMotorListener());
         view.getParkingSlotButtonsView().setBtnCloseListener(new ExitListener());
         view.getParkingSlotButtonsView().setReserveSlotListener(new ReserveSlotListener());
         view.getParkingSlotButtonsView().setDateListener(new DateListener());
         view.getParkingSlotButtonsView().setDurationListener(new DurationListener());
+        view.getParkingSlotButtonsView().getCmbDuration().addActionListener(e -> {
+            if (!Objects.equals(view.getParkingSlotButtonsView().getCmbDuration().getSelectedItem(), "Duration:")) {
+                view.getParkingSlotButtonsView().getCmbTime().setEnabled(true);
+            }
+        });
+        view.getParkingSlotButtonsView().getCmbTime().addActionListener(e -> {
+            if (!Objects.equals(view.getParkingSlotButtonsView().getCmbTime().getSelectedItem(), "Select Time:")) {
+                view.getParkingSlotButtonsView().getBtnReserve().setEnabled(true);
+            }
+        });
         view.getMainTopPanel().setTxtSearchBarListener(new SearchListener());
 
         view.getMainTopPanel().setPnlAvailCar(String.valueOf(availableCarCount));
         view.getMainTopPanel().setPnlAvailMotor(String.valueOf(availableMotorCount));
         view.getMainTopPanel().setPnlTotalBookings(model.getTotalBookings());
 
-
         view.getParkingSlotButtonsView().setDateList(dateList);
 
+        // mouse listeners
+        view.getParkingSlotButtonsView().getBtnReserve().addMouseListener(new Resources.CursorChanger
+                (view.getParkingSlotButtonsView().getBtnReserve()));
+
+        // focus listeners
+        view.getTxtSearchbar().addFocusListener(new Resources.TextFieldFocus(
+                view.getTxtSearchbar(), "Search date (MM/DD/YY)"
+        ));
     }
 
     /**
@@ -116,19 +133,33 @@ public class ReservationPageController {
         });
     }
 
+    /**
+     * Retrieves and sets the input of date during reservation.
+     */
     class DateListener implements ActionListener {
+        /**
+         * Sets a date of the reservation.
+         * @param e the event to be processed
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             String tempDate = view.getParkingSlotButtonsView().getDateChosen();
             if (!tempDate.equals("Select Date:")) {
                 date = tempDate;
                 view.getParkingSlotButtonsView().setLblDate(date);
+                view.getParkingSlotButtonsView().getCmbDuration().setEnabled(true);
             }
         }
     }
 
+    /**
+     * Identifies whether the parking spot is for cars or motorcycles.
+     */
     class CarMotorListener implements ActionListener {
-
+        /**
+         * Sets the vehicle type in the parking spot information.
+         * @param e the event to be processed
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             view.getTopCardLayout().show(view.getPnlCards(), "buttons");
@@ -137,7 +168,6 @@ public class ReservationPageController {
             btnID = buttonClicked.getIdentifier();
 
             view.getParkingSlotButtonsView().setLblDate(date);
-
 
             if (btnID.contains("C")) {
                 view.getParkingSlotButtonsView().setVehiclesList(model.getCars());
@@ -155,13 +185,21 @@ public class ReservationPageController {
         }
     }
 
+    /**
+     * Retrieves and sets the duration of the reservation booking.
+     */
     class DurationListener implements ActionListener {
+        /**
+         * Sets the duration of the parking reservation booking.
+         * @param e the event to be processed
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             view.getParkingSlotButtonsView().setLblDate(date);
             String duration = view.getParkingSlotButtonsView().getDurationChosen();
             if (!duration.equals("Duration:")) {
                 String[] time = model.getAvailableTime(btnID, duration, date);
+                view.getParkingSlotButtonsView().getBtnReserve().setEnabled(true);
 
                 if (time != null) {
                     view.getParkingSlotButtonsView().setLblStatus("Available");
@@ -176,7 +214,14 @@ public class ReservationPageController {
         }
     }
 
+    /**
+     * Exits the button panel.
+     */
     class ExitListener implements ActionListener {
+        /**
+         * Closes the panel and return the default top panel.
+         * @param e the event to be processed
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             view.getTopCardLayout().show(view.getPnlCards(), "dashboard");
@@ -185,8 +230,19 @@ public class ReservationPageController {
 
     ReservationPageView.ReserveSlotConfirmationView confirmationView;
 
+    /**
+     * Reserves the booking with the given information.
+     */
     class ReserveSlotListener implements ActionListener {
+        /**
+         * The attempted booking.
+         */
         String attemptBooking = null;
+
+        /**
+         * Processes the booking with the given information.
+         * @param e the event to be processed
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             String startTime = view.getParkingSlotButtonsView().getStartTime();
@@ -219,15 +275,29 @@ public class ReservationPageController {
                 confirmationView.setBtnCloseConfirmationListener(new CloseConfirmationListener());
         }
     }
-    class CloseConfirmationListener implements ActionListener {
 
+    /**
+     * Closes the dialog of the booking confirmation message.
+     */
+    class CloseConfirmationListener implements ActionListener {
+        /**
+         * Closes the dialog.
+         * @param e the event to be processed
+         */
         public void actionPerformed(ActionEvent e) {
 
             confirmationView.dispose();
         }
     }
 
+    /**
+     * Processes the search based on the input.
+     */
     class SearchListener implements ActionListener {
+        /**
+         * Processes the user request.
+         * @param e the event to be processed
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             String search = ((JTextField) e.getSource()).getText();
@@ -242,7 +312,6 @@ public class ReservationPageController {
                     view.getParkingSlotButtonsView().setVehiclesList(model.getMotorcycles());
                     view.getParkingSlotButtonsView().setLblType("Motor");
                 }
-
                 view.getParkingSlotButtonsView().setLblSlotNumber(identifier);
             }
         }
