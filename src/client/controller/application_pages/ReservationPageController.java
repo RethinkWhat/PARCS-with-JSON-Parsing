@@ -28,21 +28,35 @@ public class ReservationPageController {
      * The timer to delay UI components.
      */
     private Timer timer;
-
+    /**
+     * The id or index of the parking spots.
+     */
     private String btnID;
-
-    private String btnDuration;
-
+    /**
+     * The date of the reservation.
+     */
     private String date;
-
+    /**
+     * Array of the available time slots of each parking spot.
+     * Initial values: 7:00 AM to 5:00 PM
+     */
     private String[] timeAvailable;
-
+    /**
+     * The chosen date
+     */
     private String dateChosen;
-
+    /**
+     * The list of dates.
+     * The date range is from the running time application up to three days.
+     */
     private String[] dateList;
-
+    /**
+     * The number of available car slots.
+     */
     private int carsNumber;
-
+    /**
+     * The number of available motorcycle slots.
+     */
     private int motorNumber;
 
     /**

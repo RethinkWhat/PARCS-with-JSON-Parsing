@@ -13,10 +13,25 @@ import java.awt.event.ActionListener;
  * It contains a card layout to switch between different views, such as filtering and displaying bookings.
  */
 public class BookingsView extends JPanel {
+    /**
+     * The panel of cards that hold other UI components.
+     */
     private JPanel pnlCards;
+    /**
+     * Holds all the UI components.
+     */
     private JPanel container;
+    /**
+     * The stylesheet.
+     */
     private Resources res = new Resources();
+    /**
+     * CardLayout that controls the components of pnlCards.
+     */
     private CardLayout cardLayout;
+    /**
+     * The panel that holds the table.
+     */
     private BookingPanel bookingPanel;
 
     /**
@@ -120,10 +135,25 @@ public class BookingsView extends JPanel {
      * Represents the panel for filtering bookings.
      */
     public class FilterPanel extends JPanel {
+        /**
+         * The input for the date.
+         */
         private JTextField txtDate;
+        /**
+         * The input for the status of the booking (completed, future, current).
+         */
         private JComboBox<String> cmbStatus;
+        /**
+         * The input for the vehicle type (car or motorcycle).
+         */
         private JComboBox<String> cmbVehicleType;
+        /**
+         * The button to apply the filter.s
+         */
         private JButton btnApply;
+        /**
+         * The button to clear the filters.
+         */
         private JButton btnClear;
 
         /**
@@ -138,7 +168,7 @@ public class BookingsView extends JPanel {
             topFilterPanel.setBorder(new EmptyBorder(15, 20, 0, 20));
             topFilterPanel.setBackground(res.white);
 
-            txtDate = res.createTxtRounded("Search Date (MM/DD/YY)", res.lightGray, res.gray, 20);
+            txtDate = res.createTxtRounded("Search Date (MM/DD/YY) or All", res.lightGray, res.gray, 20);
             topFilterPanel.add(txtDate);
 
             cmbStatus = new JComboBox<>(new String[]{"Select Status:", "All", "Completed", "Current", "Future"});
