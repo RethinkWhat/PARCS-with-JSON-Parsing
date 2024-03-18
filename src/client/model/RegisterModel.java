@@ -76,7 +76,7 @@ public class RegisterModel {
                                  String username, String phoneNumber, String password)  {
         //TODO: RMI Implementation
         try{
-            this.getClient().getRemote().createAccount(firstName,lastName,username,phoneNumber,password);
+            this.getClient().getRemote().createAccount(firstName,lastName,username,phoneNumber,encryptPassword(password));
         }catch (RemoteException re){
             re.printStackTrace();
             return false;
