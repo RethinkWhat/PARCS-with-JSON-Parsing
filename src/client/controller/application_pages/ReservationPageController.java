@@ -66,7 +66,8 @@ public class ReservationPageController {
         for (int x = 0; x < carsNumber; x++) {
 
             boolean isTaken = true;
-            if (model.getAvailableTime(("C" + (x + 1)), "1", date).length > 1) {
+
+            if (model.getAvailableTime(("C" + (x + 1)), "1", date)!= null) {
                 isTaken = false;
                 availableCarCount++;
             }
@@ -78,7 +79,7 @@ public class ReservationPageController {
         for (int x = 0; x < motorNumber; x++) {
             boolean isTaken = true;
 
-            if (model.getAvailableTime(("M" + (x + 1)), "1", date).length > 1) {
+            if (model.getAvailableTime(("M" + (x + 1)), "1", date)!= null) {
                 isTaken = false;
                 availableMotorCount++;
             }
@@ -193,7 +194,7 @@ public class ReservationPageController {
             String duration = view.getParkingSlotButtonsView().getDurationChosen();
                 if (startTime != null && duration != null) {
                     attemptBooking = String.valueOf(model.attemptBooking(btnID, date, startTime, duration));
-                    if (model.checkIfTakenForDay(btnID)) {
+                    if (!model.checkIfTakenForDay(btnID)) {
                         String id = "";
                         for (int x =1 ; x < btnID.length(); x ++) {
                             id+= btnID.charAt(x);

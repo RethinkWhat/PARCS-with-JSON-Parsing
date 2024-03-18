@@ -122,10 +122,10 @@ public class ReservationPageModel {
         try {
             String[] availTime = client.getRemote().spotTimeAvailable(parkingIdentifier, duration, date).toArray(new String[0]);
             if (availTime.length > 0) {
-                String[] toReturn = new String[availTime.length];
+                String[] toReturn = new String[availTime.length+1];
                 toReturn[0] = "Available Time:";
-                for (int x = 1; x < availTime.length; x++) {
-                    toReturn[x] = availTime[x];
+                for (int x = 1; x <= availTime.length; x++) {
+                    toReturn[x] = availTime[x-1];
                 }
                 return toReturn;
             }
@@ -163,7 +163,7 @@ public class ReservationPageModel {
     public boolean checkIfTakenForDay(String identifier) {
         System.out.println(identifier + getDate() );
         System.out.println(Arrays.toString(getAvailableTime(identifier, "1", getDate())));
-        return  (getAvailableTime(identifier, "1", getDate()).length <= 1) ;
+        return (getAvailableTime(identifier, "1", getDate())!= null) ;
     }
 
     /**
