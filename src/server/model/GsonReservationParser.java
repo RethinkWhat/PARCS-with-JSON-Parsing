@@ -456,6 +456,8 @@ public class GsonReservationParser {
                 }
             }
 
+
+
         }
 
         return closestReservationInfo;
@@ -470,5 +472,6 @@ public class GsonReservationParser {
         //System.out.println(parser.spotTimeAvailable("C1", 2, "03/15/24", "7:00", "16:00"));
 
 //        System.out.println(parser.getUserReservations("monem"));
+        System.out.println(parser.getClosestReservation("rithik", "03/15/24"));
     }
 }
