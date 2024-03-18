@@ -1,6 +1,7 @@
 package client.model.application_pages;
 
 import client.model.Client;
+import shared.Vehicle;
 
 import java.rmi.RemoteException;
 import java.time.LocalDate;
@@ -52,7 +53,7 @@ public class ReservationPageModel {
     /**
      * Mapping of vehicles associated with the user.
      */
-    private Map<String, List<String>> vehicles;
+    private List<Vehicle> vehicles;
 
 
     /**
@@ -66,19 +67,28 @@ public class ReservationPageModel {
         totalBookings = String.valueOf(client.getRemote().getUserTotalBookings(client.getUsername()));
         vehicles = client.getRemote().getUserVehicles(client.getUsername());
 
-        ArrayList<String> carsArrayList = new ArrayList();
-        ArrayList<String> motorArrayList = new ArrayList();
-        for (String vehicle : vehicles.keySet()) {
-            if (vehicles.get(vehicle).get(0).equalsIgnoreCase("car")) {
-                carsArrayList.add(vehicles.get(vehicle).get(1));
+        ArrayList<Vehicle> carsArrayList = new ArrayList();
+        ArrayList<Vehicle> motorArrayList = new ArrayList();
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle.getType().equals("car")) {
+                carsArrayList.add(vehicle);
             }
             else {
-                motorArrayList.add(vehicles.get(vehicle).get(1));
+                motorArrayList.add(vehicle);
             }
         }
 
-        cars = carsArrayList.toArray(new String[0]);
-        motorcycles = motorArrayList.toArray(new String[0]);
+        cars = new String[carsArrayList.size()];
+        motorcycles = new String[motorArrayList.size()];
+
+        for (int x = 0; x < cars.length; x ++) {
+            cars[x] = carsArrayList.get(x).getModel();
+        }
+
+        for (int x = 0; x < motorcycles.length; x ++) {
+            motorcycles[x] = motorArrayList.get(x).getModel();
+        }
+
     }
 
 

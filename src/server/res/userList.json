@@ -25,6 +25,15 @@
     "password": "r",
     "lastName": "r",
     "firstName": "r",
-    "phoneNumber": "r"
+    "phoneNumber": "r",
+    "vehicles" : null
+  },
+  {
+    "username": "s",
+    "type": "user",
+    "password": "s",
+    "lastName": "s",
+    "firstName": "s",
+    "phoneNumber": "s"
   }
 ]

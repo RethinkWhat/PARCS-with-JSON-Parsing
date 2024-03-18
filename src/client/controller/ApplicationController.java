@@ -37,9 +37,9 @@ public class ApplicationController {
         /**
          * TODO: Implement ff code. Exceptions occur that's why they are commented out
          */
-       // new UserProfileController(view.getUserProfileView(), model.getUserProfileModel(), this.view);
-       // TimerController controller = new TimerController(view.getTimerView(), model.getTimerModel());
-       // controller.startTimer();
+        new UserProfileController(view.getUserProfileView(), model.getUserProfileModel(), this.view);
+        TimerController controller = new TimerController(view.getTimerView(), model.getTimerModel());
+        controller.startTimer();
 
         // action listeners
         view.setNavHomeListener(e -> {
@@ -49,7 +49,7 @@ public class ApplicationController {
         view.setNavTicketListener(e -> {
             view.getLblLocation().setText("Ticket");
             view.getMainCardLayout().show(view.getPnlCards(), "ticket");
-          //  controller.startTimer();
+            controller.startTimer();
         });
         view.setNavAccountListener(e -> {
             view.getLblLocation().setText("Account");

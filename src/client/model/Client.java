@@ -5,6 +5,7 @@ import client.view.LoginView;
 import shared.ServerMessage;
 
 import javax.swing.*;
+import javax.swing.text.View;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
