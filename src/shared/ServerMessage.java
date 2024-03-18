@@ -137,4 +137,16 @@ public interface ServerMessage extends Remote {
      * @throws RemoteException If error or exception occurs.
      */
     List<List<String>> getAllMotorBookings() throws RemoteException;
+
+
+    /**
+     * Method to handle adding a vehicle
+     * @param username
+     * @param type
+     * @param model
+     * @param plateNumber
+     * @return
+     * @throws RemoteException
+     */
+    boolean addVehicle(String username, String type, String model, String plateNumber) throws RemoteException;
 }

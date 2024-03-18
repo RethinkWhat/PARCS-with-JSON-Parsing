@@ -58,6 +58,7 @@ public class UserProfileModel {
      */
     public UserProfileModel(Client client) {
         this.client = client;
+        getVehiclesInfo();
     }
 
     public List<List<String>> getBookings() {

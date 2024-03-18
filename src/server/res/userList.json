@@ -16,6 +16,11 @@
         "type": "Car",
         "model": "Montero",
         "plateNumber": "ALI 143"
+      },
+      {
+        "type": "Motorcycle",
+        "model": "Ferrari",
+        "plateNumber": "45903498"
       }
     ]
   },
@@ -25,15 +30,21 @@
     "password": "r",
     "lastName": "r",
     "firstName": "r",
-    "phoneNumber": "r",
-    "vehicles" : null
+    "phoneNumber": "r"
   },
   {
-    "username": "s",
+    "username": "fire",
     "type": "user",
-    "password": "s",
-    "lastName": "s",
-    "firstName": "s",
-    "phoneNumber": "s"
+    "password": "fire",
+    "lastName": "fire",
+    "firstName": "fire",
+    "phoneNumber": "fire",
+    "vehicles": [
+      {
+        "type": "Car",
+        "model": "Honda Civic",
+        "plateNumber": "NWA 991"
+      }
+    ]
   }
 ]
