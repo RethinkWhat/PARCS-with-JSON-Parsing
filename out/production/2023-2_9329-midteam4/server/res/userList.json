@@ -16,29 +16,11 @@
         "type": "Car",
         "model": "Montero",
         "plateNumber": "ALI 143"
-      }
-    ]
-  },
-  {
-    "username": "r",
-    "type": "user",
-    "password": "r",
-    "lastName": "r",
-    "firstName": "r",
-    "phoneNumber": "r"
-  },
-  {
-    "username": "fire",
-    "type": "user",
-    "password": "fire",
-    "lastName": "fire",
-    "firstName": "fire",
-    "phoneNumber": "fire",
-    "vehicles": [
+      },
       {
-        "type": "Car",
-        "model": "Honda Civic",
-        "plateNumber": "NWA 991"
+        "type": "Motorcycle",
+        "model": "Ferrari",
+        "plateNumber": "45903498"
       }
     ]
   }

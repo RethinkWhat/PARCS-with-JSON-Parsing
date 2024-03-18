@@ -13,7 +13,7 @@ public class GsonUserParser {
     Gson gson;
     BufferedReader reader;
 
-    ArrayList<User> userArrayList;
+    volatile ArrayList<User> userArrayList;
 
     /** File to hold user objects */
     private final File file = new File("src/server/res/userList.json");
@@ -28,7 +28,7 @@ public class GsonUserParser {
         Collections.addAll(userArrayList, getUsers());
     }
 
-    public void updateUserList() {
+    public synchronized void updateUserList() {
         try {
             String jsonString = gson.toJson(userArrayList);
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
@@ -116,13 +116,21 @@ public class GsonUserParser {
      * @param password encrypted password associated to the new user
      * @return
      */
-    public void createUser(String firstName, String lastName, String username, String phoneNumber, String
+    public boolean createUser(String firstName, String lastName, String username, String phoneNumber, String
             password){
         //params for user: String username, String type, String password, String lastName, String firstName, String phoneNumber
-        User newPerson  = new User(username, "user",password,lastName, firstName,phoneNumber,null);
-        userArrayList.add(newPerson);
 
-        this.updateUserList();
+        System.out.println("STARTING PARSER");
+        for (User user: userArrayList) {
+            if (user.getUsername().equalsIgnoreCase(username))
+                return false;
+        }
+        System.out.println("END OF FOR LOOP");
+            User newPerson = new User(username, "user", password, lastName, firstName, phoneNumber, null);
+            userArrayList.add(newPerson);
+            this.updateUserList();
+
+        return true;
     }
       /** Method to delete the user's account
     * @param username

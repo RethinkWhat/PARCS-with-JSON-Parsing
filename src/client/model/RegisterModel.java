@@ -76,13 +76,13 @@ public class RegisterModel {
                                  String username, String phoneNumber, String password)  {
         //TODO: RMI Implementation
         try{
-            this.getClient().getRemote().createAccount(firstName,lastName,username,phoneNumber,encryptPassword(password));
+            boolean conditionModel = this.getClient().getRemote().createAccount(firstName,lastName,username,phoneNumber,encryptPassword(password));
+            System.out.println("Model condition: " + conditionModel);
+            return conditionModel;
         }catch (RemoteException re){
             re.printStackTrace();
             return false;
         }
-
-        return true;
     }
 
     public Client getClient() {
