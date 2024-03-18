@@ -882,7 +882,12 @@ public class ReservationPageView extends JPanel {
          * Resets the time to the first index.
          */
         public void resetTime() {
-            cmbTime.setSelectedIndex(0);
+            try {
+                cmbTime.setSelectedIndex(0);
+            } catch (IllegalArgumentException e) {
+                String[] empty = {"Unavailable"};
+                cmbTime.setModel(new DefaultComboBoxModel<>(empty));
+            }
         }
 
         /**

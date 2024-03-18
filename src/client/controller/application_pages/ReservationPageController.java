@@ -163,11 +163,13 @@ public class ReservationPageController {
             if (!duration.equals("Duration:")) {
                 String[] time = model.getAvailableTime(btnID, duration, date);
 
-                view.getParkingSlotButtonsView().setTimeList(time);
-                if (time.length > 1)
+                if (time != null) {
                     view.getParkingSlotButtonsView().setLblStatus("Available");
-                else {
+                    view.getParkingSlotButtonsView().setTimeList(time);
+                } else {
                     view.getParkingSlotButtonsView().setLblStatus("Unavailable");
+                    String[] unavailable = {"Unavailable"};
+                    view.getParkingSlotButtonsView().setTimeList(unavailable);
                 }
             }
 
@@ -191,12 +193,25 @@ public class ReservationPageController {
             String duration = view.getParkingSlotButtonsView().getDurationChosen();
                 if (startTime != null && duration != null) {
                     attemptBooking = String.valueOf(model.attemptBooking(btnID, date, startTime, duration));
+                    if (model.checkIfTakenForDay(btnID)) {
+                        String id = "";
+                        for (int x =1 ; x < btnID.length(); x ++) {
+                            id+= btnID.charAt(x);
+                        }
+                        view.getMainBottomPanel()
+                                .getParkingSlotsPanel()
+                                .setCarMotorButtonsIcon(btnID.contains("C"), Integer.parseInt(id)-1, true);
+                    }
                     view.getParkingSlotButtonsView().resetDuration();
                     timeAvailable = model.getAvailableTime(btnID, duration, date);
-                    view.getParkingSlotButtonsView().setTimeList(timeAvailable);
-                    if (timeAvailable != null)
+                    if (timeAvailable != null) {
                         view.getParkingSlotButtonsView().setLblStatus("Available");
+                        view.getParkingSlotButtonsView().setTimeList(timeAvailable);
+                    } else {
+                        String[] unavailable = {"Unavailable"};
+                        view.getParkingSlotButtonsView().setTimeList(unavailable);}
                 }
+
                 if (attemptBooking.equals("true"))
                     confirmationView = view.getReserveSlotConfirmationView(true);
                 else

@@ -120,7 +120,15 @@ public class ReservationPageModel {
      */
     public String[] getAvailableTime(String parkingIdentifier, String duration, String date) {
         try {
-            return client.getRemote().spotTimeAvailable(parkingIdentifier, duration, date).toArray(new String[0]);
+            String[] availTime = client.getRemote().spotTimeAvailable(parkingIdentifier, duration, date).toArray(new String[0]);
+            if (availTime.length > 0) {
+                String[] toReturn = new String[availTime.length];
+                toReturn[0] = "Available Time:";
+                for (int x = 1; x < availTime.length; x++) {
+                    toReturn[x] = availTime[x];
+                }
+                return toReturn;
+            }
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -138,11 +146,24 @@ public class ReservationPageModel {
      */
     public boolean attemptBooking(String identifier, String date, String startTime, String duration) {
         try {
-            return client.getRemote().bookReservation(identifier, date, startTime, duration, client.getUsername());
+            boolean attempt = client.getRemote().bookReservation(identifier, date, startTime, duration, client.getUsername());
+
+            if (attempt) {
+                totalBookings = String.valueOf(client.getRemote().getUserTotalBookings(client.getUsername()));
+            }
+
+
+            return attempt;
         } catch (RemoteException e) {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public boolean checkIfTakenForDay(String identifier) {
+        System.out.println(identifier + getDate() );
+        System.out.println(Arrays.toString(getAvailableTime(identifier, "1", getDate())));
+        return  (getAvailableTime(identifier, "1", getDate()).length <= 1) ;
     }
 
     /**
