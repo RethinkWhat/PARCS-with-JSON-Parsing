@@ -198,6 +198,23 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
     }
 
     /**
+     * Adds a vehicle to the vehicleList of a user
+     * @param username
+     * @param type
+     * @param model
+     * @param plateNumber
+     * @return
+     */
+    public boolean addVehicle(String username, String type, String model, String plateNumber){
+        try {
+            gsonUserParser.addVehicle(username, type, model, plateNumber);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    /**
      * Edits the information of a user.
      *
      * @param username
