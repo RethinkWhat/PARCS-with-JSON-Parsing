@@ -202,8 +202,19 @@ public class GsonUserParser {
         return false;
     }
 
+    /**
+     * Returns true if plate number already exists in the system
+     * @param plateNumber
+     * @return
+     */
     public boolean plateNumberExist(String plateNumber){
-
+        for (User user : userArrayList){
+            for (Vehicle vehicle : user.getVehicles()){
+                if (vehicle.getPlateNumber().equalsIgnoreCase(plateNumber)){
+                    return true;
+                }
+            }
+        }
 
         return false;
     }
