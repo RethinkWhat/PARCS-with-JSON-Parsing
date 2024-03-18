@@ -190,11 +190,26 @@ public class GsonUserParser {
         return false;
     }
 
+    /**
+     * Returns true if a new vehicle has been successfully added into a specific user's vehicle list
+     * @param username
+     * @param type
+     * @param model
+     * @param plateNumber
+     * @return
+     */
     public boolean addVehicle(String username, String type, String model, String plateNumber){
+
+        if (plateNumberExist(plateNumber)){
+            return false;
+        }
 
         for (User user : userArrayList){
             if (user.getUsername().equalsIgnoreCase(username)){
-
+                Vehicle newVehicle = new Vehicle(type, model, plateNumber);
+                user.getVehicles().add(newVehicle);
+                updateUserList();
+                return true;
             }
         }
 
