@@ -214,6 +214,8 @@ public class User {
             for (Vehicle vehicle: vehicles) {
                 toReturn += "," + vehicle;
             }
+        }else {
+            toReturn += "," + null;
         }
         return toReturn;
     }
