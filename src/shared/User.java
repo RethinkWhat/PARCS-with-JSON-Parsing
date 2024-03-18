@@ -53,7 +53,10 @@ public class User {
         this.lastName = lastName;
         this.firstName = firstName;
         this.phoneNumber = phoneNumber;
-        this.vehicles = vehicles;
+        if (vehicles == null)
+            this.vehicles = new ArrayList<>();
+        else
+            this.vehicles = vehicles;
     }
 
     /**

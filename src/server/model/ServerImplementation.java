@@ -134,7 +134,6 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
     public boolean bookReservation(String identifier, String date, String startTime, String duration, String username) {
         boolean check = !gsonReservationParser.hasSchedulingConflicts(identifier, date, startTime, duration);
         if (check) {
-            System.out.println("reached");
             gsonReservationParser.makeReservation(identifier, date, startTime, duration, username);
         }
         return check;
@@ -209,11 +208,11 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
      */
     public boolean addVehicle(String username, String type, String model, String plateNumber){
         try {
-            gsonUserParser.addVehicle(username, type, model, plateNumber);
+            return gsonUserParser.addVehicle(username, type, model, plateNumber);
         }catch (Exception e){
             e.printStackTrace();
+            return false;
         }
-        return false;
     }
 
     /**
@@ -234,10 +233,7 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
         return false;
     }
 
-    public List<Vehicle> getUserVehicleList(String username) {
-        return getUserVehicles(username);
 
-    }
 
     public boolean createAccount (String firstName, String lastName, String username, String phoneNumber, String
             password){

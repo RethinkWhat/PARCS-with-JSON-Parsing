@@ -78,7 +78,7 @@ public class RegisterController {
                 String username = view.getSignupUsername();
                 if (model.createAccount(view.getSignupFirstName(), view.getSignupLastName(), username, view.getSignupPhoneNo(), view.getSignupPassword()))  {
                     //TODO: update
-                    //model.getClient().setUsername(username);
+                    model.getClient().setUsername(username);
                     new VehicleAdderController(new VehicleAdderView(), new VehicleAdderModel(model.getClient()));
                     view.dispose();
                 } else {

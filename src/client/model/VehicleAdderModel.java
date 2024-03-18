@@ -1,5 +1,7 @@
 package client.model;
 
+import java.rmi.RemoteException;
+
 /**
  * Represents the model for adding vehicles to the user's account.
  * This class provides methods for retrieving vehicle types, writing vehicle information to the server,
@@ -45,7 +47,12 @@ public class VehicleAdderModel {
      */
     public boolean writeVehicle(String type, String model, String plateNumber) {
         //TODO: RMI Implementation
-        return false;
+        try {
+            return client.getRemote().addVehicle(client.getUsername(), type, model, plateNumber);
+
+        }catch (RemoteException e) {
+            return false;
+        }
     }
 
 

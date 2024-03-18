@@ -70,7 +70,7 @@ public class ReservationPageModel {
         ArrayList<Vehicle> carsArrayList = new ArrayList();
         ArrayList<Vehicle> motorArrayList = new ArrayList();
         for (Vehicle vehicle : vehicles) {
-            if (vehicle.getType().equals("car")) {
+            if (vehicle.getType().equalsIgnoreCase("Car")) {
                 carsArrayList.add(vehicle);
             }
             else {
