@@ -450,7 +450,7 @@ public class ReservationPageView extends JPanel {
             gbc.gridwidth = 5;
             gbc.anchor = GridBagConstraints.EAST;
             gbc.fill = GridBagConstraints.BOTH;
-            txtSearchbar = res.createTxtRounded("Search date", res.white, res.gray, 30);
+            txtSearchbar = res.createTxtRounded("Search date (MM/DD/YY)", res.white, res.gray, 30);
             pnlInformation.add(txtSearchbar, gbc);
 
             GridLayout gridLayout = new GridLayout(0, 3);
@@ -532,6 +532,8 @@ public class ReservationPageView extends JPanel {
         public String getTxtSearchbar() {
             return txtSearchbar.getText();
         }
+
+
     }
 
     /**
@@ -748,6 +750,54 @@ public class ReservationPageView extends JPanel {
             pnlContainer.add(pnlReserve);
 
             this.setPreferredSize(new Dimension(1300, 130));
+        }
+
+        /**
+         * Retrieves the current JButton of btnClose.
+         * @return The current btnClose.
+         */
+        public JButton getBtnClose() {
+            return btnClose;
+        }
+
+        /**
+         * Retrieves the current JButton of btnReserve.
+         * @return The current btnReserve.
+         */
+        public JButton getBtnReserve() {
+            return btnReserve;
+        }
+
+        /**
+         * Retrieves the current JComboBox of cmbVehicle.
+         * @return The current cmbVehicle.
+         */
+        public JComboBox<String> getCmbVehicle() {
+            return cmbVehicle;
+        }
+
+        /**
+         * Retrieves the current JComboBox of cmbTime.
+         * @return The current cmbTime.
+         */
+        public JComboBox<String> getCmbTime() {
+            return cmbTime;
+        }
+
+        /**
+         * Retrieves the current JComboBox of cmbDuration.
+         * @return The current cmbDuration.
+         */
+        public JComboBox<String> getCmbDuration() {
+            return cmbDuration;
+        }
+
+        /**
+         * Retrieves the current JComboBox of cmbDate.
+         * @return The current cmbDate.
+         */
+        public JComboBox<String> getCmbDate() {
+            return cmbDate;
         }
 
         /**
