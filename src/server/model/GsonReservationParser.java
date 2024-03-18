@@ -455,11 +455,10 @@ public class GsonReservationParser {
                     }
                 }
             }
-
-
-
+            if (closestReservationInfo.get(0).equalsIgnoreCase("X")){
+                return null;
+            }
         }
-
         return closestReservationInfo;
     }
 
