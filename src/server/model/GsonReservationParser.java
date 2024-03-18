@@ -149,7 +149,7 @@ public class GsonReservationParser {
                             List<String> unavailable = key.getStartToEndTime();
                             for (String bookingRange: toCheckRange) {
                                 if (unavailable.contains(bookingRange)) {
-                                    return false;
+                                    return true;
                                 }
                             }
                         }
@@ -157,7 +157,7 @@ public class GsonReservationParser {
                 }
             }
         }
-        return true;
+        return false;
     }
 
     /**
@@ -177,7 +177,7 @@ public class GsonReservationParser {
         int startTimeAsInt = Integer.parseInt(startTime.split(":")[0]);
         int endTimeAsInt = Integer.parseInt(endTime.split(":")[0]);
 
-        availableTimeRange.add("Available Time: ");
+      //  availableTimeRange.add("Available Time: ");
         for (int i=startTimeAsInt; i <endTimeAsInt; i++) {
             if (!((i + duration) > endTimeAsInt)) {
                 availableTimeRange.add(i + ":00");

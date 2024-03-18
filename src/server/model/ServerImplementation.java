@@ -1,6 +1,7 @@
 package server.model;
 
 import shared.ServerMessage;
+import shared.Vehicle;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -106,7 +107,7 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
      * @param username
      * @return
      */
-    public Map<String, List<String>> getUserVehicles(String username) {
+    public List<Vehicle> getUserVehicles(String username) {
         return gsonUserParser.getUserVehicles(username);
     }
 
@@ -133,6 +134,7 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
     public boolean bookReservation(String identifier, String date, String startTime, String duration, String username) {
         boolean check = !gsonReservationParser.hasSchedulingConflicts(identifier, date, startTime, duration);
         if (check) {
+            System.out.println("reached");
             gsonReservationParser.makeReservation(identifier, date, startTime, duration, username);
         }
         return check;
@@ -232,6 +234,11 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
         return false;
     }
 
+    public List<Vehicle> getUserVehicleList(String username) {
+        return getUserVehicles(username);
+
+    }
+
     public boolean createAccount (String firstName, String lastName, String username, String phoneNumber, String
             password){
         gsonUserParser.createUser(firstName, lastName, username, phoneNumber, password);
@@ -302,5 +309,7 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
     public Registry getReg() {
         return reg;
     }
+
+
 }
 

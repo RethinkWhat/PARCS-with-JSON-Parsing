@@ -1,6 +1,7 @@
 package client.model.application_pages;
 
 import client.model.Client;
+import shared.Vehicle;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -42,7 +43,7 @@ public class UserProfileModel {
     /**
      * The String array list of vehicles, populated by a HashMap.
      */
-    private ArrayList<String> vehicleList;
+    private List<Vehicle> vehicleList;
 
 
     /** Histroy page variables */
@@ -67,7 +68,13 @@ public class UserProfileModel {
      * Retrieves the user's vehicles.
      */
     public void getVehiclesInfo() {
+        try {
+            vehicleList = client.getRemote().getUserVehicles(client.getUsername());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
         //TODO: RMI Implementation
+
     }
 
     /**
@@ -140,7 +147,7 @@ public class UserProfileModel {
      *
      * @return The list of vehicles in a formatted string.
      */
-    public ArrayList<String> getVehicleList() {
+    public List<Vehicle> getVehicleList() {
         return vehicleList;
     }
 

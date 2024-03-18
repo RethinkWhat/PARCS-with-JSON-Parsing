@@ -87,22 +87,16 @@ public class GsonUserParser {
 
     /**
      * Method to get a list of all the vehicles of a user
+     * Map<PlateNumber, List<Type,Model>>
      * @param username
      * @return
      */
-    public Map<String, List<String>> getUserVehicles(String username) {
-        Map<String, List<String>> vehicleList = new HashMap<>();
+    public List<Vehicle> getUserVehicles(String username) {
+        List<Vehicle> vehicleList = new ArrayList<>();
         for (User user : userArrayList) {
             if (user.getUsername().equals(username)) {
-                if (user.getVehicles() != null) {
-                    for (Vehicle vehicle : user.getVehicles()) {
-                        ArrayList vehicleInfo = new ArrayList();
-                        vehicleInfo.add(vehicle.getType());
-                        vehicleInfo.add(vehicle.getModel());
-                        vehicleList.put(vehicle.getPlateNumber(), vehicleInfo);
-                    }
-                    break;
-                }
+                if (user.getVehicles() != null)
+                    return user.getVehicles();
             }
         }
         return vehicleList;
@@ -261,13 +255,7 @@ public class GsonUserParser {
 
     public static void main(String[] args) {
         GsonUserParser parser = new GsonUserParser();
-//        boolean editSuccess = parser.editUserInformation("yuen", "Yowen", "Khang", "0912345678");
-//        if (editSuccess) {
-//                System.out.println("success");
-//        } else {
-//                System.out.println("user not found");
-//        }
-
-//        parser.addVehicle("yuen", "Car", "Honda Civic", "MONEM 143");
     }
+
+
 }

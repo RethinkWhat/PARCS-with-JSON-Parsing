@@ -5,16 +5,29 @@
       {
         "date": "03/15/24",
         "timeAndUserMap": {
-          "07:00-08:00": "rithik",
           "10:00-11:00": "rithik",
-          "14:00-15:00": "rithik"
+          "14:00-15:00": "rithik",
+          "07:00-08:00": "rithik"
         }
       },
       {
         "date": "03/16/24",
         "timeAndUserMap": {
-          "09:00-10:00": "johan",
-          "10:00-11:00": "patrick"
+          "10:00-11:00": "patrick",
+          "09:00-10:00": "johan"
+        }
+      },
+      {
+        "date": "03/18/24",
+        "timeAndUserMap": {
+          "12:00-13:00": "yuen",
+          "7:00-11:00": "yuen"
+        }
+      },
+      {
+        "date": "Date:",
+        "timeAndUserMap": {
+          "10:00-12:00": "yuen"
         }
       }
     ]
@@ -26,6 +39,29 @@
         "date": "10/10/10",
         "timeAndUserMap": {
           "5:00-6:00": "rithik"
+        }
+      }
+    ]
+  },
+  {
+    "identifier": "C2",
+    "reservationsList": [
+      {
+        "date": "03/19/24",
+        "timeAndUserMap": {
+          "9:00-12:00": "yuen"
+        }
+      }
+    ]
+  },
+  {
+    "identifier": "C10",
+    "reservationsList": [
+      {
+        "date": "03/19/24",
+        "timeAndUserMap": {
+          "11:00-12:00": "yuen",
+          "7:00-10:00": "yuen"
         }
       }
     ]

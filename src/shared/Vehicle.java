@@ -1,11 +1,13 @@
 package shared;
 
+import java.io.Serializable;
+
 /**
  * Template for a vehicle object.
  * The vehicle object contains the needed attributes to identify a single vehicle owned by a user.
  * @see User
  */
-public class Vehicle {
+public class Vehicle implements Serializable {
     /**
      * Type of vehicle: car or motorcycle.
      **/

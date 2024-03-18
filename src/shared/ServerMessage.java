@@ -46,7 +46,8 @@ public interface ServerMessage extends Remote {
      * Get the vehicle list of a user
      * @param username
      */
-    Map<String, List<String>> getUserVehicles(String username) throws RemoteException;
+
+    List<Vehicle> getUserVehicles(String username) throws RemoteException;
 
     /**
      * Get the available time for a spot on a specific date

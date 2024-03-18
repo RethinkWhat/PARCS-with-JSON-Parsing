@@ -7,6 +7,7 @@ import client.model.application_pages.UserProfileModel;
 import client.view.ApplicationView;
 import client.view.VehicleAdderView;
 import client.view.application_pages.UserProfileView;
+import shared.Vehicle;
 import utilities.Resources;
 
 import java.awt.*;
@@ -65,15 +66,10 @@ public class UserProfileController {
 
         // populate cars panel inside edit cars page.
         for (int i = 0; i < max; i++) {
-            String token = model.getVehicleList().get(i);
-            String[] tokens = token.split(",");
-            String vPlateNumber = tokens[0];
-            plateNumbers.add(vPlateNumber);
+            Vehicle token = model.getVehicleList().get(i);
+            plateNumbers.add(token.getPlateNumber());
 
-            String vType = tokens[1];
-            String vModel = tokens[2];
-
-            UserProfileView.EditCars.CarsPanel carPanel = new UserProfileView.EditCars.CarsPanel(vPlateNumber, vType, vModel);
+            UserProfileView.EditCars.CarsPanel carPanel = new UserProfileView.EditCars.CarsPanel(token.getPlateNumber(), token.getType(), token.getModel());
             pnlsCars[i] = carPanel;
 
             view.getPnlEditCars().getPnlCards().add(carPanel, String.valueOf(i));
