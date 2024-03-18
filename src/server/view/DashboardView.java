@@ -194,7 +194,7 @@ public class DashboardView extends JPanel {
                 setBorder(new EmptyBorder(10,20,10,20));
                 setBackground(res.white);
 
-                txtDate = res.createTxtRounded("Search Date (MM/DD/YY)", res.lightGray, res.gray, 25);
+                txtDate = res.createTxtRounded("Search Date (MM/DD/YY or All)", res.lightGray, res.gray, 25);
                 add(txtDate);
 
                 cmbStatus = new JComboBox<>(new String[]{"Select Status:", "All", "Completed", "Current", "Future"});
