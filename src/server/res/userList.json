@@ -27,24 +27,10 @@
   {
     "username": "r",
     "type": "user",
-    "password": "r",
+    "password": "RUNJ5CLwUpcZHq0T4h09tSDlq+9SBV5JZLgvshP1k6E\u003d",
     "lastName": "r",
     "firstName": "r",
-    "phoneNumber": "r"
-  },
-  {
-    "username": "fire",
-    "type": "user",
-    "password": "fire",
-    "lastName": "fire",
-    "firstName": "fire",
-    "phoneNumber": "fire",
-    "vehicles": [
-      {
-        "type": "Car",
-        "model": "Honda Civic",
-        "plateNumber": "NWA 991"
-      }
-    ]
+    "phoneNumber": "r",
+    "vehicles": []
   }
 ]

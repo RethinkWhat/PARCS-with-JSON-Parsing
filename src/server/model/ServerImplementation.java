@@ -237,8 +237,25 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
 
     public boolean createAccount (String firstName, String lastName, String username, String phoneNumber, String
             password){
-        gsonUserParser.createUser(firstName, lastName, username, phoneNumber, password);
-        return true;
+        System.out.println("create account reached");
+
+        System.out.println(userLog);
+        if (userLog.contains(username)) {
+            System.out.println("reached");
+            return false;
+        }
+        System.out.println("attemptingCreateUser");
+        boolean condition = gsonUserParser.createUser(firstName, lastName, username, phoneNumber, password);
+
+        System.out.println(userLog);
+        if (condition) {
+            userLog.add(username.toLowerCase());
+        }
+        System.out.println(userLog);
+
+        System.out.println("CONDITION: " + condition);
+        return condition;
+
     }
 
     public List<String> getClosestReservation (String username){
