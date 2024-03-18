@@ -190,6 +190,18 @@ public class GsonUserParser {
         return false;
     }
 
+    public boolean addVehicle(String username, String type, String model, String plateNumber){
+
+        for (User user : userArrayList){
+            if (user.getUsername().equalsIgnoreCase(username)){
+
+            }
+        }
+
+
+        return false;
+    }
+
     /**
      * This method edits the information of a user with the given username.
      *
