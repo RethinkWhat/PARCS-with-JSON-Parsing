@@ -301,7 +301,8 @@ public class ReservationPageController {
 
                 if (attemptBooking.equals("true")) {
                     confirmationView = view.getReserveSlotConfirmationView(true);
-                }else
+                    view.getMainTopPanel().setPnlTotalBookings(model.getTotalBookings());
+                } else
                     confirmationView = view.getReserveSlotConfirmationView(false);
                 confirmationView.setBtnCloseConfirmationListener(new CloseConfirmationListener());
         }
