@@ -426,10 +426,20 @@ public class GsonReservationParser {
         return motorBookings;
     }
 
-    public List<String> getClosestReservation(String username, String currentDate) {
+    /**
+     * Retrieves the closest reservation for the given user at the current date and time.
+     *
+     * @param username    The username of the user.
+     * @param currentDate The current date.
+     * @param currentTime The current time.
+     * @return A list containing reservation details, or null if no reservation is found.
+     */
+    public List<String> getClosestReservation(String username, String currentDate, String currentTime) {
         Map<String, Reservations> userReservations = getUserReservations(username);
 
-        //parkingIdentifier, startTime, endTime, date
+        String[] currentTimeParts = currentTime.split(":");
+        int currentHour = Integer.parseInt(currentTimeParts[0]);
+
         List<String> closestReservationInfo = new ArrayList<>();
         closestReservationInfo.add("X");
         closestReservationInfo.add("X");
@@ -448,10 +458,11 @@ public class GsonReservationParser {
                     String startTime = timeRange.startTime();
                     String endTime = timeRange.endTime();
 
-                    int hour = Integer.parseInt(startTime.split(":")[0]);
+                    int startHour = Integer.parseInt(startTime.split(":")[0]);
+                    int endHour = Integer.parseInt(endTime.split(":")[0]);
 
-                    if (hour < currSmallest){
-                        currSmallest = hour;
+                    if (startHour < currSmallest && startHour >= currentHour){
+                        currSmallest = startHour;
                         closestReservationInfo.set(0, identifier);
                         closestReservationInfo.set(1, startTime);
                         closestReservationInfo.set(2, endTime);
@@ -460,9 +471,11 @@ public class GsonReservationParser {
                     }
                 }
             }
-            if (closestReservationInfo.get(0).equalsIgnoreCase("X")){
-                return null;
-            }
+
+        }
+
+        if (closestReservationInfo.get(0).equalsIgnoreCase("X")){
+            return null;
         }
         return closestReservationInfo;
     }

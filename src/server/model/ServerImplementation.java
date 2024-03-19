@@ -251,11 +251,17 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
 
     }
 
+    /**
+     * Retrieves the closest reservation for the given user.
+     *
+     * @param username The username of the user.
+     * @return A list containing reservation details, or null if an exception occurs.
+     */
     public List<String> getClosestReservation (String username){
         DateTime dateTime = new DateTime();
         try {
 
-            List<String> userReservation = gsonReservationParser.getClosestReservation(username, dateTime.getDateTime());
+            List<String> userReservation = gsonReservationParser.getClosestReservation(username, dateTime.getDateTime(), dateTime.getTime());
 
             return userReservation;
         } catch (Exception exception) {
@@ -264,6 +270,12 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
         }
     }
 
+    /**
+     * Computes the duration between reservation start and end times.
+     *
+     * @param userReservation
+     * @return The duration of the reservation, or null if an exception occurs.
+     */
     public String getDuration (List<String> userReservation){
         try {
             String duration = gsonReservationParser.computeDuration(userReservation.get(1), userReservation.get(2));
