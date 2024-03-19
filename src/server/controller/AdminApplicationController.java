@@ -64,6 +64,9 @@ public class AdminApplicationController {
 
         // constants / variables
         refreshBookings();
+        view.getDashboardView().getPnlMainTop().getLblCarCount().setText("");
+        view.getDashboardView().getPnlMainTop().getLblMotorCount().setText("");
+        view.getDashboardView().getPnlMainTop().getLblTotalCount().setText("");
 
         // action listeners
 
@@ -160,12 +163,6 @@ public class AdminApplicationController {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-
-        view.getDashboardView().getPnlMainTop().getLblCarCount().setText(String.valueOf(carBookings.size()));
-        view.getDashboardView().getPnlMainTop().getLblMotorCount().setText(String.valueOf(motorBookings.size()));
-        view.getDashboardView().getPnlMainTop().getLblTotalCount().
-                setText(String.valueOf(carBookings.size() + motorBookings.size()));
-
     }
 
     /**
@@ -198,6 +195,10 @@ public class AdminApplicationController {
                             .toList();
                     filteredMotorBookings = motorBookings.stream()
                             .toList();
+                    view.getDashboardView().getPnlMainTop().getLblCarCount().setText(String.valueOf(filteredCarBookings.size()));
+                    view.getDashboardView().getPnlMainTop().getLblMotorCount().setText(String.valueOf(filteredMotorBookings.size()));
+                    view.getDashboardView().getPnlMainTop().getLblTotalCount().setText(
+                            String.valueOf(filteredCarBookings.size() + filteredMotorBookings.size()));
                 } else {
                     filteredCarBookings = carBookings.stream()
                             .filter(c -> c.get(2).equals(dateInput))
@@ -205,6 +206,10 @@ public class AdminApplicationController {
                     filteredMotorBookings = motorBookings.stream()
                             .filter(m -> m.get(2).equals(dateInput))
                             .toList();
+                    view.getDashboardView().getPnlMainTop().getLblCarCount().setText(String.valueOf(filteredCarBookings.size()));
+                    view.getDashboardView().getPnlMainTop().getLblMotorCount().setText(String.valueOf(filteredMotorBookings.size()));
+                    view.getDashboardView().getPnlMainTop().getLblTotalCount().setText(
+                            String.valueOf(filteredCarBookings.size() + filteredMotorBookings.size()));
                 }
             } else if (status.equals("Current")) {
                 filteredCarBookings = carBookings.stream()
@@ -213,6 +218,10 @@ public class AdminApplicationController {
                 filteredMotorBookings = motorBookings.stream()
                         .filter(m -> m.get(2).equals(dateNow.format(timeFormatter)))
                         .toList();
+                view.getDashboardView().getPnlMainTop().getLblCarCount().setText(String.valueOf(filteredCarBookings.size()));
+                view.getDashboardView().getPnlMainTop().getLblMotorCount().setText(String.valueOf(filteredMotorBookings.size()));
+                view.getDashboardView().getPnlMainTop().getLblTotalCount().setText(
+                        String.valueOf(filteredCarBookings.size() + filteredMotorBookings.size()));
             } else if (status.equals("Future")) {
                 filteredCarBookings = carBookings.stream()
                         .filter(c -> LocalDateTime.parse(c.get(2) + " " + c.get(3),
@@ -222,6 +231,10 @@ public class AdminApplicationController {
                         .filter(m -> LocalDateTime.parse(m.get(2) + " " + m.get(3),
                                 DateTimeFormatter.ofPattern("MM/dd/yy H:mm")).isAfter(dateNow))
                         .toList();
+                view.getDashboardView().getPnlMainTop().getLblCarCount().setText(String.valueOf(filteredCarBookings.size()));
+                view.getDashboardView().getPnlMainTop().getLblMotorCount().setText(String.valueOf(filteredMotorBookings.size()));
+                view.getDashboardView().getPnlMainTop().getLblTotalCount().setText(
+                        String.valueOf(filteredCarBookings.size() + filteredMotorBookings.size()));
             } else if (status.equals("Completed")) {
                 filteredCarBookings = carBookings.stream()
                         .filter(c -> LocalDateTime.parse(c.get(2) + " " + c.get(3),
@@ -231,6 +244,10 @@ public class AdminApplicationController {
                         .filter(m -> LocalDateTime.parse(m.get(2) + " " + m.get(3),
                                 DateTimeFormatter.ofPattern("MM/dd/yy H:mm")).isBefore(dateNow))
                         .toList();
+                view.getDashboardView().getPnlMainTop().getLblCarCount().setText(String.valueOf(filteredCarBookings.size()));
+                view.getDashboardView().getPnlMainTop().getLblMotorCount().setText(String.valueOf(filteredMotorBookings.size()));
+                view.getDashboardView().getPnlMainTop().getLblTotalCount().setText(
+                        String.valueOf(filteredCarBookings.size() + filteredMotorBookings.size()));
             }
 
             switch (type) {
