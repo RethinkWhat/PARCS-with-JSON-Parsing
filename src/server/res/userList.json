@@ -32,5 +32,35 @@
     "firstName": "r",
     "phoneNumber": "r",
     "vehicles": []
+  },
+  {
+    "username": "fire",
+    "type": "user",
+    "password": "3J8osS3RgY7kL/yS7LlAOGIUWYg3NI0w08bAt7V+NMk\u003d",
+    "lastName": "fire",
+    "firstName": "fire",
+    "phoneNumber": "fire",
+    "vehicles": [
+      {
+        "type": "Car",
+        "model": "Honda",
+        "plateNumber": "Nwa"
+      }
+    ]
+  },
+  {
+    "username": "z",
+    "type": "user",
+    "password": "WU5RmuSZMSspQzt92Kl/8Gje/LqXVbbV0A6ExSTWewY\u003d",
+    "lastName": "z",
+    "firstName": "z",
+    "phoneNumber": "z",
+    "vehicles": [
+      {
+        "type": "Car",
+        "model": "Honda",
+        "plateNumber": "ABC123"
+      }
+    ]
   }
 ]

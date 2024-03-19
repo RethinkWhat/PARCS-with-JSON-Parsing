@@ -119,7 +119,7 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
      * @return
      */
     public List<String> spotTimeAvailable(String identifier, String duration, String date) {
-        return gsonReservationParser.spotTimeAvailable(identifier, Integer.valueOf(duration), date, "7:00", "15:00");
+        return gsonReservationParser.spotTimeAvailable(identifier, Integer.valueOf(duration), date, "7:00", "24:00");
     }
 
     /**
@@ -237,23 +237,16 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
 
     public boolean createAccount (String firstName, String lastName, String username, String phoneNumber, String
             password){
-        System.out.println("create account reached");
 
-        System.out.println(userLog);
         if (userLog.contains(username)) {
-            System.out.println("reached");
             return false;
         }
-        System.out.println("attemptingCreateUser");
         boolean condition = gsonUserParser.createUser(firstName, lastName, username, phoneNumber, password);
 
-        System.out.println(userLog);
         if (condition) {
             userLog.add(username.toLowerCase());
         }
-        System.out.println(userLog);
 
-        System.out.println("CONDITION: " + condition);
         return condition;
 
     }
@@ -262,7 +255,7 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
         DateTime dateTime = new DateTime();
         try {
 
-            List<String> userReservation = reservationParser.getClosestReservation(username, dateTime.getTime());
+            List<String> userReservation = gsonReservationParser.getClosestReservation(username, dateTime.getDateTime());
 
             return userReservation;
         } catch (Exception exception) {
@@ -274,10 +267,8 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
     public String getDuration (List<String> userReservation){
         try {
             String duration = gsonReservationParser.computeDuration(userReservation.get(1), userReservation.get(2));
-
             return duration;
-        } catch (Exception exception) {
-            exception.printStackTrace();
+        } catch (Exception nullDuration) {
             return null;
         }
     }

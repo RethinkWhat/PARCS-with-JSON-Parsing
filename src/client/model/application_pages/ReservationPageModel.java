@@ -161,8 +161,6 @@ public class ReservationPageModel {
     }
 
     public boolean checkIfTakenForDay(String identifier) {
-        System.out.println(identifier + getDate() );
-        System.out.println(Arrays.toString(getAvailableTime(identifier, "1", getDate())));
         return (getAvailableTime(identifier, "1", getDate())!= null) ;
     }
 

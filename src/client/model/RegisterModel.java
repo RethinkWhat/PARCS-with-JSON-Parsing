@@ -77,7 +77,6 @@ public class RegisterModel {
         //TODO: RMI Implementation
         try{
             boolean conditionModel = this.getClient().getRemote().createAccount(firstName,lastName,username,phoneNumber,encryptPassword(password));
-            System.out.println("Model condition: " + conditionModel);
             return conditionModel;
         }catch (RemoteException re){
             re.printStackTrace();

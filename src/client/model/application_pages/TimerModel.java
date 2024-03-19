@@ -72,9 +72,13 @@ public class TimerModel {
 
         try{
             reservationInfo = this.getClient().getRemote().getClosestReservation(this.getClient().getUsername());
-            duration = Integer.parseInt(getClient().getRemote().getDuration(reservationInfo));
+            try {
+                duration = Integer.parseInt(getClient().getRemote().getDuration(reservationInfo));
+            } catch (Exception durationNull) {
+                duration = 0;
+            }
 
-            if (duration != -24) {
+            if (duration != 0) {
                 parkingSlot = reservationInfo.get(0);
                 timeIn = reservationInfo.get(1);
                 timeOut = reservationInfo.get(2);
@@ -88,12 +92,11 @@ public class TimerModel {
                     startTimer = true;
                 }
             } else {
-                parkingSlot = "";
+                parkingSlot = "-";
                 timeIn = "";
                 timeOut = "";
-                date = "";
-                parkingType = "";
-                duration = 0;
+                date = "-";
+                parkingType = "-";
             }
 
         } catch(RemoteException e){
