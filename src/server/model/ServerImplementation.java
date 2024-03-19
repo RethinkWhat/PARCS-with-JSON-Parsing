@@ -170,8 +170,8 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
             for (TimeRange timeRange : value.getTimeAndUserMap().keySet()) {
                 booking.add(timeRange.startTime());
                 booking.add(timeRange.endTime());
+                userBookings.add(booking);
             }
-            userBookings.add(booking);
         }
         return userBookings;
 
