@@ -32,7 +32,9 @@ public interface ServerMessage extends Remote {
      * @throws RemoteException
      */
     String getFullName(String username) throws RemoteException;
-
+    String getFirstName(String username) throws RemoteException;
+    String getLastName(String username) throws RemoteException;
+    String getContact(String username) throws RemoteException;
 
     /**
      * Get the total booking count of a user

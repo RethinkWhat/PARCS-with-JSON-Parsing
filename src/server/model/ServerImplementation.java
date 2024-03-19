@@ -91,6 +91,9 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
     public String getFullName(String username) {
         return gsonUserParser.getUserFullName(username);
     }
+    public String getFirstName(String username){return gsonUserParser.getUserFirstName(username);}
+    public String getLastName(String username){return gsonUserParser.getUserLastName(username);}
+    public String getContact(String username){return gsonUserParser.getContact(username);}
 
     /**
      * Method to get all the bookings associated with a user
@@ -232,6 +235,8 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
         }
         return false;
     }
+
+
 
 
 
