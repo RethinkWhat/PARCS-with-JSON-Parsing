@@ -42,7 +42,8 @@ public class UserProfileController {
     /**
      * Initial index of the user's car in navigation.
      */
-    private int carIndex =0;;
+    private int carIndex = 0;
+    ;
     /**
      * Max value of the page.
      */
@@ -237,6 +238,7 @@ public class UserProfileController {
     class AddVehicleListener implements ActionListener {
         /**
          * Instantiates a new frame of VehicleAdder.
+         *
          * @param e the event to be processed
          */
         @Override
@@ -272,9 +274,11 @@ public class UserProfileController {
      */
     class DeleteListener implements ActionListener {
         private final UserProfileView userProfileView;
+
         public DeleteListener(UserProfileView userProfileView) {
             this.userProfileView = userProfileView;
         }
+
         public void actionPerformed(ActionEvent e) {
             int option = JOptionPane.showConfirmDialog(userProfileView, "Are you sure you want to delete your account?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
             if (option == JOptionPane.YES_OPTION) {
@@ -361,7 +365,7 @@ public class UserProfileController {
             String newType = pnlsCars[carIndex].getTxtVehicleType().getText();
             String newPlate = pnlsCars[carIndex].getTxtPlateNumber().getText();
             String newModel = pnlsCars[carIndex].getTxtModel().getText();
-            model.editVehicleInformation(plateNumbers.get(carIndex),newPlate,newModel,newType);
+            model.editVehicleInformation(plateNumbers.get(carIndex), newPlate, newModel, newType);
         }
     }
 
@@ -401,6 +405,7 @@ public class UserProfileController {
     class ApplyFiltersListener implements ActionListener {
         /**
          * Populates the tables with the given filters.
+         *
          * @param e the event to be processed
          */
         @Override
@@ -501,6 +506,7 @@ public class UserProfileController {
     class NextListener implements ActionListener {
         /**
          * Switches the panel.
+         *
          * @param e the event to be processed
          */
         @Override
@@ -518,6 +524,7 @@ public class UserProfileController {
     class PreviousListener implements ActionListener {
         /**
          * Switches the panel.
+         *
          * @param e the event to be processed
          */
         @Override
@@ -528,6 +535,5 @@ public class UserProfileController {
             }
         }
     }
-
 }
 
