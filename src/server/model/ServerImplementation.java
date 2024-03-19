@@ -119,7 +119,7 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
      * @return
      */
     public List<String> spotTimeAvailable(String identifier, String duration, String date) {
-        return gsonReservationParser.spotTimeAvailable(identifier, Integer.valueOf(duration), date, "7:00", "24:00");
+        return gsonReservationParser.spotTimeAvailable(identifier, Integer.valueOf(duration), date, "7:00", "15:00");
     }
 
     /**

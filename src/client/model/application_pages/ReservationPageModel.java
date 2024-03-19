@@ -228,6 +228,10 @@ public class ReservationPageModel {
         return cars;
     }
 
+    public Client getClient() {
+        return client;
+    }
+
     /**
      * Retrieves the array of motorcycles owned by the user.
      *

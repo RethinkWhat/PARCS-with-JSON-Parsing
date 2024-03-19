@@ -60,6 +60,11 @@
         "type": "Car",
         "model": "Honda",
         "plateNumber": "ABC123"
+      },
+      {
+        "type": "Motorcycle",
+        "model": "Ferrari",
+        "plateNumber": "zzz"
       }
     ]
   }
