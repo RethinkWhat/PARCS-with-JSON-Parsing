@@ -346,6 +346,11 @@ public class GsonReservationParser {
         return userReservationMap;
     }
 
+    /**
+     * Retrieves all the current car booking reservations.
+     * FORMAT: [username, parking identifier, date, start time, end time, duration]
+     * @return List of lists of all car bookings
+     */
     public List<List<String>> getAllCarBookings() {
         List<List<String>> carBookings = new ArrayList<>();
 
@@ -364,17 +369,17 @@ public class GsonReservationParser {
                         timeIn = entry.getKey().startTime();
                         timeOut = entry.getKey().endTime();
                         duration = computeDuration(timeIn, timeOut);
+
+                        List<String> currentReservation = new ArrayList<>();
+                        currentReservation.add(username);
+                        currentReservation.add(identifier);
+                        currentReservation.add(date);
+                        currentReservation.add(timeIn);
+                        currentReservation.add(timeOut);
+                        currentReservation.add(duration);
+
+                        carBookings.add(currentReservation);
                     }
-
-                    List<String> currentReservation = new ArrayList<>();
-                    currentReservation.add(username);
-                    currentReservation.add(identifier);
-                    currentReservation.add(date);
-                    currentReservation.add(timeIn);
-                    currentReservation.add(timeOut);
-                    currentReservation.add(duration);
-
-                    carBookings.add(currentReservation);
                 }
             }
         }
@@ -384,7 +389,7 @@ public class GsonReservationParser {
     /**
      * Retrieves all the current motorcycle booking reservations.
      * FORMAT: [username, parking identifier, date, start time, end time, duration]
-     * @return
+     * @return List of lists of all motor bookings
      */
     public List<List<String>> getAllMotorBookings() {
         List<List<String>> motorBookings = new ArrayList<>();
@@ -404,17 +409,17 @@ public class GsonReservationParser {
                         timeIn = entry.getKey().startTime();
                         timeOut = entry.getKey().endTime();
                         duration = computeDuration(timeIn, timeOut);
+
+                        List<String> currentReservation = new ArrayList<>();
+                        currentReservation.add(username);
+                        currentReservation.add(identifier);
+                        currentReservation.add(date);
+                        currentReservation.add(timeIn);
+                        currentReservation.add(timeOut);
+                        currentReservation.add(duration);
+
+                        motorBookings.add(currentReservation);
                     }
-
-                    List<String> currentReservation = new ArrayList<>();
-                    currentReservation.add(username);
-                    currentReservation.add(identifier);
-                    currentReservation.add(date);
-                    currentReservation.add(timeIn);
-                    currentReservation.add(timeOut);
-                    currentReservation.add(duration);
-
-                    motorBookings.add(currentReservation);
                 }
             }
         }

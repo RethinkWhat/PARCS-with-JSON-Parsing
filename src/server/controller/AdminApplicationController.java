@@ -138,9 +138,7 @@ public class AdminApplicationController {
                 // Stop the server logic
                 try {
                     server.getReg().unbind("server");
-                } catch (RemoteException ex) {
-                    throw new RuntimeException(ex);
-                } catch (NotBoundException ex) {
+                } catch (RemoteException | NotBoundException ex) {
                     throw new RuntimeException(ex);
                 }
             }
