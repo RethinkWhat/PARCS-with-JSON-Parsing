@@ -154,7 +154,7 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
     public List<List<String>> viewHistory(String username) throws RemoteException {
         Map<String,Reservations> parkingSpotList = gsonReservationParser.getUserReservations(username);
 
-        ArrayList userBookings = new ArrayList<>();
+        List<List<String>> userBookings = new ArrayList<>();
         for (String key : parkingSpotList.keySet()) {
             ArrayList<String> booking = new ArrayList<>();
             if (key.contains("C"))
