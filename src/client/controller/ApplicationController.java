@@ -4,7 +4,15 @@ import client.controller.application_pages.ReservationPageController;
 import client.controller.application_pages.TimerController;
 import client.controller.application_pages.UserProfileController;
 import client.model.ApplicationModel;
+import client.model.Client;
+import client.model.LoginModel;
 import client.view.ApplicationView;
+import client.view.LoginView;
+
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 
 /**
  * Template for ApplicationController object.
@@ -63,5 +71,32 @@ public class ApplicationController {
         // mouse listeners
 
         // focus listeners
+
+
+        //when window is closed...
+        view.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.out.println("Logged out because user clicked [X]");
+                //do logout
+                model.getClient().logout(model.getClient().getUsername());
+                relogin();
+
+            }
+        });
+    }
+
+    /**
+     * A method that redirects users to Login View whenever they clicked logout button or Exit(X) button
+     */
+    public void relogin(){
+        try {
+            Client client = new Client();
+            LoginModel model = new LoginModel(client);
+            LoginView view = new LoginView();
+            new LoginController(view, model);
+        } catch (RemoteException | NotBoundException ee) {
+            ee.printStackTrace();
+        }
     }
 }
