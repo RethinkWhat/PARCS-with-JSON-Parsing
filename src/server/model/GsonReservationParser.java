@@ -426,13 +426,20 @@ public class GsonReservationParser {
         return motorBookings;
     }
 
+    /**
+     * Retrieves the closest reservation for the given user at the current date and time.
+     *
+     * @param username    The username of the user.
+     * @param currentDate The current date.
+     * @param currentTime The current time.
+     * @return A list containing reservation details, or null if no reservation is found.
+     */
     public List<String> getClosestReservation(String username, String currentDate, String currentTime) {
         Map<String, Reservations> userReservations = getUserReservations(username);
 
         String[] currentTimeParts = currentTime.split(":");
         int currentHour = Integer.parseInt(currentTimeParts[0]);
 
-        //parkingIdentifier, startTime, endTime, date
         List<String> closestReservationInfo = new ArrayList<>();
         closestReservationInfo.add("X");
         closestReservationInfo.add("X");
