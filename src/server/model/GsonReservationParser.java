@@ -426,8 +426,11 @@ public class GsonReservationParser {
         return motorBookings;
     }
 
-    public List<String> getClosestReservation(String username, String currentDate) {
+    public List<String> getClosestReservation(String username, String currentDate, String currentTime) {
         Map<String, Reservations> userReservations = getUserReservations(username);
+
+        String[] currentTimeParts = currentTime.split(":");
+        int currentHour = Integer.parseInt(currentTimeParts[0]);
 
         //parkingIdentifier, startTime, endTime, date
         List<String> closestReservationInfo = new ArrayList<>();
@@ -448,10 +451,11 @@ public class GsonReservationParser {
                     String startTime = timeRange.startTime();
                     String endTime = timeRange.endTime();
 
-                    int hour = Integer.parseInt(startTime.split(":")[0]);
+                    int startHour = Integer.parseInt(startTime.split(":")[0]);
+                    int endHour = Integer.parseInt(endTime.split(":")[0]);
 
-                    if (hour < currSmallest){
-                        currSmallest = hour;
+                    if (startHour < currSmallest && startHour >= currentHour){
+                        currSmallest = startHour;
                         closestReservationInfo.set(0, identifier);
                         closestReservationInfo.set(1, startTime);
                         closestReservationInfo.set(2, endTime);
@@ -460,9 +464,11 @@ public class GsonReservationParser {
                     }
                 }
             }
-            if (closestReservationInfo.get(0).equalsIgnoreCase("X")){
-                return null;
-            }
+
+        }
+
+        if (closestReservationInfo.get(0).equalsIgnoreCase("X")){
+            return null;
         }
         return closestReservationInfo;
     }
