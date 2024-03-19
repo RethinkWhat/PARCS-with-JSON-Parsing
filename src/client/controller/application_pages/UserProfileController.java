@@ -10,6 +10,7 @@ import client.view.application_pages.UserProfileView;
 import shared.Vehicle;
 import utilities.Resources;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -92,13 +93,8 @@ public class UserProfileController {
             model.viewHistory();
         });
         view.setNavSecurityListener(e -> view.getCardLayout().show(view.getPnlCards(), "security"));
-        view.setDeleteListener(new DeleteListener());
-        view.setNavExitListener(e -> {
-            parent.dispose();
-            //TODO: RMI Implementation
-            model.getClient().logout(model.getClient().getUsername());
-            //model.getClient().logout();
-        });
+        view.setDeleteListener(new DeleteListener(view));
+        view.setNavExitListener(new LogOutListener());
 
         // edit profile page
         view.getPnlEditProfile().setContinueListener(new ProfileEditListener());
@@ -252,18 +248,41 @@ public class UserProfileController {
         }
     }
 
+
     /**
-     * Processes the deletion of the account.
+     * Logouts the user's account
      */
-    class DeleteListener implements ActionListener {
-        /**
-         * Deletes the user account.
-         * @param e the event to be processed
-         */
+    class LogOutListener implements ActionListener {
+        UserProfileView userProfileView;
+
         @Override
         public void actionPerformed(ActionEvent e) {
-            model.deleteAccount();
-            System.exit(0);
+            int option = JOptionPane.showConfirmDialog(userProfileView, "Are you sure you want to Logout?", "Confirm Logout", JOptionPane.YES_NO_OPTION);
+            if (option == JOptionPane.YES_OPTION) {
+                model.getClient().logout(model.getClient().getUsername());
+                System.exit(0);
+            } else {
+
+            }
+        }
+    }
+
+    /**
+     * Deletes the user's account
+     */
+    class DeleteListener implements ActionListener {
+        private final UserProfileView userProfileView;
+        public DeleteListener(UserProfileView userProfileView) {
+            this.userProfileView = userProfileView;
+        }
+        public void actionPerformed(ActionEvent e) {
+            int option = JOptionPane.showConfirmDialog(userProfileView, "Are you sure you want to delete your account?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
+            if (option == JOptionPane.YES_OPTION) {
+                model.deleteAccount();
+                System.exit(0);
+            } else {
+                JOptionPane.showMessageDialog(userProfileView, "Deletion canceled.");
+            }
         }
     }
 
