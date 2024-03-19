@@ -219,13 +219,12 @@ public class UserProfileController {
     public void populateFields() {
         // constants / variable
         model.getCredentials();
-
         // Name
         view.getPnlEditProfile().getTxtFirstName().setText(model.getFirstName());
         view.getPnlEditProfile().getTxtLastName().setText(model.getLastName());
 
         // Username
-        view.getPnlEditProfile().getTxtUsername().setText(model.getUsername());
+        view.getPnlEditProfile().getTxtUsername().setText(model.getClient().getUsername());
         view.getPnlEditProfile().getTxtUsername().setEditable(false);
 
         // Contact Number

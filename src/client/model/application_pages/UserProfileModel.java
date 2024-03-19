@@ -83,6 +83,14 @@ public class UserProfileModel {
      */
     public void getCredentials() {
         //TODO: RMI Implementation
+        try{
+            this.firstName = client.getRemote().getFirstName(client.getUsername());
+            this.lastName = client.getRemote().getLastName(client.getUsername());
+            this.contactNo = client.getRemote().getContact(client.getUsername());
+
+        }catch(RemoteException re){
+            re.printStackTrace();
+        }
     }
 
     /**

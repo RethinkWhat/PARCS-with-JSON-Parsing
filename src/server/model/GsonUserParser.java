@@ -84,6 +84,31 @@ public class GsonUserParser {
         }
         return "";
     }
+    public String getUserFirstName(String username){
+        for (User user : userArrayList) {
+            if (user.getUsername().equals(username)) {
+                return user.getFirstName();
+            }
+        }
+        return "";
+    }
+    public String getUserLastName(String username){
+        for (User user : userArrayList) {
+            if (user.getUsername().equals(username)) {
+                return user.getLastName();
+            }
+        }
+        return "";
+    }
+    public String getContact(String username){
+        for (User user : userArrayList) {
+            if (user.getUsername().equals(username)) {
+                return user.getPhoneNumber();
+            }
+        }
+        return "";
+    }
+
 
     /**
      * Method to get a list of all the vehicles of a user
