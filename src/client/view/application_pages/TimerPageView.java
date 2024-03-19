@@ -8,10 +8,18 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
+
 /**
  * The TimerPageView displays the current booking of the user.
  */
 public class TimerPageView extends JPanel {
+
+    /**
+     * The current time of the timer.
+     */
+    double current;
+
     /**
      * The panel that holds different components.
      */
@@ -65,6 +73,10 @@ public class TimerPageView extends JPanel {
         container.add(pnlTicketInfo, BorderLayout.EAST);
 
         this.setPreferredSize(new Dimension(1100, 700));
+    }
+
+    public void setCurrent(double i) {
+        this.current = i;
     }
 
     /**
@@ -131,10 +143,6 @@ public class TimerPageView extends JPanel {
          * The components inside the timer.
          */
         double init;
-        /**
-         * The current time of the timer.
-         */
-        double current;
 
         /**
          * Constructs a panel of TimerGraphics.

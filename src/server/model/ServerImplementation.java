@@ -119,7 +119,7 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
      * @return
      */
     public List<String> spotTimeAvailable(String identifier, String duration, String date) {
-        return gsonReservationParser.spotTimeAvailable(identifier, Integer.valueOf(duration), date, "7:00", "15:00");
+        return gsonReservationParser.spotTimeAvailable(identifier, Integer.valueOf(duration), date, "7:00", "24:00");
     }
 
     /**
@@ -262,7 +262,10 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
         DateTime dateTime = new DateTime();
         try {
 
-            List<String> userReservation = reservationParser.getClosestReservation(username, dateTime.getTime());
+            System.out.println("username: " + username);
+            System.out.println("date: " + dateTime.getTime());
+            List<String> userReservation = gsonReservationParser.getClosestReservation(username, dateTime.getDateTime());
+            System.out.println(userReservation);
 
             return userReservation;
         } catch (Exception exception) {
@@ -274,10 +277,8 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
     public String getDuration (List<String> userReservation){
         try {
             String duration = gsonReservationParser.computeDuration(userReservation.get(1), userReservation.get(2));
-
             return duration;
-        } catch (Exception exception) {
-            exception.printStackTrace();
+        } catch (Exception nullDuration) {
             return null;
         }
     }

@@ -2,6 +2,7 @@ package client.model;
 
 import client.controller.LoginController;
 import client.view.LoginView;
+import server.model.DateTime;
 import shared.ServerMessage;
 
 import javax.swing.*;
@@ -13,6 +14,9 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 
 
@@ -62,5 +66,12 @@ public class Client {
             re.printStackTrace();
             return false;
         }
+    }
+
+    public String getTime() {
+        Calendar cal = Calendar.getInstance();
+        Date time = cal.getTime();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        return dateFormat.format(time);
     }
 }
