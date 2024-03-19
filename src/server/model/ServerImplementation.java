@@ -255,7 +255,7 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
         DateTime dateTime = new DateTime();
         try {
 
-            List<String> userReservation = gsonReservationParser.getClosestReservation(username, dateTime.getDateTime());
+            List<String> userReservation = gsonReservationParser.getClosestReservation(username, dateTime.getDateTime(), dateTime.getTime());
 
             return userReservation;
         } catch (Exception exception) {
