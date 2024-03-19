@@ -59,6 +59,11 @@ public class ReservationPageController {
      */
     private int motorNumber;
 
+
+    private int availCarCount;
+
+    private int availMotorCount;
+
     /**
      * Constructs a ReservationPageController with a specified view and model.
      * @param view The specified view.
@@ -80,26 +85,25 @@ public class ReservationPageController {
         carsNumber = view.getMainBottomPanel().getParkingSlotsPanel().getCarButtonsSize();
         motorNumber = view.getMainBottomPanel().getParkingSlotsPanel().getMotorButtonsSize();
 
-        int availableCarCount = 0;
+        availCarCount = 0;
         for (int x = 0; x < carsNumber; x++) {
 
             boolean isTaken = true;
 
             if (model.getAvailableTime(("C" + (x + 1)), "1", date)!= null) {
                 isTaken = false;
-                availableCarCount++;
+                availCarCount++;
             }
             view.getMainBottomPanel().getParkingSlotsPanel().setCarMotorButtonsIcon(true, x, isTaken);
         }
 
-        int availableMotorCount = 0;
 
         for (int x = 0; x < motorNumber; x++) {
             boolean isTaken = true;
 
             if (model.getAvailableTime(("M" + (x + 1)), "1", date)!= null) {
                 isTaken = false;
-                availableMotorCount++;
+                availMotorCount++;
             }
             view.getMainBottomPanel().getParkingSlotsPanel().setCarMotorButtonsIcon(false, x, isTaken);
         }
@@ -122,8 +126,8 @@ public class ReservationPageController {
         });
         view.getMainTopPanel().setTxtSearchBarListener(new SearchListener());
 
-        view.getMainTopPanel().setPnlAvailCar(String.valueOf(availableCarCount));
-        view.getMainTopPanel().setPnlAvailMotor(String.valueOf(availableMotorCount));
+        view.getMainTopPanel().setPnlAvailCar(String.valueOf(availCarCount));
+        view.getMainTopPanel().setPnlAvailMotor(String.valueOf(availMotorCount));
         view.getMainTopPanel().setPnlTotalBookings(model.getTotalBookings());
 
         view.getParkingSlotButtonsView().setDateList(dateList);
@@ -272,6 +276,18 @@ public class ReservationPageController {
                         view.getMainBottomPanel()
                                 .getParkingSlotsPanel()
                                 .setCarMotorButtonsIcon(btnID.contains("C"), Integer.parseInt(id)-1, true);
+                        if (date.equals(model.getClient().getDate())) {
+                            if (btnID.contains("C")) {
+                                availCarCount -= 1;
+                                view.getMainTopPanel().setPnlAvailCar(String.valueOf(availCarCount));
+                            }else {
+                                availMotorCount -=1;
+                                view.getMainTopPanel().setPnlAvailMotor(String.valueOf(availMotorCount));
+                            }
+                            view.revalidate();
+                        }
+
+
                     }
                     view.getParkingSlotButtonsView().resetDuration();
                     timeAvailable = model.getAvailableTime(btnID, duration, date);
