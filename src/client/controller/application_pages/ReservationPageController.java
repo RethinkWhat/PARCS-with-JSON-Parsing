@@ -283,9 +283,10 @@ public class ReservationPageController {
                         view.getParkingSlotButtonsView().setTimeList(unavailable);}
                 }
 
-                if (attemptBooking.equals("true"))
+                if (attemptBooking.equals("true")) {
                     confirmationView = view.getReserveSlotConfirmationView(true);
-                else
+                    view.getMainTopPanel().setPnlTotalBookings(model.getTotalBookings());
+                } else
                     confirmationView = view.getReserveSlotConfirmationView(false);
                 confirmationView.setBtnCloseConfirmationListener(new CloseConfirmationListener());
         }
