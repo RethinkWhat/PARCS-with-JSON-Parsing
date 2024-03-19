@@ -36,7 +36,6 @@ public class TimerController {
     }
 
     public void startTimer() {
-        System.out.println("start");
         //TODO: RMI Implementation
 
         Thread thread = new Thread(() -> {
@@ -56,9 +55,6 @@ public class TimerController {
 
                 if (Integer.valueOf(timeIn[0]) >= Integer.valueOf(timeNow[0])) {
                 //if (model.getClient().getTime().compareToIgnoreCase(model.getTimeIn())>=0) {
-                    System.out.println("MODEL TIME: " + model.getClient().getTime());
-                    System.out.println("MODEL TIME IN: " + model.getTimeIn());
-                    System.out.println("unreached");
 
                     int secondsNow = Integer.parseInt(timeNow[2]);
                     int minutesNow = Integer.parseInt(timeNow[1]);
@@ -77,19 +73,26 @@ public class TimerController {
                         hoursRemaining -= 1;
                     }
 
-                    System.out.println("reached graphic before");
-                    System.out.println("reached graphic after");
 
                     view.getPnlTimerGraphics().setHour(hoursRemaining);
                     view.getPnlTimerGraphics().setMinute(minutesRemaining);
                     view.getPnlTimerGraphics().setSecond(secondsRemaining);
 
                     int duration = model.getDuration();
-                    view.setCurrent(3600);
+
+
+                    double remaining = (hoursRemaining * 3600) + (minutesRemaining * 60) + secondsRemaining;
+
+                    double durationInSeconds = (duration * 3600);
+
+                    double yuen = (remaining/durationInSeconds) * 3600;
+
+                    view.setCurrent(yuen);
+
+
 
 
                     view.paint(view.getGraphics());
-                    //view.setPnlTimerGraphics(hoursRemaining, minutesRemaining, secondsRemaining);
                     view.getPnlTimerGraphics().getSwingTimer().start();
                     model.setTimeStarted(true);
                     view.repaint();

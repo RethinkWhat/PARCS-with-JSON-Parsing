@@ -237,23 +237,16 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
 
     public boolean createAccount (String firstName, String lastName, String username, String phoneNumber, String
             password){
-        System.out.println("create account reached");
 
-        System.out.println(userLog);
         if (userLog.contains(username)) {
-            System.out.println("reached");
             return false;
         }
-        System.out.println("attemptingCreateUser");
         boolean condition = gsonUserParser.createUser(firstName, lastName, username, phoneNumber, password);
 
-        System.out.println(userLog);
         if (condition) {
             userLog.add(username.toLowerCase());
         }
-        System.out.println(userLog);
 
-        System.out.println("CONDITION: " + condition);
         return condition;
 
     }
@@ -262,10 +255,7 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
         DateTime dateTime = new DateTime();
         try {
 
-            System.out.println("username: " + username);
-            System.out.println("date: " + dateTime.getTime());
             List<String> userReservation = gsonReservationParser.getClosestReservation(username, dateTime.getDateTime());
-            System.out.println(userReservation);
 
             return userReservation;
         } catch (Exception exception) {

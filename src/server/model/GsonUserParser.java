@@ -120,12 +120,10 @@ public class GsonUserParser {
             password){
         //params for user: String username, String type, String password, String lastName, String firstName, String phoneNumber
 
-        System.out.println("STARTING PARSER");
         for (User user: userArrayList) {
             if (user.getUsername().equalsIgnoreCase(username))
                 return false;
         }
-        System.out.println("END OF FOR LOOP");
             User newPerson = new User(username, "user", password, lastName, firstName, phoneNumber, null);
             userArrayList.add(newPerson);
             this.updateUserList();

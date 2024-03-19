@@ -72,7 +72,6 @@ public class TimerModel {
 
         try{
             reservationInfo = this.getClient().getRemote().getClosestReservation(this.getClient().getUsername());
-            System.out.println("RESERVAtioN INFO");
             try {
                 duration = Integer.parseInt(getClient().getRemote().getDuration(reservationInfo));
             } catch (Exception durationNull) {
