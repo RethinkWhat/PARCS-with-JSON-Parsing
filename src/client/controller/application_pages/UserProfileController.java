@@ -1,10 +1,14 @@
 package client.controller.application_pages;
 
+import client.controller.LoginController;
 import client.controller.VehicleAdderController;
+import client.model.Client;
+import client.model.LoginModel;
 import client.model.RegisterModel;
 import client.model.VehicleAdderModel;
 import client.model.application_pages.UserProfileModel;
 import client.view.ApplicationView;
+import client.view.LoginView;
 import client.view.VehicleAdderView;
 import client.view.application_pages.UserProfileView;
 import shared.Vehicle;
@@ -14,6 +18,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -31,6 +37,7 @@ public class UserProfileController {
      * The view UserRegisterView object.
      */
     private UserProfileView view;
+
     /**
      * The model UserProfile object.
      */
@@ -62,6 +69,7 @@ public class UserProfileController {
     public UserProfileController(UserProfileView view, UserProfileModel model, ApplicationView parent) {
         this.view = view;
         this.model = model;
+
 
         // constants / variables
         populateFields(); // populate fields of the edit profile text fields.
@@ -96,6 +104,7 @@ public class UserProfileController {
         view.setNavSecurityListener(e -> view.getCardLayout().show(view.getPnlCards(), "security"));
         view.setDeleteListener(new DeleteListener(view));
         view.setNavExitListener(new LogOutListener());
+
 
         // edit profile page
         view.getPnlEditProfile().setContinueListener(new ProfileEditListener());
@@ -261,12 +270,25 @@ public class UserProfileController {
             int option = JOptionPane.showConfirmDialog(userProfileView, "Are you sure you want to Logout?", "Confirm Logout", JOptionPane.YES_NO_OPTION);
             if (option == JOptionPane.YES_OPTION) {
                 model.getClient().logout(model.getClient().getUsername());
-                System.exit(0);
+
+                relogin();
+
             } else {
 
             }
         }
     }
+    public void relogin(){
+        try {
+            Client client = new Client();
+            LoginModel model = new LoginModel(client);
+            LoginView view = new LoginView();
+            new LoginController(view, model);
+        } catch (RemoteException | NotBoundException ee) {
+            ee.printStackTrace();
+        }
+    }
+
 
     /**
      * Deletes the user's account
