@@ -181,17 +181,12 @@ public class ReservationPageModel {
                 if (time != null) {
                     if (time.length > 1)
                         return ("C"+(x+1));
-                } else {
-                    x++;
                 }
             }
             for (int x =0; x< motorSize; x++) {
                 String[] time = getAvailableTime(("M" + (x+1)),"1",date);
                 if (time != null) {
-                    if (time.length >1)
-                        return ("M"+(x+1));
-                } else {
-                    x++;
+                    return ("M"+(x+1));
                 }
             }
         }

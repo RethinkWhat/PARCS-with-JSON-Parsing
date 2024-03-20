@@ -296,7 +296,8 @@ public class ReservationPageController {
                         view.getParkingSlotButtonsView().setTimeList(timeAvailable);
                     } else {
                         String[] unavailable = {"Unavailable"};
-                        view.getParkingSlotButtonsView().setTimeList(unavailable);}
+                        view.getParkingSlotButtonsView().setTimeList(unavailable);
+                    }
                 }
 
                 if (attemptBooking == null) {
@@ -347,13 +348,23 @@ public class ReservationPageController {
             if (identifier != null) {
                 view.getTopCardLayout().show(view.getPnlCards(), "buttons");
 
-                if (identifier.contains("C")) {
+                btnID = identifier;
+
+                view.getParkingSlotButtonsView().setLblDate(search);
+                view.getParkingSlotButtonsView().getCmbDate().setSelectedItem(search);
+
+                if (btnID.contains("C")) {
                     view.getParkingSlotButtonsView().setVehiclesList(model.getCars());
                     view.getParkingSlotButtonsView().setLblType("Car");
                 } else {
                     view.getParkingSlotButtonsView().setVehiclesList(model.getMotorcycles());
                     view.getParkingSlotButtonsView().setLblType("Motor");
                 }
+
+                view.getParkingSlotButtonsView().setLblSlotNumber(btnID);
+                view.getParkingSlotButtonsView().setLblDate(search);
+                view.getParkingSlotButtonsView().resetTime();
+                view.getParkingSlotButtonsView().resetDuration();
                 view.getParkingSlotButtonsView().setLblSlotNumber(identifier);
             }
         }
