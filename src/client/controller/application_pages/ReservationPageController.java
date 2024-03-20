@@ -266,7 +266,7 @@ public class ReservationPageController {
         public void actionPerformed(ActionEvent e) {
             String startTime = view.getParkingSlotButtonsView().getStartTime();
             String duration = view.getParkingSlotButtonsView().getDurationChosen();
-                if (startTime != null && duration != null) {
+                if (startTime != null && duration != null && !startTime.equalsIgnoreCase("Unavailable")) {
                     attemptBooking = String.valueOf(model.attemptBooking(btnID, date, startTime, duration));
                     if (!model.checkIfTakenForDay(btnID)) {
                         String id = "";
@@ -299,12 +299,22 @@ public class ReservationPageController {
                         view.getParkingSlotButtonsView().setTimeList(unavailable);}
                 }
 
-                if (attemptBooking.equals("true")) {
-                    confirmationView = view.getReserveSlotConfirmationView(true);
-                    view.getMainTopPanel().setPnlTotalBookings(model.getTotalBookings());
-                } else
-                    confirmationView = view.getReserveSlotConfirmationView(false);
-                confirmationView.setBtnCloseConfirmationListener(new CloseConfirmationListener());
+                if (attemptBooking == null) {
+                    String id = "";
+                    for (int x =1 ; x < btnID.length(); x ++) {
+                        id+= btnID.charAt(x);
+                    }
+                    view.getMainBottomPanel()
+                            .getParkingSlotsPanel()
+                            .setCarMotorButtonsIcon(btnID.contains("C"), Integer.parseInt(id)-1, true);
+                } else {
+                    if (attemptBooking.equals("true")) {
+                        confirmationView = view.getReserveSlotConfirmationView(true);
+                        view.getMainTopPanel().setPnlTotalBookings(model.getTotalBookings());
+                    } else
+                        confirmationView = view.getReserveSlotConfirmationView(false);
+                    confirmationView.setBtnCloseConfirmationListener(new CloseConfirmationListener());
+                }
         }
     }
 

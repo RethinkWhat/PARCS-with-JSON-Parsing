@@ -67,5 +67,100 @@
         "plateNumber": "zzz"
       }
     ]
+  },
+  {
+    "username": "johan",
+    "type": "user",
+    "password": "2aMVUAM+4H1uFDAu6oICwHwma2MxVFE9gXyou5HeQNE\u003d",
+    "lastName": "johan",
+    "firstName": "johan",
+    "phoneNumber": "johan",
+    "vehicles": [
+      {
+        "type": "Car",
+        "model": "civic",
+        "plateNumber": "123"
+      }
+    ]
+  },
+  {
+    "username": "basti",
+    "type": "user",
+    "password": "gm+0YJJrOz/BuKLSMBE9JHmHxHFuVefXgg8tlMLeWkQ\u003d",
+    "lastName": "basti",
+    "firstName": "basti",
+    "phoneNumber": "basti",
+    "vehicles": [
+      {
+        "type": "Car",
+        "model": "dfkaos;difj",
+        "plateNumber": "asdfjkl;mfads"
+      }
+    ]
+  },
+  {
+    "username": "jay",
+    "type": "user",
+    "password": "pLOJ7nlLTmUenShqHeVefmABlrZ0MhuFUa59kSyeyuM\u003d",
+    "lastName": "socram",
+    "firstName": "jay",
+    "phoneNumber": "09674367852",
+    "vehicles": [
+      {
+        "type": "Car",
+        "model": "Honda Civic",
+        "plateNumber": "NCR 3432"
+      }
+    ]
+  },
+  {
+    "username": "STW",
+    "type": "user",
+    "password": "ZWFOVEVuIquBh6OepOBaVqDD6QLfN3UcCoAeZTtjRDQ\u003d",
+    "lastName": "Wong",
+    "firstName": "Sum Ting",
+    "phoneNumber": "95410247",
+    "vehicles": [
+      {
+        "type": "Car",
+        "model": "Toyota Land Cruiser",
+        "plateNumber": "CAT 911"
+      }
+    ]
+  },
+  {
+    "username": "rithik",
+    "type": "user",
+    "password": "+Y1ZjXOLRzI5q25w7H/ZcZmFMsmvuViTKZR+4Ta3dgs\u003d",
+    "lastName": "Kaboom",
+    "firstName": "Rithik",
+    "phoneNumber": "9812386",
+    "vehicles": [
+      {
+        "type": "Car",
+        "model": "asdhjgkf",
+        "plateNumber": "dkf;jlas1"
+      }
+    ]
+  },
+  {
+    "username": "lorem",
+    "type": "user",
+    "password": "BBfFN+ZdjkHukrcldyYIaFSo9BzYhIQvUtzwXK9BCaQ\u003d",
+    "lastName": "text",
+    "firstName": "sample",
+    "phoneNumber": "123456789",
+    "vehicles": [
+      {
+        "type": "Car",
+        "model": "Honda Civic",
+        "plateNumber": "CAR 167"
+      },
+      {
+        "type": "Car",
+        "model": "Rheimmetall Leopard 2A6",
+        "plateNumber": "PWD 116"
+      }
+    ]
   }
 ]
