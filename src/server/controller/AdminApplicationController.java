@@ -56,8 +56,11 @@ public class AdminApplicationController {
     public AdminApplicationController(AdminApplicationView view){
         try {
             this.server = new ServerImplementation(address);
+            server.getReg().unbind("server");
         } catch (IOException ex) {
             ex.printStackTrace();
+        } catch (NotBoundException e) {
+            throw new RuntimeException(e);
         }
 
         this.view = view;
