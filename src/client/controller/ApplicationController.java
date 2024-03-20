@@ -9,6 +9,7 @@ import client.model.LoginModel;
 import client.view.ApplicationView;
 import client.view.LoginView;
 
+import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.rmi.NotBoundException;
@@ -62,9 +63,13 @@ public class ApplicationController {
             view.getMainCardLayout().show(view.getPnlCards(), "account");
         });
         view.setNavLogoutListener(e -> {
-            view.dispose();
-            //TODO: update
-            model.getClient().logout(model.getClient().getUsername());
+            int option = JOptionPane.showConfirmDialog(view, "Are you sure you want to Logout?", "Confirm Logout", JOptionPane.YES_NO_OPTION);
+            if (option == JOptionPane.YES_OPTION) {
+                model.getClient().logout(model.getClient().getUsername());
+                view.dispose();
+                relogin();
+            }
+
         });
 
 
