@@ -173,19 +173,26 @@ public class ReservationPageModel {
      * @return The identifier of the available parking slot, or null if none is available.
      */
     public String findAvailableSlotOnDay(String date, int carSize, int motorSize) {
-        String dates[] = getDateList();
+        String[] dates = getDateList();
         if (Arrays.stream(dates).toList().contains(date)) {
 
             for (int x =0; x< carSize; x++) {
-                String time[] = getAvailableTime(("C" + (x+1)),"1",date);
-
-                if (time.length > 1)
-                    return ("C"+(x+1));
+                String[] time = getAvailableTime(("C" + (x+1)),"1",date);
+                if (time != null) {
+                    if (time.length > 1)
+                        return ("C"+(x+1));
+                } else {
+                    x++;
+                }
             }
             for (int x =0; x< motorSize; x++) {
-                String time[] = getAvailableTime(("M" + (x+1)),"1",date);
-                if (time.length >1)
-                    return ("M"+(x+1));
+                String[] time = getAvailableTime(("M" + (x+1)),"1",date);
+                if (time != null) {
+                    if (time.length >1)
+                        return ("M"+(x+1));
+                } else {
+                    x++;
+                }
             }
         }
         return null;
