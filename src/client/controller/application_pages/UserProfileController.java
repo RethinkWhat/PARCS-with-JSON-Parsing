@@ -380,21 +380,24 @@ public class UserProfileController {
          */
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (!RegisterModel.encryptPassword(view.getPnlSecurityPage().getCurrentPassword()).equals(model.getPassword())) {
-                view.getPnlSecurityPage().getLblMessage().setText("Current password does not match. Try again.");
+
+            if (!RegisterModel.verifySignupPassword(
+                    view.getPnlSecurityPage().getNewPassword(), view.getPnlSecurityPage().getConfirmNewPassword())) {
+                view.getPnlSecurityPage().getLblMessage().setText("New passwords do not match. Try again.");
                 view.getPnlSecurityPage().getLblMessage().setForeground(Color.RED);
             } else {
-                if (!RegisterModel.verifySignupPassword(
-                        view.getPnlSecurityPage().getNewPassword(), view.getPnlSecurityPage().getConfirmNewPassword())) {
-                    view.getPnlSecurityPage().getLblMessage().setText("New passwords do not match. Try again.");
-                    view.getPnlSecurityPage().getLblMessage().setForeground(Color.RED);
-                } else {
-                    model.editPassword(RegisterModel.encryptPassword(view.getPnlSecurityPage().getNewPassword()));
+                // new password and confirm password are the same
+                if (model.editPassword(
+                        RegisterModel.encryptPassword(view.getPnlSecurityPage().getCurrentPassword()),
+                        RegisterModel.encryptPassword(view.getPnlSecurityPage().getNewPassword()))) {
                     view.getPnlSecurityPage().getLblMessage().setText("Your password has been successful changed.");
                     view.getPnlSecurityPage().getLblMessage().setForeground(Color.green);
-                    model.editPassword(RegisterModel.encryptPassword(view.getPnlSecurityPage().getNewPassword()));
+                }else {
+                    view.getPnlSecurityPage().getLblMessage().setText("Current password does not match. Try again.");
+                    view.getPnlSecurityPage().getLblMessage().setForeground(Color.RED);
                 }
             }
+
         }
     }
 

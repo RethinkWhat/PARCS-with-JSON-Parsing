@@ -296,9 +296,8 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
     }
 
     @Override
-    public boolean editPassword(String password, String newPassword) throws RemoteException {
-        gsonUserParser.changePassword(password, newPassword);
-        return true;
+    public boolean editPassword(String username, String password, String newPassword) throws RemoteException {
+        return gsonUserParser.changePassword(username, password, newPassword);
     }
 
     /**

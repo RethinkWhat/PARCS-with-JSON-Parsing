@@ -124,7 +124,7 @@ public interface ServerMessage extends Remote {
      * @return
      * @throws RemoteException
      */
-    boolean editPassword(String password, String newPassword) throws RemoteException;
+    boolean editPassword(String username, String password, String newPassword) throws RemoteException;
 
     /**
      * Retrieves all car bookings in a list of lists.

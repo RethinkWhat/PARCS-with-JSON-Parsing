@@ -201,11 +201,10 @@ public class UserProfileModel {
      * @param password The specified new password.
      * @return True if successful. False if otherwise.
      */
-    public boolean editPassword(String password) {
+    public boolean editPassword(String password, String newPassword) {
         //TODO: RMI Implementation
-       try {
-            this.getClient().getRemote().editPassword(getPassword(),password);
-            return true;
+        try {
+            return this.getClient().getRemote().editPassword(client.getUsername(), password, newPassword);
         } catch (RemoteException re) {
             re.printStackTrace();
             return false;
