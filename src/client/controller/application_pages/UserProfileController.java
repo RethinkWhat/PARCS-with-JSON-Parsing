@@ -32,6 +32,7 @@ import java.util.List;
  * to accomplish the requested action.
  */
 public class UserProfileController {
+    private ApplicationView parent;
 
     /**
      * The view UserRegisterView object.
@@ -69,6 +70,7 @@ public class UserProfileController {
     public UserProfileController(UserProfileView view, UserProfileModel model, ApplicationView parent) {
         this.view = view;
         this.model = model;
+        this.parent = parent;
 
 
         // constants / variables
@@ -270,7 +272,7 @@ public class UserProfileController {
             int option = JOptionPane.showConfirmDialog(userProfileView, "Are you sure you want to Logout?", "Confirm Logout", JOptionPane.YES_NO_OPTION);
             if (option == JOptionPane.YES_OPTION) {
                 model.getClient().logout(model.getClient().getUsername());
-
+                parent.dispose();
                 relogin();
 
             } else {
