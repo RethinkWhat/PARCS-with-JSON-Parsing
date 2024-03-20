@@ -77,7 +77,6 @@ public class ApplicationController {
         view.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                System.out.println("Logged out because user clicked [X]");
                 //do logout
                 model.getClient().logout(model.getClient().getUsername());
                 relogin();

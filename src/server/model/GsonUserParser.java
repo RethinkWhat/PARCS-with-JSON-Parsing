@@ -174,14 +174,17 @@ public class GsonUserParser {
     * @param username
     * @param newPassword
     */
-    public void changePassword(String username, String newPassword) {
+    public boolean changePassword(String username, String password, String newPassword) {
         for (User user : userArrayList) {
             if (user.getUsername().equalsIgnoreCase(username)) {
-                user.setPassword(newPassword);
-                break;
+                if (user.getPassword().equals(password)) {
+                    user.setPassword(newPassword);
+                    return true;
+                }
             }
         }
         updateUserList();
+        return false;
     }
 
     /**
