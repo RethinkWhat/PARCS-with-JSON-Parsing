@@ -255,6 +255,7 @@ public class UserProfileController {
         public void actionPerformed(ActionEvent e) {
             VehicleAdderModel vehicleAdderModel = new VehicleAdderModel(model.getClient());
             VehicleAdderView vehicleAdderView = new VehicleAdderView();
+            parent.dispose();
             VehicleAdderController vehicleAdderController = new VehicleAdderController(vehicleAdderView, vehicleAdderModel);
             vehicleAdderView.setVisible(true);
         }
