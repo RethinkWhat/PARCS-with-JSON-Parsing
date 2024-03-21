@@ -36,6 +36,12 @@
           "11:00-15:00": "lorem",
           "7:00-11:00": "johan"
         }
+      },
+      {
+        "date": "03/23/24",
+        "timeAndUserMap": {
+          "9:00-11:00": "johan"
+        }
       }
     ]
   },
@@ -59,6 +65,17 @@
         "timeAndUserMap": {
           "11:00-15:00": "z",
           "7:00-11:00": "z"
+        }
+      }
+    ]
+  },
+  {
+    "identifier": "C10",
+    "reservationsList": [
+      {
+        "date": "03/21/24",
+        "timeAndUserMap": {
+          "7:00-9:00": "johan"
         }
       }
     ]

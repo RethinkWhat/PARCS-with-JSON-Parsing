@@ -8,6 +8,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -46,7 +47,7 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
      */
     public ServerImplementation(int registryPort) throws RemoteException {
         try {
-            reg = LocateRegistry.createRegistry(2000);
+            reg = LocateRegistry.createRegistry(2020);
             reg.rebind("server", this);
             userLog = new ArrayList<>();
             gsonUserParser = new GsonUserParser();
@@ -157,6 +158,26 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
     public List<List<String>> viewHistory(String username) throws RemoteException {
         Map<String,Reservations> parkingSpotList = gsonReservationParser.getUserReservations(username);
 
+        List<List<String>> toReturn = new ArrayList<>();
+        for (String key : parkingSpotList.keySet()) {
+
+            HashMap<TimeRange, String> map = parkingSpotList.get(key).getTimeAndUserMap();
+
+            for (TimeRange timeRange : map.keySet()) {
+                List<String> tempArray = new ArrayList<>();
+                String type = "Motor";
+                if (key.contains("C"))
+                    type = "Car";
+                tempArray.add(key);
+                tempArray.add(type);
+                tempArray.add(parkingSpotList.get(key).getDate());
+                tempArray.add(timeRange.startTime());
+                tempArray.add(timeRange.endTime());
+                toReturn.add(tempArray);
+            }
+        }
+
+        /*
         List<List<String>> userBookings = new ArrayList<>();
         for (String key : parkingSpotList.keySet()) {
             ArrayList<String> booking = new ArrayList<>();
@@ -176,7 +197,10 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
                 userBookings.add(booking);
             }
         }
-        return userBookings;
+
+         */
+        System.out.println(toReturn);
+        return toReturn;
 
     }
 

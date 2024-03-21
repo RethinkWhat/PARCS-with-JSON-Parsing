@@ -479,12 +479,13 @@ public class UserProfileController {
             switch (type) {
                 case "All" -> {
                     for (List<String> booking : filteredBookings) {
-                        String[] token = booking.toString().replace("[", "").replace("]", "").split(",");
-                        String vehicleType = token[0];
-                        String spot = token[1];
-                        String date = token[2];
-                        String timeIn = token[3];
-                        String timeOut = token[4];
+                        System.out.println(booking);
+                       // String[] token = booking.toString().replace("[", "").replace("]", "").split(",");
+                        String vehicleType = booking.get(0);
+                        String spot = booking.get(1);
+                        String date = booking.get(2);
+                        String timeIn = booking.get(3);
+                        String timeOut = booking.get(4);
 
                         view.getPnlBookingsView().bookingPanel().getTablePanel().getTableModel().addRow(new Object[]{
                                 vehicleType, spot, date, timeIn, timeOut

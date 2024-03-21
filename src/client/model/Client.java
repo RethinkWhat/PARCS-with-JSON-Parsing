@@ -34,7 +34,7 @@ public class Client {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        Registry server = LocateRegistry.getRegistry(host, 2000);
+        Registry server = LocateRegistry.getRegistry(host, 2020);
         this.remote = (ServerMessage) server.lookup("server");
 
     }
