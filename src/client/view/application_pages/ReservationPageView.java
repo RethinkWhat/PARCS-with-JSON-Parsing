@@ -1046,8 +1046,9 @@ public class ReservationPageView extends JPanel {
 
             // Close button
             btnCloseConfirmation = res.createBtnRounded("CLOSE", res.celadon, res.eerieBlack, 10);
-
             pnlCloseBtn.add(btnCloseConfirmation);
+
+            btnCloseConfirmation.addActionListener(e -> this.dispose());
 
             this.add(pnlIcon);
             this.add(pnlConfirmation);

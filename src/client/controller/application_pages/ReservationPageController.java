@@ -328,7 +328,6 @@ public class ReservationPageController {
          * @param e the event to be processed
          */
         public void actionPerformed(ActionEvent e) {
-
             confirmationView.dispose();
         }
     }
