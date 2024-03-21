@@ -4,6 +4,7 @@ import client.model.ApplicationModel;
 import client.model.VehicleAdderModel;
 import client.view.ApplicationView;
 import client.view.VehicleAdderView;
+import client.view.VehicleErrorDialog;
 import utilities.Resources;
 
 import javax.swing.*;
@@ -69,6 +70,8 @@ public class VehicleAdderController {
             if (validate) {
                 new ApplicationController(new ApplicationView(), new ApplicationModel(model.getClient()));
                 view.dispose();
+            } else {
+                new VehicleErrorDialog();
             }
         }
     }
