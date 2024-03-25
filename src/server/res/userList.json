@@ -1,76 +1,96 @@
 [
   {
-    "username": "z",
+    "username": "basti",
     "type": "user",
-    "password": "WU5RmuSZMSspQzt92Kl/8Gje/LqXVbbV0A6ExSTWewY\u003d",
-    "lastName": "z",
-    "firstName": "z",
-    "phoneNumber": "z",
+    "password": "lbHDYUPBEZQInCfGlH0ZkagN7rvjF8y3CSZ81oVRUpc\u003d",
+    "lastName": "Siccuan",
+    "firstName": "Sebastian",
+    "phoneNumber": "2931231",
     "vehicles": [
       {
         "type": "Car",
-        "model": "C",
-        "plateNumber": "C"
+        "model": "Mazda 3",
+        "plateNumber": "KTL 99"
+      },
+      {
+        "type": "Car",
+        "model": "SORRY",
+        "plateNumber": "kahit ano123"
       }
     ]
   },
   {
-    "username": "m",
+    "username": "pat",
     "type": "user",
-    "password": "YsZqel3XDDFGYYBjw0TlMebUtZ43mAhEPOlis6vWPFo\u003d",
-    "lastName": "m",
-    "firstName": "m",
-    "phoneNumber": "m",
+    "password": "aNdT8FWxoVs5SZ/bvobWFPmG0OUOYoF7OOhrIKCTX4I\u003d",
+    "lastName": "Lacanilao",
+    "firstName": "Patrick ",
+    "phoneNumber": "099999999999",
     "vehicles": [
       {
         "type": "Car",
-        "model": "m",
-        "plateNumber": "m"
+        "model": "Ford Everest ni Rithik",
+        "plateNumber": "NAG 1234"
       }
     ]
   },
   {
-    "username": "fr",
+    "username": "yuen",
     "type": "user",
-    "password": "Z62PQae7ChjEXz79j2oyvc2DK8+PPy60QAbAPVMHbhg\u003d",
-    "lastName": "fr",
-    "firstName": "fr",
-    "phoneNumber": "fr",
+    "password": "6EHvXy+WtVbomkfDlyzp/Nq8JUB9ktExYharVe68dcY\u003d",
+    "lastName": "Y",
+    "firstName": "KH",
+    "phoneNumber": "123456789",
     "vehicles": [
       {
         "type": "Car",
-        "model": "Cvici",
-        "plateNumber": "NWA"
+        "model": "Toyota Fortuner",
+        "plateNumber": "CAR 222"
       }
     ]
   },
   {
-    "username": "p",
+    "username": "patr",
     "type": "user",
-    "password": "FI3pxaekTRnlbNmuGlVL9nhHr7DFj24S+imsfd/KmUA\u003d",
-    "lastName": "p",
-    "firstName": "p",
-    "phoneNumber": "p",
+    "password": "aNdT8FWxoVs5SZ/bvobWFPmG0OUOYoF7OOhrIKCTX4I\u003d",
+    "lastName": "Lacnaiasdjddasd",
+    "firstName": "Patrickj",
+    "phoneNumber": "asdasd",
     "vehicles": [
       {
         "type": "Car",
-        "model": "J",
-        "plateNumber": "j"
+        "model": "Rithik Car",
+        "plateNumber": "NAG 19"
       }
     ]
   },
   {
-    "username": "h",
+    "username": "johan1",
     "type": "user",
-    "password": "qqlAJmTxpB9A67xSyZk+tmrrNmYClY/fqig7ceZNsSM\u003d",
-    "lastName": "h",
-    "firstName": "h",
-    "phoneNumber": "h",
+    "password": "QBYqVK//Ke+nH9Ubq8c1wdSZv6wU6VxizkcDgrigScs\u003d",
+    "lastName": "asfda",
+    "firstName": "dasdf",
+    "phoneNumber": "asdfasf",
     "vehicles": [
       {
         "type": "Car",
-        "model": "g",
-        "plateNumber": "g"
+        "model": "sdf",
+        "plateNumber": "KTL 78"
+      }
+    ]
+  },
+  {
+    "username": "r",
+    "type": "user",
+    "password": "RUNJ5CLwUpcZHq0T4h09tSDlq+9SBV5JZLgvshP1k6E\u003d",
+    "lastName": "r",
+    "firstName": "r",
+    "phoneNumber": "r",
+    "vehicles": [
+      {
+        "type": "Car",
+        "model": "Car",
+        "plateNumber": "Brom"
       }
     ]
   },
@@ -83,24 +103,24 @@
     "phoneNumber": "mo",
     "vehicles": [
       {
-        "type": "Motorcycle",
-        "model": "mo",
-        "plateNumber": "mo"
+        "type": "Car",
+        "model": "C",
+        "plateNumber": "C"
       }
     ]
   },
   {
-    "username": "j",
+    "username": "i",
     "type": "user",
-    "password": "GJ9AA0vnoZnx+piRZo7jq2BJ+C04xovnD1luqy4YV7c\u003d",
-    "lastName": "j",
-    "firstName": "j",
-    "phoneNumber": "j",
+    "password": "3n0bchoeBjK3zwTt9QMsjs/6n5oISSFSuSbxpafnZdc\u003d",
+    "lastName": "i",
+    "firstName": "i",
+    "phoneNumber": "i",
     "vehicles": [
       {
         "type": "Car",
-        "model": "goggogo",
-        "plateNumber": "gogogogo"
+        "model": "i",
+        "plateNumber": "i"
       }
     ]
   }

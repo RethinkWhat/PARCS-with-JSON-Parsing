@@ -199,6 +199,10 @@ public class GsonUserParser {
      * @return
      */
     public boolean editVehicleInformation(String username, String plateNumber, String newPlate, String newModel, String newType) {
+        if (plateNumberExist(plateNumber)){
+            return false;
+        }
+
         for (User user : userArrayList) {
             if (user.getUsername().equalsIgnoreCase(username)) {
                 List<Vehicle> vehicles = user.getVehicles();

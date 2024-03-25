@@ -187,7 +187,7 @@ public class UserProfileModel {
      */
     public boolean editVehicleInformation(String plateNumber, String newPlate, String newModel, String newType) {
         try{
-            this.getClient().getRemote().editVehicleInformation(getClient().getUsername(),plateNumber,newPlate,newModel,newType);
+            return this.getClient().getRemote().editVehicleInformation(getClient().getUsername(),plateNumber,newPlate,newModel,newType);
         }catch (RemoteException re){
             re.printStackTrace();
         }

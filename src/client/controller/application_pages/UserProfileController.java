@@ -61,6 +61,9 @@ public class UserProfileController {
      */
     private ArrayList<String> plateNumbers;
 
+    private String plateToChange;
+    private String modelToChange;
+
     /**
      * Constructs a controller of the UserProfile page with a specified view and model.
      *
@@ -89,7 +92,6 @@ public class UserProfileController {
 
             UserProfileView.EditCars.CarsPanel carPanel = new UserProfileView.EditCars.CarsPanel(token.getPlateNumber(), token.getType(), token.getModel());
             pnlsCars[i] = carPanel;
-
             view.getPnlEditCars().getPnlCards().add(carPanel, String.valueOf(i));
             view.getPnlEditCars().getCardLayout().show(view.getPnlEditCars().getPnlCards(), String.valueOf(i));
         }
@@ -120,6 +122,8 @@ public class UserProfileController {
 
         for (UserProfileView.EditCars.CarsPanel panel : pnlsCars) {
             panel.setEditListener(e -> {
+                plateToChange = panel.getPlateNumber();
+                modelToChange = panel.getModel();
                 panel.getTxtPlateNumber().setEditable(true);
                 panel.getTxtPlateNumber().setFocusable(true);
                 panel.getTxtModel().setEditable(true);
@@ -389,7 +393,12 @@ public class UserProfileController {
             String newType = pnlsCars[carIndex].getTxtVehicleType().getText();
             String newPlate = pnlsCars[carIndex].getTxtPlateNumber().getText();
             String newModel = pnlsCars[carIndex].getTxtModel().getText();
-            model.editVehicleInformation(plateNumbers.get(carIndex), newPlate, newModel, newType);
+            boolean attempt = model.editVehicleInformation(plateNumbers.get(carIndex), newPlate, newModel, newType);
+            if (!attempt) {
+                pnlsCars[carIndex].getTxtModel().setText(modelToChange);
+                pnlsCars[carIndex].getTxtPlateNumber().setText(plateToChange);
+                view.repaint();
+            }
         }
     }
 

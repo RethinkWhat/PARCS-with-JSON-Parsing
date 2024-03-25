@@ -121,7 +121,12 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
      */
     public List<String> spotTimeAvailable(String identifier, String duration, String date) {
         DateTime dateTime = new DateTime();
-        return gsonReservationParser.spotTimeAvailable(identifier, Integer.valueOf(duration), date, dateTime.getTime(), "15:00");
+        if (dateTime.getDateTime().equals(date)) {
+            return gsonReservationParser.spotTimeAvailable(identifier, Integer.valueOf(duration), date, dateTime.getTime(), "15:00");
+        } else {
+            return gsonReservationParser.spotTimeAvailable(identifier, Integer.valueOf(duration), date, "7:00", "15:00");
+        }
+
     }
 
     /**
@@ -314,6 +319,7 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
 
     @Override
     public void deleteAccount(String username) throws RemoteException {
+        userLog.remove(username);
         gsonUserParser.deleteUser(username);
     }
 

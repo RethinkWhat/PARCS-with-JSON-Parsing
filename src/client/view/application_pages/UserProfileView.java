@@ -645,6 +645,14 @@ public class UserProfileView extends JPanel {
                 return txtPlateNumber;
             }
 
+            public String getPlateNumber() {
+                return txtPlateNumber.getText();
+            }
+
+            public String getModel() {
+                return txtModel.getText();
+            }
+
             /**
              * Retrieves the current JTextField of txtModel.
              * @return The current txtModel.
