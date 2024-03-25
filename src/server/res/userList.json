@@ -1,165 +1,106 @@
 [
   {
-    "username": "yuen",
-    "type": "user",
-    "password": "6EHvXy+WtVbomkfDlyzp/Nq8JUB9ktExYharVe68dcY\u003d",
-    "lastName": "Khang",
-    "firstName": "Yowen",
-    "phoneNumber": "0912345678",
-    "vehicles": [
-      {
-        "type": "SUV",
-        "model": "Accord",
-        "plateNumber": "B456"
-      },
-      {
-        "type": "Car",
-        "model": "Montero",
-        "plateNumber": "ALI 143"
-      },
-      {
-        "type": "Motorcycle",
-        "model": "Ferrari",
-        "plateNumber": "45903498"
-      }
-    ]
-  },
-  {
-    "username": "r",
-    "type": "user",
-    "password": "RUNJ5CLwUpcZHq0T4h09tSDlq+9SBV5JZLgvshP1k6E\u003d",
-    "lastName": "r",
-    "firstName": "r",
-    "phoneNumber": "r",
-    "vehicles": []
-  },
-  {
-    "username": "fire",
-    "type": "user",
-    "password": "3J8osS3RgY7kL/yS7LlAOGIUWYg3NI0w08bAt7V+NMk\u003d",
-    "lastName": "fire",
-    "firstName": "fire",
-    "phoneNumber": "fire",
-    "vehicles": [
-      {
-        "type": "Car",
-        "model": "Honda",
-        "plateNumber": "Nwa"
-      }
-    ]
-  },
-  {
     "username": "z",
     "type": "user",
-    "password": "RUNJ5CLwUpcZHq0T4h09tSDlq+9SBV5JZLgvshP1k6E\u003d",
+    "password": "WU5RmuSZMSspQzt92Kl/8Gje/LqXVbbV0A6ExSTWewY\u003d",
     "lastName": "z",
     "firstName": "z",
     "phoneNumber": "z",
     "vehicles": [
       {
         "type": "Car",
-        "model": "Honda",
-        "plateNumber": "ABC123"
-      },
+        "model": "C",
+        "plateNumber": "C"
+      }
+    ]
+  },
+  {
+    "username": "m",
+    "type": "user",
+    "password": "YsZqel3XDDFGYYBjw0TlMebUtZ43mAhEPOlis6vWPFo\u003d",
+    "lastName": "m",
+    "firstName": "m",
+    "phoneNumber": "m",
+    "vehicles": [
+      {
+        "type": "Car",
+        "model": "m",
+        "plateNumber": "m"
+      }
+    ]
+  },
+  {
+    "username": "fr",
+    "type": "user",
+    "password": "Z62PQae7ChjEXz79j2oyvc2DK8+PPy60QAbAPVMHbhg\u003d",
+    "lastName": "fr",
+    "firstName": "fr",
+    "phoneNumber": "fr",
+    "vehicles": [
+      {
+        "type": "Car",
+        "model": "Cvici",
+        "plateNumber": "NWA"
+      }
+    ]
+  },
+  {
+    "username": "p",
+    "type": "user",
+    "password": "FI3pxaekTRnlbNmuGlVL9nhHr7DFj24S+imsfd/KmUA\u003d",
+    "lastName": "p",
+    "firstName": "p",
+    "phoneNumber": "p",
+    "vehicles": [
+      {
+        "type": "Car",
+        "model": "J",
+        "plateNumber": "j"
+      }
+    ]
+  },
+  {
+    "username": "h",
+    "type": "user",
+    "password": "qqlAJmTxpB9A67xSyZk+tmrrNmYClY/fqig7ceZNsSM\u003d",
+    "lastName": "h",
+    "firstName": "h",
+    "phoneNumber": "h",
+    "vehicles": [
+      {
+        "type": "Car",
+        "model": "g",
+        "plateNumber": "g"
+      }
+    ]
+  },
+  {
+    "username": "mo",
+    "type": "user",
+    "password": "9KTOX6Y0CjWqXbC0ttMab7qmBSNWRg27BTdlfYA/W+I\u003d",
+    "lastName": "mo",
+    "firstName": "mo",
+    "phoneNumber": "mo",
+    "vehicles": [
       {
         "type": "Motorcycle",
-        "model": "Ferrari",
-        "plateNumber": "zzz"
+        "model": "mo",
+        "plateNumber": "mo"
       }
     ]
   },
   {
-    "username": "johan",
+    "username": "j",
     "type": "user",
-    "password": "2aMVUAM+4H1uFDAu6oICwHwma2MxVFE9gXyou5HeQNE\u003d",
-    "lastName": "johan",
-    "firstName": "johan",
-    "phoneNumber": "johan",
+    "password": "GJ9AA0vnoZnx+piRZo7jq2BJ+C04xovnD1luqy4YV7c\u003d",
+    "lastName": "j",
+    "firstName": "j",
+    "phoneNumber": "j",
     "vehicles": [
       {
         "type": "Car",
-        "model": "civic",
-        "plateNumber": "123"
-      }
-    ]
-  },
-  {
-    "username": "basti",
-    "type": "user",
-    "password": "gm+0YJJrOz/BuKLSMBE9JHmHxHFuVefXgg8tlMLeWkQ\u003d",
-    "lastName": "basti",
-    "firstName": "basti",
-    "phoneNumber": "basti",
-    "vehicles": [
-      {
-        "type": "Car",
-        "model": "dfkaos;difj",
-        "plateNumber": "asdfjkl;mfads"
-      }
-    ]
-  },
-  {
-    "username": "jay",
-    "type": "user",
-    "password": "pLOJ7nlLTmUenShqHeVefmABlrZ0MhuFUa59kSyeyuM\u003d",
-    "lastName": "socram",
-    "firstName": "jay",
-    "phoneNumber": "09674367852",
-    "vehicles": [
-      {
-        "type": "Car",
-        "model": "Honda Civic",
-        "plateNumber": "NCR 3432"
-      }
-    ]
-  },
-  {
-    "username": "STW",
-    "type": "user",
-    "password": "ZWFOVEVuIquBh6OepOBaVqDD6QLfN3UcCoAeZTtjRDQ\u003d",
-    "lastName": "Wong",
-    "firstName": "Sum Ting",
-    "phoneNumber": "95410247",
-    "vehicles": [
-      {
-        "type": "Car",
-        "model": "Toyota Land Cruiser",
-        "plateNumber": "CAT 911"
-      }
-    ]
-  },
-  {
-    "username": "rithik",
-    "type": "user",
-    "password": "+Y1ZjXOLRzI5q25w7H/ZcZmFMsmvuViTKZR+4Ta3dgs\u003d",
-    "lastName": "Kaboom",
-    "firstName": "Rithik",
-    "phoneNumber": "9812386",
-    "vehicles": [
-      {
-        "type": "Car",
-        "model": "asdhjgkf",
-        "plateNumber": "dkf;jlas1"
-      }
-    ]
-  },
-  {
-    "username": "lorem",
-    "type": "user",
-    "password": "BBfFN+ZdjkHukrcldyYIaFSo9BzYhIQvUtzwXK9BCaQ\u003d",
-    "lastName": "text",
-    "firstName": "sample",
-    "phoneNumber": "123456789",
-    "vehicles": [
-      {
-        "type": "Car",
-        "model": "Honda Civic",
-        "plateNumber": "CAR 167"
-      },
-      {
-        "type": "Car",
-        "model": "Rheimmetall Leopard 2A6",
-        "plateNumber": "PWD 116"
+        "model": "goggogo",
+        "plateNumber": "gogogogo"
       }
     ]
   }

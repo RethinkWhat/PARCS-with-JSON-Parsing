@@ -235,6 +235,11 @@ public class GsonUserParser {
         for (User user : userArrayList){
             if (user.getUsername().equalsIgnoreCase(username)){
                 Vehicle newVehicle = new Vehicle(type, model, plateNumber);
+                List<Vehicle> vehicleList = user.getVehicles();
+                for (Vehicle vehicle: vehicleList) {
+                    if (vehicle.getPlateNumber().equalsIgnoreCase(plateNumber))
+                            return false;
+                }
                 user.getVehicles().add(newVehicle);
                 updateUserList();
                 return true;

@@ -20,10 +20,7 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
      * Instance of the RMI registry.
      */
     private Registry reg;
-    /**
-     * TODO: Documentation
-     */
-    private ReservationParser reservationParser = new ReservationParser();
+
     /**
      * TODO: Documentation
      */
@@ -123,7 +120,8 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
      * @return
      */
     public List<String> spotTimeAvailable(String identifier, String duration, String date) {
-        return gsonReservationParser.spotTimeAvailable(identifier, Integer.valueOf(duration), date, "7:00", "15:00");
+        DateTime dateTime = new DateTime();
+        return gsonReservationParser.spotTimeAvailable(identifier, Integer.valueOf(duration), date, dateTime.getTime(), "15:00");
     }
 
     /**

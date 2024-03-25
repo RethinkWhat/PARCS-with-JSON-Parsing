@@ -35,6 +35,17 @@ public class TimerController {
 
     }
 
+    public void timerUpdateLabels() {
+        view.getPnlTicketInfo().setLblParkingType(model.getParkingType());
+        view.getPnlTicketInfo().setLblParkingSpot(model.getParkingSlot());
+        view.getPnlTicketInfo().setLblParkingDate(model.getDate());
+        view.getPnlTicketInfo().setLblParkingDuration((model.getDuration() + " hour/s"));
+        view.getPnlTicketInfo().setLblParkingTime(model.getTimeIn() + " - " + model.getTimeOut());
+    }
+
+
+
+
     public void startTimer() {
         //TODO: RMI Implementation
 
