@@ -68,7 +68,6 @@ public class TimerModel {
      * Retrieves the reservation information for the user's parking session.
      */
     public void getReservationInfo() {
-        //TODO: RMI Implementation
 
         try{
             reservationInfo = this.getClient().getRemote().getClosestReservation(this.getClient().getUsername());

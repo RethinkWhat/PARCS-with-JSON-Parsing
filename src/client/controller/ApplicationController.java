@@ -55,8 +55,11 @@ public class ApplicationController {
         });
         view.setNavTicketListener(e -> {
             view.getLblLocation().setText("Ticket");
-            view.getMainCardLayout().show(view.getPnlCards(), "ticket");
+            model.getTimerModel().getReservationInfo();
+            controller.timerUpdateLabels();
             controller.startTimer();
+            view.repaint();
+            view.getMainCardLayout().show(view.getPnlCards(), "ticket");
         });
         view.setNavAccountListener(e -> {
             view.getLblLocation().setText("Account");
