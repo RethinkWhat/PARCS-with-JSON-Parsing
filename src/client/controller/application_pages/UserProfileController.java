@@ -10,6 +10,7 @@ import client.model.application_pages.UserProfileModel;
 import client.view.ApplicationView;
 import client.view.LoginView;
 import client.view.VehicleAdderView;
+import client.view.VehicleErrorDialog;
 import client.view.application_pages.UserProfileView;
 import shared.Vehicle;
 import utilities.Resources;
@@ -397,6 +398,7 @@ public class UserProfileController {
             if (!attempt) {
                 pnlsCars[carIndex].getTxtModel().setText(modelToChange);
                 pnlsCars[carIndex].getTxtPlateNumber().setText(plateToChange);
+                new VehicleErrorDialog();
                 view.repaint();
             }
         }
