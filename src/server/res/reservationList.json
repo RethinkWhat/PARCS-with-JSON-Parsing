@@ -42,5 +42,16 @@
         }
       }
     ]
+  },
+  {
+    "identifier": "C9",
+    "reservationsList": [
+      {
+        "date": "03/25/24",
+        "timeAndUserMap": {
+          "7:00-9:00": "p"
+        }
+      }
+    ]
   }
 ]

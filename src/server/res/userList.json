@@ -58,5 +58,50 @@
         "plateNumber": "j"
       }
     ]
+  },
+  {
+    "username": "h",
+    "type": "user",
+    "password": "qqlAJmTxpB9A67xSyZk+tmrrNmYClY/fqig7ceZNsSM\u003d",
+    "lastName": "h",
+    "firstName": "h",
+    "phoneNumber": "h",
+    "vehicles": [
+      {
+        "type": "Car",
+        "model": "g",
+        "plateNumber": "g"
+      }
+    ]
+  },
+  {
+    "username": "mo",
+    "type": "user",
+    "password": "9KTOX6Y0CjWqXbC0ttMab7qmBSNWRg27BTdlfYA/W+I\u003d",
+    "lastName": "mo",
+    "firstName": "mo",
+    "phoneNumber": "mo",
+    "vehicles": [
+      {
+        "type": "Motorcycle",
+        "model": "mo",
+        "plateNumber": "mo"
+      }
+    ]
+  },
+  {
+    "username": "j",
+    "type": "user",
+    "password": "GJ9AA0vnoZnx+piRZo7jq2BJ+C04xovnD1luqy4YV7c\u003d",
+    "lastName": "j",
+    "firstName": "j",
+    "phoneNumber": "j",
+    "vehicles": [
+      {
+        "type": "Car",
+        "model": "goggogo",
+        "plateNumber": "gogogogo"
+      }
+    ]
   }
 ]

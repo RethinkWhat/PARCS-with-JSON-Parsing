@@ -130,7 +130,7 @@ public class GsonReservationParser {
     }
 
     /**
-     * TODO: Documentation
+     * Method to check whether a parking spot has any conflicts with existing bookings
      * @param identifier
      * @param date
      * @param startTime
@@ -207,7 +207,7 @@ public class GsonReservationParser {
     }
 
     /**
-     * TODO: Documentation
+     * Method to get the time range a parking spot is unavailable for booking on a specific date
      * @param identifier
      * @param date
      * @return
