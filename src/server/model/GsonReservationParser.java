@@ -11,7 +11,7 @@ import java.util.*;
  */
 public class GsonReservationParser {
     /**
-     * TODO: Documentation
+     * The GsonBuilder instance used to configure and create Gson instances.
      */
     private GsonBuilder builder;
     /**
@@ -59,7 +59,7 @@ public class GsonReservationParser {
     }
 
     /**
-     * TODO: Documentation
+     * Synchronously updates the reservations file with the current state of parking spots.
      */
     private synchronized void updateFile() {
         try {
@@ -233,7 +233,7 @@ public class GsonReservationParser {
     }
 
     /**
-     * TODO: Documentation
+     * Retrieves the list of reservations associated with a specific parking spot identified by its identifier.
      * @param identifier
      * @return
      */
@@ -247,7 +247,7 @@ public class GsonReservationParser {
     }
 
     /**
-     * TODO: Documentation
+     * Retrieves the total number of bookings made by a specific user on a given date across all parking spots.
      * @param username
      * @param date
      * @return
@@ -481,11 +481,5 @@ public class GsonReservationParser {
     }
 
 
-    //TODO: Delete
-    public static void main(String[] args) {
-        GsonReservationParser parser = new GsonReservationParser();
-        //parser.makeReservation("C69", "10/10/10", "7:00", "1", "rithik");
-        //String identifier, int duration, String date, String startTime, String endTime) {
 
-    }
 }

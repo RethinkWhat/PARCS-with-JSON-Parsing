@@ -354,7 +354,7 @@ public class UserProfileController {
                     view.getPnlEditProfile().getContact()
             );
             populateFields(); // updates the information
-            //TODO: Display message indicating edit was successful
+
         }
     }
 

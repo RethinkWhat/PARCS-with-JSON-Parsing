@@ -46,7 +46,6 @@ public class VehicleAdderModel {
      * @return True if the vehicle information was accepted by the server, false otherwise.
      */
     public boolean writeVehicle(String type, String model, String plateNumber) {
-        //TODO: RMI Implementation
         try {
             return client.getRemote().addVehicle(client.getUsername(), type, model, plateNumber);
 

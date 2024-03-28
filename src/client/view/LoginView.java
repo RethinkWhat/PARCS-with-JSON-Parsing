@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 /**
- * TODO: Documentation
+ * The LoginView class represents the graphical user interface for the login page of the PARCS system.
  */
 public class LoginView extends JFrame {
     /**

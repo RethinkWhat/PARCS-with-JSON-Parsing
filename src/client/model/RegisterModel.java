@@ -74,7 +74,6 @@ public class RegisterModel {
      */
     public boolean createAccount(String firstName, String lastName,
                                  String username, String phoneNumber, String password)  {
-        //TODO: RMI Implementation
         try{
             boolean conditionModel = this.getClient().getRemote().createAccount(firstName,lastName,username,phoneNumber,encryptPassword(password));
             return conditionModel;

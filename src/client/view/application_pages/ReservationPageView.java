@@ -634,7 +634,7 @@ public class ReservationPageView extends JPanel {
         /**
          * Constructs a panel of ParkingSlotButtonsView
          */
-        public ParkingSlotButtonsView() { // TODO: Replace constructors
+        public ParkingSlotButtonsView() {
             this.setLayout(new BorderLayout());
 
             pnlContainer = res.createPnlRounded(1300, 130, res.white, res.lightGray);
