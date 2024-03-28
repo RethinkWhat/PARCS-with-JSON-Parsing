@@ -22,7 +22,7 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
     private Registry reg;
 
     /**
-     * TODO: Documentation
+     * Maintains a record of users currently logged into the system.
      */
     private ArrayList<String> userLog;
     /**=======================================*/
@@ -149,7 +149,7 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
 
     public boolean logout(String username) {
         try {
-            userLog.remove(username);
+                userLog.remove(username);
             return true;
         } catch (Exception e) {
             return false;
@@ -264,9 +264,15 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
     }
 
 
-
-
-
+    /**
+     * Attempts to create a new account with the provided user details.
+     * @param firstName
+     * @param lastName
+     * @param username
+     * @param phoneNumber
+     * @param password
+     * @return
+     */
     public boolean createAccount (String firstName, String lastName, String username, String phoneNumber, String
             password){
 

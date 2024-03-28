@@ -28,6 +28,11 @@ public class GsonUserParser {
         Collections.addAll(userArrayList, getUsers());
     }
 
+    /**
+     * Synchronously updates the user list. This method ensures thread safety by using the synchronized keyword,
+     * meaning if multiple threads try to invoke this method, it will be executed one at a time
+     * in a sequential order.
+     */
     public synchronized void updateUserList() {
         try {
             String jsonString = gson.toJson(userArrayList);
@@ -295,10 +300,5 @@ public class GsonUserParser {
         }
         return false;
     }
-
-    public static void main(String[] args) {
-        GsonUserParser parser = new GsonUserParser();
-    }
-
 
 }

@@ -61,7 +61,6 @@ public class ReservationPageModel {
      * @param client The specified client.
      */
     public ReservationPageModel(Client client) throws RemoteException {
-        //TODO: RMI Implementation
         this.client = client;
         this.fullName = client.getRemote().getFullName(client.getUsername());
         totalBookings = String.valueOf(client.getRemote().getUserTotalBookings(client.getUsername()));

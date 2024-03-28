@@ -74,15 +74,12 @@ public class UserProfileModel {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-        //TODO: RMI Implementation
-
     }
 
     /**
      * Retrieves the full credentials (excluding password) of the current user.
      */
     public void getCredentials() {
-        //TODO: RMI Implementation
         try{
             this.firstName = client.getRemote().getFirstName(client.getUsername());
             this.lastName = client.getRemote().getLastName(client.getUsername());
@@ -97,7 +94,6 @@ public class UserProfileModel {
      * Method to handle deleting a user account
      */
     public void deleteAccount() {
-        //TODO: RMI Implementation
         try{
             this.client.getRemote().deleteAccount(client.getUsername());
         }catch (RemoteException re){
@@ -202,7 +198,6 @@ public class UserProfileModel {
      * @return True if successful. False if otherwise.
      */
     public boolean editPassword(String password, String newPassword) {
-        //TODO: RMI Implementation
         try {
             return this.getClient().getRemote().editPassword(client.getUsername(), password, newPassword);
         } catch (RemoteException re) {

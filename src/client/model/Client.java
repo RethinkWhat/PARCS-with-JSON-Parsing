@@ -20,6 +20,10 @@ import java.util.Date;
 import java.util.Scanner;
 
 
+/**
+ * The Client class is responsible for establishing a connection to the remote server
+ * using Java RMI and providing functionalities to interact with the server.
+ */
 public class Client {
     ServerMessage remote;
     String username;
