@@ -44,7 +44,7 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
      */
     public ServerImplementation(int registryPort) throws RemoteException {
         try {
-            reg = LocateRegistry.createRegistry(2020);
+            reg = LocateRegistry.createRegistry(registryPort);
             reg.rebind("server", this);
             userLog = new ArrayList<>();
             gsonUserParser = new GsonUserParser();
@@ -202,7 +202,6 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
         }
 
          */
-        System.out.println(toReturn);
         return toReturn;
 
     }

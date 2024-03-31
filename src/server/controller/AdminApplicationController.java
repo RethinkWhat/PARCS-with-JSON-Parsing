@@ -36,7 +36,7 @@ public class AdminApplicationController {
     /**
      * The default port of the server.
      */
-    final int address = 2000;
+    final int address = 2020;
     /**
      * Instance variable of reservation parser.
      */
