@@ -216,15 +216,13 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
      * @param newType
      * @return
      */
-    public boolean editVehicleInformation(String username,String plateNumber, String newPlate, String newModel, String newType) {
-        try{
-            gsonUserParser.editVehicleInformation(username,plateNumber,newPlate,newModel,newType);
-
-        }catch (Exception e){
+    public boolean editVehicleInformation(String username, String plateNumber, String newPlate, String newModel, String newType) {
+        try {
+            return gsonUserParser.editVehicleInformation(username, plateNumber, newPlate, newModel, newType);
+        } catch (Exception e) {
             e.printStackTrace();
-
+            return false;
         }
-        return false;
     }
 
     /**

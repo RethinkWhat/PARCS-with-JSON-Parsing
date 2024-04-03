@@ -454,7 +454,7 @@ public class UserProfileView extends JPanel {
             btnAddVehicle = res.createBtnRounded("Add Vehicle", res.celadon, res.eerieBlack, 10);
             pnlButtons.add(btnAddVehicle);
 
-            btnContinue = res.createBtnRounded("Continue", res.celadon, res.celadon, 10);
+            btnContinue = res.createBtnRounded("Continue", res.celadon, res.eerieBlack, 10);
             btnContinue.setVisible(false);
             pnlButtons.add(btnContinue);
 
