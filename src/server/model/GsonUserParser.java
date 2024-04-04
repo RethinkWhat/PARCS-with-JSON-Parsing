@@ -204,8 +204,9 @@ public class GsonUserParser {
      * @return
      */
     public boolean editVehicleInformation(String username, String plateNumber, String newPlate, String newModel, String newType) {
-        if (plateNumberExist(plateNumber)){
-            return false;
+        // Check if the new plate number already exists
+        if (plateNumberExists(newPlate)) {
+            return false; // Cannot edit to a plate number that already exists
         }
 
         for (User user : userArrayList) {
@@ -220,6 +221,20 @@ public class GsonUserParser {
                             updateUserList();
                             return true;
                         }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean plateNumberExists(String plateNumber) {
+        for (User user : userArrayList) {
+            List<Vehicle> vehicles = user.getVehicles();
+            if (vehicles != null) {
+                for (Vehicle vehicle : vehicles) {
+                    if (vehicle.getPlateNumber().equalsIgnoreCase(plateNumber)) {
+                        return true; // Plate number already exists
                     }
                 }
             }

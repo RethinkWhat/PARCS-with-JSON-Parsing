@@ -395,15 +395,24 @@ public class UserProfileController {
             String newPlate = pnlsCars[carIndex].getTxtPlateNumber().getText();
             String newModel = pnlsCars[carIndex].getTxtModel().getText();
             boolean attempt = model.editVehicleInformation(plateNumbers.get(carIndex), newPlate, newModel, newType);
-            if (!attempt) {
+            if (attempt) {
+                int option = JOptionPane.showConfirmDialog(view, "Vehicle information updated successfully. Please re-login", "Success", JOptionPane.DEFAULT_OPTION);
+                if (option == JOptionPane.OK_OPTION) {
+                    logout();
+                }
+            } else {
                 pnlsCars[carIndex].getTxtModel().setText(modelToChange);
                 pnlsCars[carIndex].getTxtPlateNumber().setText(plateToChange);
                 new VehicleErrorDialog();
                 view.repaint();
             }
         }
+        private void logout() {
+            model.getClient().logout(model.getClient().getUsername());
+            parent.dispose();
+            relogin();
+        }
     }
-
     /**
      * Updates the user's password.
      */
