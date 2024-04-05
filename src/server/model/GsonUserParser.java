@@ -204,6 +204,7 @@ public class GsonUserParser {
      * @return
      */
     public boolean editVehicleInformation(String username, String plateNumber, String newPlate, String newModel, String newType) {
+
         // Check if the new plate number already exists
         if (plateNumberExists(newPlate)) {
             return false; // Cannot edit to a plate number that already exists
@@ -225,6 +226,7 @@ public class GsonUserParser {
                 }
             }
         }
+        System.out.println("reached gson false");
         return false;
     }
 

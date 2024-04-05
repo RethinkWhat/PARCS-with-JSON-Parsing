@@ -115,7 +115,10 @@ public class UserProfileController {
         view.getPnlEditProfile().setContinueListener(new ProfileEditListener());
         view.getPnlEditProfile().setCancelListener(new ProfileCancelListener());
 
+
         // edit cars page
+        carIndex = max-1;
+        System.out.println(carIndex);
         view.getPnlEditCars().setContinueListener(new CarContinueListener());
         view.getPnlEditCars().setCancelListener(new CarCancelListener());
         view.getPnlEditCars().setNextListener(new NextListener());
@@ -348,11 +351,21 @@ public class UserProfileController {
          */
         @Override
         public void actionPerformed(ActionEvent e) {
-            model.editUserInformation(
+            boolean attempt = model.editUserInformation(
                     view.getPnlEditProfile().getFirstName(),
                     view.getPnlEditProfile().getLastName(),
                     view.getPnlEditProfile().getContact()
             );
+            System.out.println(attempt);
+            if (attempt) {
+                int option = JOptionPane.showConfirmDialog(view, "User information updated successfully.", "Success", JOptionPane.DEFAULT_OPTION);
+                if (option == JOptionPane.OK_OPTION) {
+                }
+            } else {
+                int option = JOptionPane.showConfirmDialog(view, "User information updated failed.", "Failure", JOptionPane.DEFAULT_OPTION);
+                if (option == JOptionPane.OK_OPTION) {
+                }
+            }
             populateFields(); // updates the information
 
         }
@@ -391,21 +404,30 @@ public class UserProfileController {
          */
         @Override
         public void actionPerformed(ActionEvent e) {
-            String newType = pnlsCars[carIndex].getTxtVehicleType().getText();
-            String newPlate = pnlsCars[carIndex].getTxtPlateNumber().getText();
-            String newModel = pnlsCars[carIndex].getTxtModel().getText();
-            boolean attempt = model.editVehicleInformation(plateNumbers.get(carIndex), newPlate, newModel, newType);
-            if (attempt) {
-                int option = JOptionPane.showConfirmDialog(view, "Vehicle information updated successfully. Please re-login", "Success", JOptionPane.DEFAULT_OPTION);
-                if (option == JOptionPane.OK_OPTION) {
-                    logout();
+            try {
+                String newType = pnlsCars[carIndex].getTxtVehicleType().getText();
+                String newPlate = pnlsCars[carIndex].getTxtPlateNumber().getText();
+                String newModel = pnlsCars[carIndex].getTxtModel().getText();
+                System.out.println("PLATE : " + plateNumbers.get(carIndex));
+
+                System.out.println("CAR INDEX: " + carIndex);
+                System.out.println("FIRST PLATE: " + plateNumbers.get(0));
+                System.out.println("SECOND PLATE: " + plateNumbers.get(1));
+                boolean attempt = model.editVehicleInformation(plateNumbers.get(carIndex), newPlate, newModel, newType);
+                System.out.println("attempt: " + attempt);
+                if (attempt) {
+                    int option = JOptionPane.showConfirmDialog(view, "Vehicle information updated successfully. Please login again.", "Success", JOptionPane.DEFAULT_OPTION);
+                    if (option == JOptionPane.OK_OPTION) {
+                        parent.dispose();
+                        logout();
+                    }
+                } else {
+                    pnlsCars[carIndex].getTxtModel().setText(modelToChange);
+                    pnlsCars[carIndex].getTxtPlateNumber().setText(plateToChange);
+                    new VehicleErrorDialog();
+                    view.repaint();
                 }
-            } else {
-                pnlsCars[carIndex].getTxtModel().setText(modelToChange);
-                pnlsCars[carIndex].getTxtPlateNumber().setText(plateToChange);
-                new VehicleErrorDialog();
-                view.repaint();
-            }
+            } catch (ArrayIndexOutOfBoundsException ignore) {}
         }
         private void logout() {
             model.getClient().logout(model.getClient().getUsername());
@@ -560,8 +582,11 @@ public class UserProfileController {
         @Override
         public void actionPerformed(ActionEvent e) {
             view.getPnlEditCars().getCardLayout().next(view.getPnlEditCars().getPnlCards());
-            if (carIndex != max) {
+            System.out.println(carIndex);
+            if (carIndex != max-1) {
                 carIndex += 1;
+            } else {
+                carIndex = 0;
             }
         }
     }
@@ -578,8 +603,11 @@ public class UserProfileController {
         @Override
         public void actionPerformed(ActionEvent e) {
             view.getPnlEditCars().getCardLayout().previous(view.getPnlEditCars().getPnlCards());
+            System.out.println(carIndex);
             if (carIndex != 0) {
                 carIndex -= 1;
+            } else if (carIndex == 0) {
+                carIndex = max-1;
             }
         }
     }

@@ -649,6 +649,7 @@ public class UserProfileView extends JPanel {
                 return txtPlateNumber.getText();
             }
 
+
             public String getModel() {
                 return txtModel.getText();
             }

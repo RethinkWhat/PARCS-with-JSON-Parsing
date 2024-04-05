@@ -1,2 +1,22 @@
 [
+  {
+    "username": "h",
+    "type": "user",
+    "password": "qqlAJmTxpB9A67xSyZk+tmrrNmYClY/fqig7ceZNsSM\u003d",
+    "lastName": "h",
+    "firstName": "h",
+    "phoneNumber": "h",
+    "vehicles": [
+      {
+        "type": "Car",
+        "model": "miata",
+        "plateNumber": "miata"
+      },
+      {
+        "type": "Car",
+        "model": "m",
+        "plateNumber": "m"
+      }
+    ]
+  }
 ]

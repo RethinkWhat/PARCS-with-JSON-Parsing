@@ -166,7 +166,7 @@ public class UserProfileModel {
      */
     public boolean editUserInformation(String firstName, String lastName, String phoneNumber) {
         try{
-            getClient().getRemote().editUserInformation(getClient().getUsername(), firstName,lastName,phoneNumber);
+            return getClient().getRemote().editUserInformation(getClient().getUsername(), firstName,lastName,phoneNumber);
         }catch (RemoteException re){
             re.printStackTrace();
         }
@@ -183,11 +183,13 @@ public class UserProfileModel {
      */
     public boolean editVehicleInformation(String plateNumber, String newPlate, String newModel, String newType) {
         try{
-            return this.getClient().getRemote().editVehicleInformation(getClient().getUsername(),plateNumber,newPlate,newModel,newType);
+            boolean attempt = this.getClient().getRemote().editVehicleInformation(getClient().getUsername(),plateNumber,newPlate,newModel,newType);
+            System.out.println("model: " + attempt);
+            return attempt;
         }catch (RemoteException re){
             re.printStackTrace();
+            return false;
         }
-        return false;
     }
 
     /**

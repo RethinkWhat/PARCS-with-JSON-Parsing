@@ -253,7 +253,7 @@ public class ServerImplementation extends UnicastRemoteObject implements ServerM
      */
     public boolean editUserInformation(String username,String firstname, String lastName, String phoneNumber ){
         try {
-            gsonUserParser.editUserInformation(username,firstname,lastName,phoneNumber);
+            return gsonUserParser.editUserInformation(username,firstname,lastName,phoneNumber);
         }catch (Exception e) {
             e.printStackTrace();
         }
